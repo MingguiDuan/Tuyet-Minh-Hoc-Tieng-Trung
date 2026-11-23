@@ -3,128 +3,194 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yeu Hoc HSK阅读</title>
+<title>Tuyết Minh学中文</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
 <style>
-/* VOICE everyday: a lively study tool for Vietnamese university students
-   IDEA a pocket reader marked up with a yellow highlighter, like a well-used textbook
-   PICTURE the open story itself, new words highlighted, with a word card beside it
-   COLOUR white ground, tomato red band, highlighter yellow, ink blue for saved words, red wave for Hán-Việt traps
-   TYPE Noto Sans SC 900 for Chinese titles + Be Vietnam Pro for Vietnamese/Latin
-   LAYOUT laptop: story list | reader | word card + notebook; 720px: list scrolls sideways on top; phone: list, reader, word card as bottom sheet */
-:root{color-scheme:light dark;--bg:light-dark(#ffffff,#141311);--ink:light-dark(#17161c,#f1eee8);--mute:light-dark(#5c5966,#aaa69d);--line:light-dark(#e7e2d9,#2e2b27);--panel:light-dark(#fbf8f2,#1d1b18);--red:light-dark(#e5432a,#d6432c);--hl:light-dark(#ffe066,#7a6417);--blue:light-dark(#2846c0,#93a6ff);--ok:light-dark(#1f7a4a,#6fd39c)}
+/* VOICE everyday, gentle: a calm reading companion for young Vietnamese learners of Chinese
+   IDEA a soft paperback reading app — pastel book covers on a warm paper-white desk
+   PICTURE the open story itself; highlighted words; a floating word card beside it
+   COLOUR Soft UI Evolution (ui-ux-pro-max): warm paper ground, dusty-rose primary, pastel category tints (rose, sky, sage, sand, lavender), soft multi-layer shadows
+   TYPE Noto Serif SC for fiction text and titles + Noto Sans SC / Be Vietnam Pro for interface
+   LAYOUT laptop: list | reader | word card + notebook; 720px: list scrolls sideways on top; phone: list, reader, word card as bottom sheet */
+:root{color-scheme:light dark;
+--bg:light-dark(#faf7f5,#1b191e);--card:light-dark(#ffffff,#24212a);--panel:light-dark(#f6f1f0,#2a2630);
+--ink:light-dark(#3a3442,#ede8f0);--mute:light-dark(#6c6576,#aaa3b4);--line:light-dark(#ece5e8,#36313d);
+--pri:light-dark(#a9506f,#e8a6be);--pri-soft:light-dark(#f8e4eb,#3b2732);--on-pri:light-dark(#ffffff,#2a1620);
+--hl:light-dark(#fff0b3,#5b4f22);--blue:light-dark(#5a78c4,#a9bdf0);--ok:light-dark(#3c8a65,#86d1ab);--ok-soft:light-dark(#e2f2e9,#22372c);
+--wave:light-dark(#d1788d,#e796aa);
+--sh1:0 1px 2px light-dark(rgba(58,52,66,.06),rgba(0,0,0,.3)),0 4px 14px light-dark(rgba(58,52,66,.06),rgba(0,0,0,.25));
+--sh2:0 2px 4px light-dark(rgba(58,52,66,.06),rgba(0,0,0,.3)),0 12px 32px light-dark(rgba(58,52,66,.10),rgba(0,0,0,.35));
+--r:14px;--ease:220ms cubic-bezier(.2,.7,.2,1)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:16px/1.55 'Be Vietnam Pro','Noto Sans SC',system-ui,sans-serif;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 'Be Vietnam Pro','Noto Sans SC',system-ui,sans-serif;overflow-x:clip}
 button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
 .zh{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif}
+.serif{font-family:'Noto Serif SC','Songti SC','SimSun',serif}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-header{background:var(--red);color:#fff;padding:22px max(16px,3vw) 18px}
-.hin{max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:14px 28px}
-h1{margin:0;font:900 clamp(34px,5vw,48px)/1.05 'Noto Sans SC',sans-serif;letter-spacing:-.02em}
-.sub{margin:6px 0 0;font-size:15px;opacity:.92}
-.stat{margin:4px 0 0;font-size:14px;font-weight:600}
-.tabs{display:flex;flex-wrap:wrap;gap:6px}
-.tab{min-height:44px;padding:0 14px;border-radius:99px;border:2px solid rgba(255,255,255,.7);background:transparent;color:#fff;font-weight:600;cursor:pointer;white-space:nowrap}
-.tab small{font-weight:400;opacity:.85;margin-left:4px}
-.tab[aria-pressed=true]{background:#fff;color:#c2311b;border-color:#fff}
-.tab:focus-visible,.btn:focus-visible,.w:focus-visible,.sc:focus-visible,select:focus-visible,input:focus-visible,.opt:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.app{max-width:1240px;margin:0 auto;padding:24px max(16px,3vw) 48px;display:grid;grid-template-columns:260px minmax(0,1fr) 310px;gap:28px;align-items:start}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--pri) 60%,transparent);outline-offset:2px;border-radius:10px}
+
+/* header */
+.hd{background:linear-gradient(120deg,light-dark(#fbe6ec,#2f2230) 0%,light-dark(#efe8f8,#28233a) 52%,light-dark(#e4f1ea,#1f2d27) 100%);padding:22px max(16px,3vw) 0}
+.hin{max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:52px;height:52px;border-radius:16px;background:var(--card);box-shadow:var(--sh1);display:grid;place-items:center;color:var(--pri);flex:none}
+.logo svg{width:28px;height:28px}
+h1{margin:0;font:700 clamp(30px,4vw,40px)/1.05 'Noto Serif SC',serif;letter-spacing:-.01em}
+.sub{margin:4px 0 0;font-size:14px;color:var(--mute)}
+.seg{display:flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:16px;background:color-mix(in srgb,var(--card) 70%,transparent);box-shadow:var(--sh1)}
+.seg button{min-height:44px;padding:0 16px;border:0;border-radius:12px;background:transparent;font-weight:600;color:var(--mute);transition:background var(--ease),color var(--ease)}
+.seg button small{font-weight:500;margin-left:6px;opacity:.8}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-selected=true]{background:var(--card);color:var(--pri);box-shadow:var(--sh1)}
+.filters{max-width:1240px;margin:16px auto 0;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding-bottom:16px}
+.stat{max-width:1240px;margin:12px auto 0;font-size:14px;color:var(--mute)}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{min-height:40px;padding:0 14px;border-radius:99px;border:1px solid transparent;background:color-mix(in srgb,var(--card) 75%,transparent);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:7px;transition:background var(--ease),border-color var(--ease),box-shadow var(--ease);white-space:nowrap}
+.pill{flex:none}
+.pill:hover{background:var(--card);box-shadow:var(--sh1)}
+.pill[aria-pressed=true]{background:var(--card);border-color:color-mix(in srgb,var(--pri) 40%,transparent);color:var(--pri);box-shadow:var(--sh1)}
+.pill small{color:var(--mute);font-weight:400}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+
+/* palettes */
+.c-love{--cb:light-dark(#f9e1e8,#3b2731);--cf:light-dark(#953d5c,#f0aec4)}
+.c-work{--cb:light-dark(#e1ebf8,#233041);--cf:light-dark(#2f5687,#a9c4ec)}
+.c-travel{--cb:light-dark(#dff0e5,#21362a);--cf:light-dark(#2c6847,#9fd8b6)}
+.c-essay{--cb:light-dark(#f5eadb,#382f22);--cf:light-dark(#79552a,#e5c597)}
+.c-fantasy{--cb:light-dark(#ebe4f8,#2e2840);--cf:light-dark(#5a43a0,#c7b6f2)}
+.c-short{--cb:light-dark(#fdf0d5,#3a3221);--cf:light-dark(#7a5a12,#ecd28f)}
+.dot{background:var(--cf)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--cb);color:var(--cf);white-space:nowrap}
+.chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.l3{background:light-dark(#fff1c7,#3d3519);color:light-dark(#6b5200,#f0d78a)}
+.l4{background:light-dark(#fbe3d8,#3d2a22);color:light-dark(#8a3c1f,#f2b9a0)}
+.l5{background:light-dark(#e4e7fa,#272c45);color:light-dark(#34418f,#b7c1f5)}
+
+/* layout */
+.app{max-width:1240px;margin:0 auto;padding:22px max(16px,3vw) 48px;display:grid;grid-template-columns:268px minmax(0,1fr) 310px;gap:26px;align-items:start}
 .list{position:sticky;top:16px;max-height:calc(100vh - 32px);display:flex;flex-direction:column;gap:10px}
-.search{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:0 12px;font-size:16px}
+.search{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 14px;font-size:16px;box-shadow:inset 0 1px 2px light-dark(rgba(58,52,66,.04),rgba(0,0,0,.2));transition:border-color var(--ease)}
+.search:focus{border-color:color-mix(in srgb,var(--pri) 50%,transparent)}
 .lh{font-size:13px;color:var(--mute);margin:0}
-.cards{display:flex;flex-direction:column;gap:8px;overflow:auto;padding:2px 4px 8px 2px}
-.sc{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:10px 12px;cursor:pointer;display:grid;gap:3px}
-.sc:hover{border-color:var(--ink)}
-.sc[aria-current=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.sc b{font:700 17px/1.3 'Noto Sans SC',sans-serif}
-.sc small{font-size:13px;opacity:.75}
-.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.chip{display:inline-flex;align-items:center;font-size:12px;font-weight:800;padding:2px 9px;border-radius:99px;width:max-content;white-space:nowrap}
-.l3{background:#ffe066;color:#3b2f00}.l4{background:#ff8a6b;color:#3d0d02}.l5{background:#8ea2ff;color:#0d1640}
+.cards{display:flex;flex-direction:column;gap:10px;overflow:auto;padding:4px 6px 10px 2px}
+.sc{text-align:left;border:1px solid var(--line);background:var(--card);border-radius:var(--r);padding:12px 14px;display:grid;gap:5px;box-shadow:var(--sh1);transition:transform var(--ease),box-shadow var(--ease),border-color var(--ease);position:relative;overflow:hidden}
+.sc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cf);opacity:.55}
+.sc:hover{transform:translateY(-1px);box-shadow:var(--sh2)}
+.sc[aria-current=true]{border-color:color-mix(in srgb,var(--cf) 45%,transparent);box-shadow:0 0 0 3px var(--cb),var(--sh1)}
+.cards>.sc{flex-shrink:0}
+.sc b{font:700 17px/1.35 'Noto Serif SC',serif}
+.sc small{font-size:13px;color:var(--mute)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
+.top .l{display:flex;gap:5px;flex-wrap:wrap}
 .done{font-size:12px;font-weight:600;color:var(--ok);white-space:nowrap}
-.sc[aria-current=true] .done{color:inherit}
 .none{color:var(--mute);font-size:14px;padding:8px 2px}
-article{min-height:60vh}
-.meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;color:var(--mute);font-size:14px}
-h2{margin:10px 0 16px;font:900 clamp(30px,4.2vw,44px)/1.08 'Noto Sans SC',sans-serif;letter-spacing:-.02em;text-wrap:balance}
-.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0 14px;border-bottom:1px solid var(--line);margin-bottom:14px}
-.btn{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:var(--panel);cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:8px}
-.btn:hover{border-color:var(--ink)}
-.btn[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.btn.pri{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* reader */
+article{min-height:60vh;background:var(--card);border-radius:20px;box-shadow:var(--sh1);padding:clamp(18px,3vw,34px)}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;color:var(--mute);font-size:14px}
+.ser{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;margin:14px 0 0;padding:10px 12px;border-radius:12px;background:var(--cb);color:var(--cf);font-size:14px;font-weight:500}
+.ser .btn{min-height:36px;background:var(--card);border-color:transparent;font-size:14px}
+.ser .btn[disabled]{opacity:.4;cursor:default}
+h2{margin:14px 0 14px;font:700 clamp(28px,3.8vw,40px)/1.15 'Noto Serif SC',serif;letter-spacing:-.01em;text-wrap:balance}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:4px 0 14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.btn{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:background var(--ease),border-color var(--ease),box-shadow var(--ease),color var(--ease)}
+.btn:hover{border-color:color-mix(in srgb,var(--pri) 35%,var(--line));box-shadow:var(--sh1)}
+.btn[aria-pressed=true]{background:var(--pri-soft);color:var(--pri);border-color:transparent}
+.btn.pri{background:var(--pri);color:var(--on-pri);border-color:var(--pri)}
+.btn.pri:hover{background:color-mix(in srgb,var(--pri) 88%,#000)}
+.btn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
 .btn svg{width:18px;height:18px;flex:none}
-select{min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--panel);padding:0 10px;font-size:16px}
+select{min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);padding:0 10px;font-size:16px}
 .legend{font-size:13px;color:var(--mute);margin:0 0 18px;display:flex;flex-wrap:wrap;gap:6px 18px}
-.legend i{display:inline-block;width:22px;height:10px;vertical-align:middle;margin-right:6px;border-radius:2px}
-.legend .wv{height:auto;width:auto;font-style:normal;text-decoration:underline wavy var(--red) 1.5px;text-underline-offset:4px;color:var(--ink)}
+.legend i{display:inline-block;width:22px;height:10px;vertical-align:middle;margin-right:6px;border-radius:3px}
+.legend .wv{height:auto;width:auto;font-style:normal;text-decoration:underline wavy var(--wave) 1.5px;text-underline-offset:4px;color:var(--ink)}
 .txt p{font:400 20px/2.15 'Noto Sans SC',sans-serif;margin:0 0 1em}
-.txt.py p{line-height:2.6}
-.w{border:0;padding:0 1px;margin:0;font:inherit;line-height:inherit;background:linear-gradient(transparent 56%,var(--hl) 56%,var(--hl) 92%,transparent 92%);cursor:pointer;border-radius:3px}
+.txt.novel p{font-family:'Noto Serif SC',serif;font-size:20px;line-height:2.2;text-indent:2em}
+.txt.py p{line-height:2.65}
+.w{border:0;padding:0 1px;margin:0;font:inherit;line-height:inherit;color:inherit;background:linear-gradient(transparent 58%,var(--hl) 58%,var(--hl) 94%,transparent 94%);border-radius:4px;transition:background var(--ease)}
 .w:hover{background:var(--hl)}
-.w.t{text-decoration:underline wavy var(--red) 1.5px;text-underline-offset:6px;text-decoration-skip-ink:none}
+.w.t{text-decoration:underline wavy var(--wave) 1.4px;text-underline-offset:6px;text-decoration-skip-ink:none}
 .w.saved{box-shadow:inset 0 -2px 0 var(--blue)}
-.w.on{background:var(--red);color:#fff;box-shadow:none;text-decoration-color:#fff}
-rt{font:500 12px/1 'Be Vietnam Pro',sans-serif;color:var(--mute)}
-.w.on rt{color:#fff}
-.quiz{margin-top:26px;padding:20px;border-radius:18px;background:var(--panel);border:1px solid var(--line)}
-.quiz h3{margin:0 0 12px;font-size:18px}
+.w.on{background:var(--pri-soft);color:var(--pri);box-shadow:0 0 0 2px color-mix(in srgb,var(--pri) 35%,transparent)}
+rt{font:500 12px/1 'Be Vietnam Pro',sans-serif;color:var(--mute);text-indent:0}
+.sn{border-radius:6px;transition:background var(--ease)}
+.sn.playing{background:color-mix(in srgb,var(--blue) 14%,transparent)}
+.sp{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin:0 4px;vertical-align:middle;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--blue);padding:0;text-indent:0}
+.sp svg{width:13px;height:13px}
+.sn.playing .sp{background:var(--blue);color:#fff;border-color:var(--blue)}
+.quiz{margin-top:26px;padding:20px;border-radius:16px;background:var(--panel)}
+.quiz h3{margin:0 0 12px;font-size:17px}
 .qq{margin:0 0 16px}
 .qq p{margin:0 0 8px;font:500 17px/1.6 'Noto Sans SC',sans-serif}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
-.opt{min-height:44px;padding:6px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);cursor:pointer;font:400 16px/1.4 'Noto Sans SC',sans-serif;text-align:left}
-.opt.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt{min-height:44px;padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);font:400 16px/1.4 'Noto Sans SC',sans-serif;text-align:left;transition:border-color var(--ease),background var(--ease)}
+.opt:hover{border-color:color-mix(in srgb,var(--pri) 35%,var(--line))}
+.opt.right{background:var(--ok-soft);color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent);font-weight:500}
 .opt.wrong{text-decoration:line-through;opacity:.55}
 .qend{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
+
+/* aside */
 aside{position:sticky;top:16px;display:grid;gap:18px}
-.wc{position:relative;border:2px solid var(--ink);border-radius:20px;padding:18px;background:var(--bg)}
+.wc{position:relative;border-radius:20px;padding:20px;background:var(--card);box-shadow:var(--sh2)}
 .wc .x{display:none}
-.big{font:900 46px/1.1 'Noto Sans SC',sans-serif;margin:0}
-.pin{font-size:20px;font-weight:600;color:var(--red);margin:2px 0 12px}
-.row{display:grid;grid-template-columns:7.2em minmax(0,1fr);gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:15px}
+.big{font:700 46px/1.1 'Noto Serif SC',serif;margin:0}
+.pin{font-size:19px;font-weight:600;color:var(--pri);margin:4px 0 12px}
+.row{display:grid;grid-template-columns:7.2em minmax(0,1fr);gap:8px;padding:9px 0;border-top:1px solid var(--line);font-size:15px}
 .row>span:first-child{color:var(--mute);font-size:13px;padding-top:2px}
 .note{margin-top:10px;padding:10px 12px;border-radius:12px;font-size:14px}
-.note.t{background:color-mix(in srgb,var(--red) 14%,var(--bg));border:1px solid color-mix(in srgb,var(--red) 45%,transparent)}
-.note.s{background:var(--hl);color:light-dark(#2f2600,#fff5cc)}
+.note.t{background:color-mix(in srgb,var(--wave) 13%,var(--card));border:1px solid color-mix(in srgb,var(--wave) 35%,transparent)}
+.note.s{background:var(--hl);color:light-dark(#4a3d00,#fff5cc)}
 .note b{display:block;font-size:13px}
 .also{display:flex;flex-wrap:wrap;gap:6px}
-.also button{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:4px 10px;cursor:pointer;font:500 14px 'Noto Sans SC',sans-serif;min-height:32px}
+.also button{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:4px 11px;font:500 14px 'Noto Sans SC',sans-serif;min-height:32px;transition:background var(--ease)}
+.also button:hover{background:var(--pri-soft)}
 .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .empty{color:var(--mute);font-size:15px;margin:0}
 .empty mark{background:var(--hl);color:inherit;padding:0 4px;border-radius:3px}
-.book{border:1px solid var(--line);border-radius:20px;padding:16px 18px;background:var(--panel)}
+.exrow p{margin:0;font:400 16px/1.8 'Noto Sans SC',sans-serif}
+.exrow mark{background:var(--hl);color:inherit;padding:0 2px}
+.exrow button{margin-top:4px}
+.book{border-radius:20px;padding:16px 18px;background:var(--card);box-shadow:var(--sh1)}
 .bh{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
-.bh h3{margin:0;font-size:17px}
+.bh h3{margin:0;font-size:16px}
 .bh div{display:flex;gap:6px}
 .bh .btn{min-height:38px;padding:0 12px;font-size:14px}
 .bl{list-style:none;margin:0;padding:0;max-height:300px;overflow:auto}
-.bl li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line)}
-.bl button.bw{border:0;background:none;text-align:left;cursor:pointer;padding:0}
-.bl .bw b{font:700 18px 'Noto Sans SC',sans-serif;margin-right:6px}
+.bl li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.bl button.bw{border:0;background:none;text-align:left;padding:0}
+.bl .bw b{font:700 18px 'Noto Serif SC',serif;margin-right:6px}
 .bl .bw small{color:var(--mute);font-size:13px}
 .bl .bw em{display:block;font-style:normal;font-size:13px;color:var(--mute)}
-.rm{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--bg);cursor:pointer;font-size:18px;line-height:1}
+.rm{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:18px;line-height:1}
 .fc{text-align:center;padding:14px 4px 4px}
 .fc .big{font-size:52px}
 .fc .ans{min-height:64px;margin:8px 0 12px}
 .fc .acts{justify-content:center}
+.boxes{display:flex;gap:3px;justify-content:center;margin:2px 0 10px}
+.boxes i{width:22px;height:6px;border-radius:3px;background:var(--line)}
+.boxes i.on{background:var(--ok)}
+.lv{font-size:12px;color:var(--ok);font-style:normal;white-space:nowrap}
+.fcdone{padding:14px 4px;text-align:center}
+.fcdone b{display:block;font-size:19px;margin-bottom:4px}
 .msg{font-size:13px;color:var(--ok);min-height:1.2em;margin:6px 0 0}
-.tab.trapt{border-style:dashed}
-.tab.trapt[aria-pressed=true]{background:#17161c;color:#fff;border:2px solid #17161c}
-.lead{font-size:17px;color:var(--mute);margin:0 0 18px;max-width:62ch}
-.tq{border:2px solid var(--ink);border-radius:22px;padding:clamp(18px,3vw,28px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:20px 28px;align-items:start}
-.tq .big{font-size:clamp(48px,7vw,72px)}
-.hvbox{margin-top:10px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--red) 12%,var(--bg));font-size:15px}
-.hvbox b{font-size:20px;text-decoration:underline wavy var(--red) 1.5px;text-underline-offset:5px}
+
+/* trap practice */
+.lead{font-size:16px;color:var(--mute);margin:0 0 18px;max-width:62ch}
+.tq{border-radius:18px;background:var(--panel);padding:clamp(18px,3vw,26px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:20px 28px;align-items:start}
+.tq .big{font-size:clamp(48px,7vw,68px)}
+.hvbox{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--card);font-size:15px}
+.hvbox b{font-size:20px;text-decoration:underline wavy var(--wave) 1.5px;text-underline-offset:5px}
 .tq h3{margin:0 0 10px;font-size:17px}
 .tq .opts{flex-direction:column}
 .tq .opt{font-family:'Be Vietnam Pro',sans-serif;width:100%}
-.ex{margin:12px 0 0;padding:10px 12px;border-left:3px solid var(--hl);background:var(--panel);font:400 17px/1.9 'Noto Sans SC',sans-serif}
+.ex{margin:12px 0 0;padding:10px 12px;border-left:3px solid var(--hl);background:var(--card);border-radius:0 10px 10px 0;font:400 17px/1.9 'Noto Sans SC',sans-serif}
 .ex mark{background:var(--hl);color:inherit;padding:0 2px}
-.ex button{border:0;background:none;color:var(--blue);cursor:pointer;font:600 14px 'Be Vietnam Pro',sans-serif;padding:0;text-decoration:underline}
+.ex button{border:0;background:none;color:var(--pri);font:600 14px 'Be Vietnam Pro',sans-serif;padding:0;text-decoration:underline;text-underline-offset:3px}
 .score{font-weight:600;color:var(--mute);font-size:14px}
 details.all{margin-top:22px;border-top:1px solid var(--line);padding-top:12px}
 details.all summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
@@ -133,48 +199,42 @@ table{border-collapse:collapse;width:100%;font-size:14px}
 th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-size:13px;color:var(--mute);font-weight:600}
 td.zh{font-size:17px;font-weight:700;white-space:nowrap}
-@media(max-width:760px){.tq{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:600px){.stack thead{display:none}.stack tr{display:grid;padding-block:8px;border-bottom:1px solid var(--line)}.stack td{border:0;padding:2px 0;display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:8px}.stack td::before{content:attr(data-l);color:var(--mute);font-size:12px;font-weight:400}}
-.sn{border-radius:6px;transition:background .2s}
-.sn.playing{background:color-mix(in srgb,var(--blue) 16%,transparent)}
-.sp{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;margin:0 4px;vertical-align:middle;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--blue);cursor:pointer;padding:0}
-.sp svg{width:14px;height:14px}
-.sn.playing .sp{background:var(--blue);color:#fff;border-color:var(--blue)}
-.exrow p{margin:0;font:400 16px/1.8 'Noto Sans SC',sans-serif}
-.exrow mark{background:var(--hl);color:inherit;padding:0 2px}
-.exrow button{margin-top:4px}
-.boxes{display:flex;gap:3px;justify-content:center;margin:2px 0 10px}
-.boxes i{width:22px;height:6px;border-radius:3px;background:var(--line)}
-.boxes i.on{background:var(--ok)}
-.lv{font-size:12px;color:var(--ok);font-style:normal;white-space:nowrap}
-.btn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
-.fcdone{padding:14px 4px;text-align:center}
-.fcdone b{display:block;font-size:20px;margin-bottom:4px}
 .foot{max-width:1240px;margin:0 auto;padding:0 max(16px,3vw) 40px;color:var(--mute);font-size:13px}
-@media(max-width:1100px){.app{grid-template-columns:minmax(0,1fr) 300px}.list{grid-column:1/-1;position:static;max-height:none}.cards{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.sc{flex:0 0 210px;scroll-snap-align:start}.none{flex:1}}
-@media(max-width:700px){.app{grid-template-columns:minmax(0,1fr);gap:20px}aside{position:static}
-.wc{position:fixed;left:0;right:0;bottom:0;z-index:30;border-radius:22px 22px 0 0;border-width:2px 0 0;max-height:72vh;overflow:auto;transform:translateY(105%);transition:transform .25s ease;box-shadow:0 -10px 30px rgba(0,0,0,.18);padding-bottom:max(18px,env(safe-area-inset-bottom))}
+
+@media(max-width:1100px){.app{grid-template-columns:minmax(0,1fr) 300px}.list{grid-column:1/-1;position:static;max-height:none}.cards{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}.sc{flex:0 0 220px;scroll-snap-align:start}.none{flex:1}}
+@media(max-width:760px){.tq{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:700px){.app{grid-template-columns:minmax(0,1fr);gap:18px}aside{position:static}
+article{padding:18px 16px;border-radius:16px}
+.wc{position:fixed;left:0;right:0;bottom:0;z-index:30;border-radius:22px 22px 0 0;max-height:72vh;overflow:auto;transform:translateY(105%);transition:transform .26s ease;padding-bottom:max(18px,env(safe-area-inset-bottom))}
 .wc.open{transform:none}.wc .x{display:inline-flex;position:absolute;right:14px;top:14px}.wc .empty{display:none}
-.txt p{font-size:19px}}
-@media(prefers-reduced-motion:reduce){.wc{transition:none}}
+.txt p,.txt.novel p{font-size:19px}
+.seg{width:100%}.seg button{flex:1;padding:0 8px}.seg .vi{display:none}
+.pills{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-inline:-2px}.filters{gap:8px}
+.ser span{order:-1;flex-basis:100%;text-align:center}.ser .btn{flex:1;justify-content:center}}
+@media(max-width:600px){.stack thead{display:none}.stack tr{display:grid;padding-block:8px;border-bottom:1px solid var(--line)}.stack td{border:0;padding:2px 0;display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:8px}.stack td::before{content:attr(data-l);color:var(--mute);font-size:12px;font-weight:400}}
+@media(prefers-reduced-motion:reduce){*,*::before{transition:none!important}.sc:hover{transform:none}}
 </style>
 </head>
 <body>
-<header>
+<header class="hd">
   <div class="hin">
-    <div>
-      <h1>Yeu Hoc</h1>
-      <p class="sub">30 truyện ngắn HSK 3–5 về đời sống giới trẻ · chạm vào từ tô vàng để xem nghĩa</p>
-      <p class="stat" id="stat"></p>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5C2 4.7 2.7 4 3.5 4H9a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5h-6A1.5 1.5 0 0 1 2 16z"/><path d="M22 5.5c0-.8-.7-1.5-1.5-1.5H15a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5h6c.8 0 1.5-.7 1.5-1.5z"/></svg></div>
+      <div><h1>读点儿</h1><p class="sub">Đọc tiếng Trung nhẹ nhàng · HSK 3–5 · chạm vào từ tô vàng để xem nghĩa</p></div>
     </div>
-    <div class="tabs" id="tabs" role="group" aria-label="Cấp độ HSK"></div>
+    <div class="seg" id="cols" role="tablist" aria-label="Chuyên mục"></div>
+  </div>
+  <p class="stat" id="stat"></p>
+  <div class="filters">
+    <div class="pills" id="lvls" role="group" aria-label="Cấp độ HSK"></div>
+    <div class="pills" id="cats" role="group" aria-label="Thể loại"></div>
   </div>
 </header>
 
 <main class="app">
   <nav class="list" aria-label="Danh sách bài">
     <label for="q" class="vh">Tìm bài hoặc từ</label>
-    <input class="search" id="q" type="search" placeholder="Tìm bài, chủ đề hoặc từ: 内卷, du lịch…" autocomplete="off">
+    <input class="search" id="q" type="search" placeholder="Tìm truyện, chủ đề hoặc từ: 内卷, du lịch…" autocomplete="off">
     <p class="lh" id="lh"></p>
     <div class="cards" id="cards"></div>
   </nav>
@@ -186,10 +246,10 @@ td.zh{font-size:17px;font-weight:700;white-space:nowrap}
     <section class="book" id="book"></section>
   </aside>
 </main>
-<p class="foot">Các truyện là nội dung mẫu viết riêng cho trang này. Phát âm dùng giọng đọc tiếng Trung có sẵn trên máy của bạn. Tiến độ và sổ từ chỉ lưu trên trình duyệt này; nút “Sao chép” xuất danh sách dạng bảng để dán vào Anki hoặc Excel.</p>
+<p class="foot">Tất cả bài đọc và truyện là nội dung mẫu viết riêng cho trang này. Phát âm dùng giọng đọc tiếng Trung có sẵn trên máy của bạn. Tiến độ và sổ từ chỉ lưu trên trình duyệt này; nút “Sao chép” xuất danh sách dạng bảng để dán vào Anki hoặc Excel.</p>
 
 <script>
-/* Yeu Hoc data: D = glossary [pinyin, Hán-Việt, nghĩa, ghi chú, loại t|s]; S = stories */
+/* 读点儿 data: D = glossary [pinyin, Hán-Việt, nghĩa, ghi chú, loại t|s]; S = stories */
 window.DUDIAN={D:{
 "习惯":["xíguàn","tập quán","thói quen"],
 "点":["diǎn","điểm","gọi, đặt (món)","Ở đây là động từ: 点奶茶 = gọi trà sữa.","t"],
@@ -895,12 +955,1409 @@ q:[["作者的论文被拒以后，阿哲做了什么？",["帮他分析问题",
 
 </script>
 <script>
+/* 读点儿 novels: extra glossary + 60 stories (cat: love/work/travel/essay/fantasy) */
+window.DUDIAN_N={D:{
+"兼职":["jiānzhí","kiêm chức","làm thêm, làm bán thời gian","Tiếng Việt “kiêm chức” = giữ thêm chức vụ; 兼职 chỉ là làm thêm.","t"],
+"规律":["guīlǜ","quy luật","quy luật, nếp đều đặn"],
+"素描本":["sùmiáoběn","tố miêu bản","sổ ký họa"],
+"打烊":["dǎyàng","","đóng cửa (cuối ngày)"],
+"耸耸肩":["sǒngsong jiān","","nhún vai"],
+"留":["liú","lưu","để lại"],
+"莫名其妙":["mòmíng qímiào","mạc danh kỳ diệu","không hiểu vì sao","Không phải “kỳ diệu”! 莫名其妙 = khó hiểu, vô cớ.","t"],
+"失落":["shīluò","thất lạc","hụt hẫng","Tiếng Việt “thất lạc” = bị mất; 失落 thường là cảm giác hụt hẫng.","t"],
+"紧紧":["jǐnjǐn","khẩn khẩn","chặt, khư khư"],
+"柜台":["guìtái","quỹ đài","quầy"],
+"眉毛":["méimao","mi mao","lông mày"],
+"害羞":["hàixiū","hại tu","ngại ngùng, xấu hổ"],
+"毕业设计":["bìyè shèjì","tất nghiệp thiết kế","đồ án tốt nghiệp"],
+"停留":["tíngliú","đình lưu","dừng chân, ở lại"],
+"合上":["héshàng","hợp thượng","gập lại, đóng lại"],
+"硕士":["shuòshì","thạc sĩ","thạc sĩ"],
+"有个性":["yǒu gèxìng","hữu cá tính","có cá tính"],
+"假装":["jiǎzhuāng","giả trang","giả vờ","Tiếng Việt “giả trang” = cải trang; 假装 = giả vờ.","t"],
+"吧台":["bātái","","quầy bar"],
+"细致":["xìzhì","tế trí","tỉ mỉ"],
+"委屈":["wěiqu","ủy khuất","tủi thân"],
+"普通":["pǔtōng","phổ thông","bình thường"],
+"临走":["línzǒu","lâm tẩu","lúc sắp đi"],
+"医院":["yīyuàn","y viện","bệnh viện"],
+"答辩":["dábiàn","đáp biện","bảo vệ (luận văn, đồ án)"],
+"评委":["píngwěi","bình ủy","giám khảo, hội đồng chấm"],
+"特别":["tèbié","đặc biệt","đặc biệt"],
+"建筑":["jiànzhù","kiến trúc","kiến trúc, tòa nhà"],
+"翻":["fān","phiên","lật (trang)"],
+"别":["bié","biệt","cài (tóc); (thường gặp hơn: đừng)","Ở đây 别 là động từ “cài”: 把头发别在耳后."],
+"湿":["shī","thấp","ướt","Không phải “thấp” (low)! 湿 = ướt.","t"],
+"不知所措":["bùzhī suǒcuò","bất tri sở thố","lúng túng, không biết làm sao"],
+"画家":["huàjiā","họa gia","họa sĩ"],
+"意味深长":["yìwèi shēncháng","ý vị thâm trường","đầy ẩn ý"],
+"摆":["bǎi","bãi","bày, đặt"],
+"明明":["míngmíng","minh minh","rõ ràng là (vậy mà…)"],
+"优秀":["yōuxiù","ưu tú","xuất sắc"],
+"报关":["bàoguān","báo quan","khai báo hải quan"],
+"送达":["sòngdá","tống đạt","đến nơi, giao đến","Tiếng Việt “tống đạt” là thuật ngữ pháp lý; 送达 = được giao tới.","t"],
+"邮差":["yóuchāi","bưu sai","người đưa thư"],
+"对岸":["duì'àn","đối ngạn","bờ bên kia"],
+"随意":["suíyì","tùy ý","tùy hứng, thoải mái"],
+"陌生人":["mòshēngrén","mạch sinh nhân","người lạ"],
+"摩托车":["mótuōchē","ma thác xa","xe máy"],
+"熄火":["xīhuǒ","tức hỏa","chết máy, tắt máy"],
+"同一片":["tóng yí piàn","đồng nhất phiến","cùng một (vùng biển, bầu trời)"],
+"飘":["piāo","phiêu","bay, trôi (trong gió)"],
+"攒":["zǎn","","tích góp, dồn lại"],
+"夹":["jiā","giáp","kẹp"],
+"蹭":["cèng","","ăn ké, “xin” ké"],
+"期待":["qīdài","kỳ đãi","mong chờ"],
+"养成":["yǎngchéng","dưỡng thành","hình thành (thói quen)"],
+"仪式":["yíshì","nghi thức","nghi thức"],
+"失望":["shīwàng","thất vọng","thất vọng"],
+"勇敢":["yǒnggǎn","dũng cảm","dũng cảm"],
+"忐忑":["tǎntè","","thấp thỏm"],
+"界河":["jièhé","giới hà","sông biên giới"],
+"隔":["gé","cách","cách (nhau)"],
+"反复":["fǎnfù","phản phục","lặp đi lặp lại","Tiếng Việt “phản phúc” = tráo trở; 反复 = nhiều lần.","t"],
+"结结巴巴":["jiējiebābā","","lắp ba lắp bắp"],
+"了解":["liǎojiě","liễu giải","hiểu rõ"],
+"奥黛":["àodài","","áo dài (phiên âm)"],
+"坚定":["jiāndìng","kiên định","kiên định"],
+"木棉花":["mùmiánhuā","mộc miên hoa","hoa gạo"],
+"消失":["xiāoshī","tiêu thất","biến mất"],
+"推出":["tuīchū","thôi xuất","ra mắt (sản phẩm, tính năng)"],
+"打印":["dǎyìn","đả ấn","in (ra giấy)"],
+"彼此":["bǐcǐ","bỉ thử","lẫn nhau"],
+"突然":["tūrán","đột nhiên","đột nhiên"],
+"站牌":["zhànpái","trạm bài","biển báo trạm xe buýt"],
+"撑":["chēng","","giương (ô), chống"],
+"肩膀":["jiānbǎng","kiên bàng","vai"],
+"计算机":["jìsuànjī","kế toán cơ","máy tính; ngành công nghệ thông tin","Không phải máy “kế toán”! 计算机 = máy tính.","t"],
+"惊讶":["jīngyà","kinh nhạ","ngạc nhiên"],
+"脸红":["liǎnhóng","kiểm hồng","đỏ mặt"],
+"塞":["sāi","tắc","nhét"],
+"便利贴":["biànlìtiē","tiện lợi thiếp","giấy note"],
+"靠窗":["kào chuāng","kháo song","cạnh cửa sổ"],
+"左右":["zuǒyòu","tả hữu","(nhìn) trái phải; khoảng"],
+"贴":["tiē","thiếp","dán"],
+"笑话":["xiàohua","tiếu thoại","chuyện cười"],
+"答案":["dá'àn","đáp án","đáp án"],
+"丑":["chǒu","sửu","xấu"],
+"外套":["wàitào","ngoại sáo","áo khoác"],
+"挠":["náo","","gãi"],
+"对面":["duìmiàn","đối diện","phía đối diện"],
+"备注":["bèizhù","bị chú","ghi chú (đơn hàng)"],
+"纸条":["zhǐtiáo","chỉ điều","mẩu giấy"],
+"煎蛋":["jiāndàn","tiễn đản","trứng ốp la"],
+"厨师":["chúshī","trù sư","đầu bếp"],
+"心情":["xīnqíng","tâm tình","tâm trạng","Tiếng Việt “tâm tình” = tâm sự; 心情 = tâm trạng.","t"],
+"暗":["àn","ám","tối"],
+"按钮":["ànniǔ","án nữu","nút bấm"],
+"冷静":["lěngjìng","lãnh tĩnh","bình tĩnh"],
+"紧急":["jǐnjí","khẩn cấp","khẩn cấp"],
+"找话题":["zhǎo huàtí","trảo thoại đề","tìm chuyện để nói"],
+"竟然":["jìngrán","cánh nhiên","vậy mà, không ngờ"],
+"部门":["bùmén","bộ môn","phòng ban","Tiếng Việt “bộ môn” = môn học, tổ chuyên môn; 部门 = phòng ban trong công ty.","t"],
+"淡蓝色":["dàn lánsè","đạm lam sắc","xanh nhạt"],
+"一模一样":["yìmú yíyàng","nhất mô nhất dạng","giống hệt"],
+"约好":["yuēhǎo","ước hảo","hẹn trước"],
+"躲":["duǒ","đóa","trốn, núp"],
+"眼光":["yǎnguāng","nhãn quang","con mắt, gu thẩm mỹ"],
+"主持":["zhǔchí","chủ trì","dẫn chương trình","Tiếng Việt “chủ trì” = chủ tọa; 主持 thường = làm MC.","t"],
+"互动":["hùdòng","hỗ động","tương tác"],
+"表白墙":["biǎobáiqiáng","biểu bạch tường","“bức tường tỏ tình” (trang confession của trường)","Lóng học đường.","s"],
+"公开":["gōngkāi","công khai","công khai"],
+"收藏":["shōucáng","thu tàng","lưu vào yêu thích; sưu tầm"],
+"好奇":["hàoqí","hiếu kỳ","tò mò"],
+"陪伴":["péibàn","bồi bạn","bầu bạn, ở bên"],
+"告别":["gàobié","cáo biệt","chia tay, từ biệt"],
+"私信":["sīxìn","tư tín","tin nhắn riêng (DM)"],
+"哼":["hēng","","ngân nga"],
+"跑调":["pǎodiào","","lạc giọng, lệch tông"],
+"哭笑不得":["kūxiào bùdé","khốc tiếu bất đắc","dở khóc dở cười"],
+"播":["bō","bá","phát (sóng)"],
+"温柔":["wēnróu","ôn nhu","dịu dàng"],
+"想家":["xiǎngjiā","tưởng gia","nhớ nhà"],
+"透明":["tòumíng","thấu minh","trong suốt; “vô hình”"],
+"了不起":["liǎobuqǐ","liễu bất khởi","giỏi, đáng nể"],
+"招":["zhāo","chiêu","tuyển (người)"],
+"闺蜜":["guīmì","khuê mật","bạn thân (con gái)"],
+"语音":["yǔyīn","ngữ âm","tin nhắn thoại","Tiếng Việt “ngữ âm” = phonetics; 语音 thường = voice message.","t"],
+"产品经理":["chǎnpǐn jīnglǐ","sản phẩm kinh lý","quản lý sản phẩm (PM)"],
+"过分":["guòfèn","quá phận","quá đáng"],
+"崩溃":["bēngkuì","băng hội","suy sụp, “phát điên”","Giới trẻ hay nói 崩溃了 khi gặp chuyện quá xấu hổ hoặc quá mệt.","s"],
+"撤回":["chèhuí","triệt hồi","thu hồi (tin nhắn)"],
+"接受":["jiēshòu","tiếp thụ","chấp nhận"],
+"道歉":["dàoqiàn","đạo khiểm","xin lỗi"],
+"保证":["bǎozhèng","bảo chứng","đảm bảo, hứa"],
+"鼓掌":["gǔzhǎng","cổ chưởng","vỗ tay"],
+"合得来":["hédelái","hợp đắc lai","hợp nhau"],
+"拼命":["pīnmìng","bính mệnh","liều mạng, hết sức"],
+"兽医":["shòuyī","thú y","bác sĩ thú y"],
+"椰子":["yēzi","da tử","dừa"],
+"单独":["dāndú","đơn độc","riêng, một mình (hai người)","Tiếng Việt “đơn độc” = lẻ loi; 单独 = riêng (không có người khác).","t"],
+"摇":["yáo","dao","vẫy, lắc"],
+"情人节":["qíngrénjié","tình nhân tiết","lễ Tình nhân"],
+"告白":["gàobái","cáo bạch","tỏ tình","Tiếng Việt “cáo bạch” = thông báo; 告白 = tỏ tình.","t"],
+"损失":["sǔnshī","tổn thất","mất mát, thiệt"],
+"往常":["wǎngcháng","vãng thường","như thường lệ"],
+"活动":["huódòng","hoạt động","hoạt động, sự kiện"],
+"实习":["shíxí","thực tập","thực tập"],
+"体面":["tǐmiàn","thể diện","đàng hoàng, tử tế","Không chỉ là “giữ thể diện”: 体面 còn = đẹp đẽ, đàng hoàng.","t"],
+"口袋":["kǒudai","khẩu đại","túi (quần áo)"],
+"各奔东西":["gèbèn dōngxī","các bôn đông tây","mỗi người một ngả"],
+"中资企业":["zhōngzī qǐyè","trung tư xí nghiệp","doanh nghiệp vốn Trung Quốc"],
+"偶尔":["ǒu'ěr","ngẫu nhĩ","thỉnh thoảng"],
+"动态":["dòngtài","động thái","bài đăng, cập nhật (trên mạng xã hội)","Tiếng Việt “động thái” = hành động, bước đi; 动态 trên mạng = bài đăng mới.","t"],
+"承认":["chéngrèn","thừa nhận","thừa nhận"],
+"一片":["yípiàn","nhất phiến","toàn là, cả một loạt"],
+"盯":["dīng","","nhìn chằm chằm"],
+"迟到":["chídào","trì đáo","đến muộn"],
+"补":["bǔ","bổ","bù, bổ sung"],
+"附言":["fùyán","phụ ngôn","lời nhắn kèm"],
+"时差":["shíchā","thời sai","chênh lệch múi giờ"],
+"异地":["yìdì","dị địa","ở xa nhau (异地恋 = yêu xa)"],
+"难题":["nántí","nan đề","vấn đề khó"],
+"吵":["chǎo","sảo","cãi nhau; ồn"],
+"压力":["yālì","áp lực","áp lực"],
+"错开":["cuòkāi","thác khai","so le, lệch nhau"],
+"日记":["rìjì","nhật ký","nhật ký"],
+"市场":["shìchǎng","thị trường","chợ, thị trường"],
+"骗":["piàn","biển","lừa"],
+"熟练":["shúliàn","thục luyện","thành thạo"],
+"简历":["jiǎnlì","giản lịch","CV, sơ yếu lý lịch"],
+"无奈":["wúnài","vô nại","đành chịu, bất lực"],
+"无精打采":["wújīng dǎcǎi","vô tinh đả thải","uể oải, ỉu xìu"],
+"交换":["jiāohuàn","giao hoán","trao đổi"],
+"显而易见":["xiǎn'ér yìjiàn","hiển nhi dị kiến","rõ như ban ngày"],
+"荒唐":["huāngtáng","hoang đường","lố bịch, vô lý"],
+"糗事":["qiǔshì","","chuyện xấu hổ, chuyện “quê”"],
+"摇头":["yáotóu","dao đầu","lắc đầu"],
+"对视":["duìshì","đối thị","nhìn nhau"],
+"化妆":["huàzhuāng","hóa trang","trang điểm","Tiếng Việt “hóa trang” = cải trang, đóng vai; 化妆 = trang điểm hằng ngày.","t"],
+"前台":["qiántái","tiền đài","lễ tân"],
+"资料":["zīliào","tư liệu","tài liệu"],
+"混":["hùn","hỗn","trộn lẫn"],
+"亲切":["qīnqiè","thân thiết","thân thiện, gần gũi"],
+"抄":["chāo","sao","chép (tay)"],
+"认真":["rènzhēn","nhận chân","nghiêm túc, chăm chỉ","Tiếng Việt “nhận chân” = nhận ra sự thật; 认真 = nghiêm túc.","t"],
+"线上":["xiànshàng","tuyến thượng","trực tuyến, online"],
+"进入":["jìnrù","tiến nhập","vào"],
+"无聊":["wúliáo","vô liêu","chán, nhàm"],
+"静音":["jìngyīn","tĩnh âm","tắt tiếng (mic)"],
+"吓":["xià","hách","giật mình, làm sợ"],
+"反馈":["fǎnkuì","phản quỹ","phản hồi, góp ý"],
+"控制":["kòngzhì","khống chế","kiểm soát, giới hạn","Tiếng Việt “khống chế” mang nghĩa áp chế; 控制 thường = kiểm soát (thời gian, cảm xúc).","t"],
+"键盘":["jiànpán","kiện bàn","bàn phím"],
+"夜宵":["yèxiāo","dạ tiêu","bữa ăn khuya"],
+"蘸":["zhàn","","chấm (nước chấm)"],
+"酱":["jiàng","tương","nước sốt, tương"],
+"传统":["chuántǒng","truyền thống","truyền thống"],
+"肠粉":["chángfěn","trường phấn","bánh cuốn kiểu Quảng Đông"],
+"群主":["qúnzhǔ","quần chủ","trưởng nhóm chat"],
+"秘密":["mìmì","bí mật","bí mật"],
+"凑钱":["còuqián","thấu tiền","góp tiền"],
+"端":["duān","đoan","bưng"],
+"感动":["gǎndòng","cảm động","cảm động"],
+"融入":["róngrù","dung nhập","hòa nhập"],
+"拉":["lā","lạp","kéo (vào nhóm)"],
+"通知":["tōngzhī","thông tri","thông báo"],
+"紧接着":["jǐn jiēzhe","","ngay sau đó"],
+"私聊":["sīliáo","tư liêu","nhắn riêng"],
+"废话":["fèihuà","phế thoại","lời thừa"],
+"礼貌":["lǐmào","lễ mạo","lịch sự, phép lịch sự"],
+"规矩":["guīju","quy củ","quy tắc (ngầm), phép tắc"],
+"尽量":["jǐnliàng","tận lượng","cố gắng hết mức"],
+"神秘":["shénmì","thần bí","bí ẩn"],
+"表情包":["biǎoqíngbāo","biểu tình bao","sticker, ảnh meme","Lóng mạng.","s"],
+"总监":["zǒngjiān","tổng giám","giám đốc (bộ phận)"],
+"汇报":["huìbào","hối báo","báo cáo (lên cấp trên)"],
+"打断":["dǎduàn","đả đoạn","ngắt lời"],
+"结论":["jiélùn","kết luận","kết luận"],
+"前辈":["qiánbèi","tiền bối","người đi trước, tiền bối"],
+"灰心":["huīxīn","hôi tâm","nản lòng"],
+"思路":["sīlù","tư lộ","mạch suy nghĩ"],
+"合同":["hétong","hợp đồng","hợp đồng"],
+"定金":["dìngjīn","định kim","tiền đặt cọc (bên mua vi phạm thì mất)"],
+"注意":["zhùyì","chú ý","chú ý"],
+"订金":["dìngjīn","đính kim","tiền đặt trước (có thể hoàn lại)"],
+"差别":["chābié","sai biệt","sự khác biệt"],
+"违约":["wéiyuē","vi ước","vi phạm hợp đồng"],
+"取消":["qǔxiāo","thủ tiêu","hủy bỏ","Cẩn thận! “Thủ tiêu” tiếng Việt = giết, xóa sổ; 取消 chỉ là hủy (đơn, lịch).","t"],
+"律师":["lǜshī","luật sư","luật sư"],
+"开除":["kāichú","khai trừ","đuổi (việc, học)"],
+"核对":["héduì","hạch đối","đối chiếu, kiểm tra lại"],
+"格式":["géshì","cách thức","định dạng (văn bản)","Tiếng Việt “cách thức” = phương pháp; 格式 = định dạng, format.","t"],
+"笨":["bèn","bổn","ngốc, chậm"],
+"语气":["yǔqì","ngữ khí","giọng điệu"],
+"愚蠢":["yúchǔn","ngu xuẩn","ngốc nghếch"],
+"固定":["gùdìng","cố định","cố định"],
+"专业":["zhuānyè","chuyên nghiệp","chuyên ngành; chuyên nghiệp"],
+"独立":["dúlì","độc lập","độc lập, tự mình"],
+"实习期":["shíxíqī","thực tập kỳ","thời gian thực tập"],
+"入职":["rùzhí","nhập chức","bắt đầu đi làm (ở công ty)"],
+"应酬":["yìngchou","ứng thù","tiếp khách, ăn uống xã giao"],
+"包间":["bāojiān","bao gian","phòng riêng (nhà hàng)"],
+"懵":["měng","","ngơ ngác"],
+"敬酒":["jìngjiǔ","kính tửu","mời rượu"],
+"提醒":["tíxǐng","đề tỉnh","nhắc nhở"],
+"干杯":["gānbēi","can bôi","cạn ly"],
+"为难":["wéinán","vi nan","khó xử; làm khó (ai)"],
+"祝酒词":["zhùjiǔcí","chúc tửu từ","lời chúc khi nâng ly"],
+"表现":["biǎoxiàn","biểu hiện","thể hiện, phong độ","Tiếng Việt “biểu hiện” = dấu hiệu; 表现 thường = cách thể hiện, thành tích.","t"],
+"信任":["xìnrèn","tín nhiệm","tin tưởng"],
+"以茶代酒":["yǐ chá dài jiǔ","dĩ trà đại tửu","lấy trà thay rượu"],
+"跳槽":["tiàocáo","khiêu tào","nhảy việc"],
+"猎头":["liètóu","liệp đầu","headhunter (người săn nhân tài)"],
+"职位":["zhíwèi","chức vị","vị trí công việc"],
+"理由":["lǐyóu","lý do","lý do"],
+"通宵":["tōngxiāo","thông tiêu","thức trắng đêm"],
+"栽培":["zāipéi","tài bồi","nâng đỡ, bồi dưỡng"],
+"感情":["gǎnqíng","cảm tình","tình cảm","Tiếng Việt “cảm tình” = thiện cảm; 感情 = tình cảm nói chung.","t"],
+"忠诚":["zhōngchéng","trung thành","trung thành"],
+"内疚":["nèijiù","nội cứu","áy náy"],
+"逃离":["táolí","đào ly","trốn chạy, thoát khỏi"],
+"追求":["zhuīqiú","truy cầu","theo đuổi"],
+"感谢":["gǎnxiè","cảm tạ","cảm ơn"],
+"年终总结":["niánzhōng zǒngjié","niên chung tổng kết","tổng kết cuối năm"],
+"哀嚎":["āiháo","ai hào","kêu than"],
+"日程":["rìchéng","nhật trình","lịch trình"],
+"培训":["péixùn","bồi huấn","đào tạo"],
+"开拓":["kāituò","khai thác","mở rộng (thị trường)","Tiếng Việt “khai thác” = khai thác tài nguyên; 开拓 = mở mang, mở rộng.","t"],
+"平淡":["píngdàn","bình đạm","nhạt nhẽo, bình thường"],
+"增长":["zēngzhǎng","tăng trưởng","tăng trưởng"],
+"亮点":["liàngdiǎn","lượng điểm","điểm nổi bật"],
+"规划":["guīhuà","quy hoạch","kế hoạch dài hạn","Tiếng Việt “quy hoạch” hay dùng cho đô thị; 规划 còn = kế hoạch cá nhân, nghề nghiệp.","t"],
+"述职":["shùzhí","thuật chức","báo cáo công tác"],
+"愿景":["yuànjǐng","nguyện cảnh","tầm nhìn"],
+"翻倍":["fānbèi","phiên bội","tăng gấp đôi"],
+"元老":["yuánlǎo","nguyên lão","người kỳ cựu, “khai quốc công thần”"],
+"画饼":["huàbǐng","họa bính","“vẽ bánh”: hứa hẹn suông","Lóng công sở: 老板画饼 = sếp hứa hẹn tương lai đẹp nhưng chưa chắc thành.","s"],
+"心领神会":["xīnlǐng shénhuì","tâm lĩnh thần hội","hiểu ý ngầm"],
+"轻轨":["qīngguǐ","khinh quỹ","tàu điện trên cao"],
+"直接":["zhíjiē","trực tiếp","thẳng, trực tiếp"],
+"拍照":["pāizhào","phách chiếu","chụp ảnh"],
+"观景台":["guānjǐngtái","quan cảnh đài","đài ngắm cảnh"],
+"微辣":["wēilà","vi lạt","cay nhẹ"],
+"神奇":["shénqí","thần kỳ","kỳ diệu"],
+"季节":["jìjié","quý tiết","mùa"],
+"旱季":["hànjì","hạn quý","mùa khô"],
+"羽绒服":["yǔróngfú","vũ nhung phục","áo phao lông vũ"],
+"手套":["shǒutào","thủ sáo","găng tay"],
+"化":["huà","hóa","tan (băng, tuyết)"],
+"摔":["shuāi","","ngã"],
+"城堡":["chéngbǎo","thành bảo","lâu đài"],
+"闪闪发光":["shǎnshǎn fāguāng","thiểm thiểm phát quang","lấp lánh"],
+"番茄":["fānqié","phiên già","cà chua"],
+"轮渡":["lúndù","luân độ","phà"],
+"沿着":["yánzhe","duyên","dọc theo"],
+"开满":["kāimǎn","khai mãn","nở đầy"],
+"沙茶面":["shāchámiàn","sa trà diện","mì sa tế (Hạ Môn)"],
+"海蛎煎":["hǎilìjiān","hải lệ tiễn","trứng chiên hàu"],
+"明信片":["míngxìnpiàn","minh tín phiến","bưu thiếp"],
+"邮局":["yóujú","bưu cục","bưu điện"],
+"寄到":["jìdào","ký đáo","gửi tới nơi"],
+"弄堂":["lòngtáng","","ngõ nhỏ (kiểu Thượng Hải)"],
+"生煎":["shēngjiān","sinh tiễn","bánh bao chiên (Thượng Hải)"],
+"豆浆":["dòujiāng","đậu tương","sữa đậu nành","Tiếng Việt “đậu tương” là hạt; 豆浆 là sữa đậu nành.","t"],
+"烫":["tàng","","bỏng, nóng rát"],
+"吸":["xī","hấp","hút"],
+"卷":["juǎn","quyển","cuộn, cuốn"],
+"粢饭":["zīfàn","","xôi nắm (Thượng Hải)"],
+"四大金刚":["sì dà jīngāng","tứ đại kim cương","“bộ tứ” bữa sáng Thượng Hải"],
+"遭遇":["zāoyù","tao ngộ","gặp phải (chuyện không may)","Tiếng Việt “tao ngộ” = gặp gỡ (thường đẹp); 遭遇 thường là gặp chuyện xấu.","t"],
+"迷宫":["mígōng","mê cung","mê cung"],
+"慌":["huāng","hoảng","hoảng"],
+"派出所":["pàichūsuǒ","phái xuất sở","đồn công an"],
+"酒吧":["jiǔbā","","quán bar"],
+"捡":["jiǎn","kiểm","nhặt"],
+"连连":["liánlián","liên liên","liên tục, rối rít"],
+"摆摆手":["bǎibai shǒu","","xua tay"],
+"麻烦":["máfan","ma phiền","rắc rối; làm phiền"],
+"状态":["zhuàngtài","trạng thái","phong độ, tình trạng"],
+"体力":["tǐlì","thể lực","thể lực"],
+"高原反应":["gāoyuán fǎnyìng","cao nguyên phản ứng","say độ cao"],
+"呼吸":["hūxī","hô hấp","thở"],
+"氧气":["yǎngqì","dưỡng khí","oxy"],
+"强壮":["qiángzhuàng","cường tráng","khỏe mạnh, cường tráng"],
+"大意":["dàyi","đại ý","chủ quan, sơ ý","Đọc dàyi = sơ ý; còn dàyì mới là “đại ý” (ý chính).","t"],
+"转经":["zhuànjīng","chuyển kinh","đi vòng quanh cầu kinh"],
+"海拔":["hǎibá","hải bạt","độ cao so với mực nước biển"],
+"悬浮":["xuánfú","huyền phù","lơ lửng"],
+"缆车":["lǎnchē","lãm xa","cáp treo"],
+"柱子":["zhùzi","trụ tử","cột"],
+"冒":["mào","mạo","nhô ra, bốc lên"],
+"流动":["liúdòng","lưu động","trôi, chảy","Tiếng Việt “lưu động” = di động (xe lưu động); 流动 = chảy, trôi.","t"],
+"漂":["piāo","phiêu","trôi nổi"],
+"风景":["fēngjǐng","phong cảnh","phong cảnh"],
+"边境":["biānjìng","biên cảnh","biên giới"],
+"轰隆隆":["hōnglōnglōng","","ầm ầm"],
+"悬崖":["xuányá","huyền nhai","vách đá"],
+"冲":["chōng","xung","lao, xối xuống"],
+"溅":["jiàn","tiễn","bắn tung (nước)"],
+"彩虹":["cǎihóng","thải hồng","cầu vồng"],
+"界碑":["jièbēi","giới bi","cột mốc biên giới"],
+"开玩笑":["kāi wánxiào","khai ngoạn tiếu","nói đùa"],
+"竹筏":["zhúfá","trúc phiệt","bè tre"],
+"挥手":["huīshǒu","huy thủ","vẫy tay"],
+"打招呼":["dǎ zhāohu","đả chiêu hô","chào hỏi"],
+"体验":["tǐyàn","thể nghiệm","trải nghiệm","Tiếng Việt “thể nghiệm” = thử nghiệm; 体验 = trải nghiệm.","t"],
+"绿皮火车":["lǜpí huǒchē","lục bì hỏa xa","tàu hỏa vỏ xanh (tàu chậm, giá rẻ)"],
+"卧铺":["wòpù","ngọa phô","giường nằm (trên tàu)"],
+"拥挤":["yōngjǐ","ủng tễ","chật chội, đông đúc"],
+"充满":["chōngmǎn","sung mãn","đầy, tràn ngập","Tiếng Việt “sung mãn” = dồi dào sức lực; 充满 = đầy.","t"],
+"方言":["fāngyán","phương ngôn","phương ngữ"],
+"隧道":["suìdào","toại đạo","đường hầm"],
+"信号":["xìnhào","tín hiệu","sóng (điện thoại), tín hiệu"],
+"烤红薯":["kǎo hóngshǔ","khảo hồng thự","khoai lang nướng"],
+"道别":["dàobié","đạo biệt","chào tạm biệt"],
+"善意":["shànyì","thiện ý","lòng tốt"],
+"渺小":["miǎoxiǎo","miểu tiểu","nhỏ bé"],
+"沙漠":["shāmò","sa mạc","sa mạc"],
+"露营":["lùyíng","lộ doanh","cắm trại"],
+"深紫":["shēnzǐ","thâm tử","tím đậm"],
+"褪色":["tuìsè","thoái sắc","phai màu"],
+"呆":["dāi","","ngây người, sững"],
+"银河":["yínhé","ngân hà","dải Ngân Hà"],
+"密密麻麻":["mìmimámá","mật mật ma ma","dày đặc"],
+"传说":["chuánshuō","truyền thuyết","truyền thuyết"],
+"流星":["liúxīng","lưu tinh","sao băng"],
+"许愿":["xǔyuàn","hứa nguyện","ước (điều ước)"],
+"实现":["shíxiàn","thực hiện","trở thành hiện thực","Tiếng Việt “thực hiện” = tiến hành; 实现 = (ước mơ) thành hiện thực.","t"],
+"一转眼":["yì zhuǎnyǎn","nhất chuyển nhãn","chớp mắt"],
+"吹":["chuī","xuy","thổi"],
+"躲雨":["duǒ yǔ","đóa vũ","trú mưa"],
+"屋檐":["wūyán","ốc diêm","mái hiên"],
+"细细":["xìxì","tế tế","lâm thâm, nhỏ"],
+"梅雨":["méiyǔ","mai vũ","mưa dầm (mùa mận chín)"],
+"连":["lián","liên","nối liền"],
+"全身":["quánshēn","toàn thân","toàn thân"],
+"白粥":["báizhōu","bạch chúc","cháo trắng"],
+"敲":["qiāo","xao","gõ"],
+"宿管":["sùguǎn","túc quản","người quản lý ký túc xá"],
+"趁热":["chèn rè","sấn nhiệt","(ăn) khi còn nóng"],
+"暖":["nuǎn","noãn","ấm"],
+"硬撑":["yìngchēng","","cố gượng"],
+"雨衣":["yǔyī","vũ y","áo mưa"],
+"盖":["gài","cái","che, đắp"],
+"裤子":["kùzi","khố tử","quần"],
+"土":["tǔ","thổ","quê mùa, lỗi thời","Khẩu ngữ: 土 = quê, “cùi”.","s"],
+"载":["zài","tải","chở"],
+"堆":["duī","đôi","chất đống"],
+"晒太阳":["shài tàiyáng","sái thái dương","phơi nắng"],
+"招呼":["zhāohu","chiêu hô","chào mời (khách)"],
+"痕迹":["hénjì","ngân tích","dấu vết"],
+"干":["gān","can","khô"],
+"关门":["guānmén","quan môn","đóng cửa (ngừng kinh doanh)"],
+"悄悄":["qiāoqiāo","tiễu tiễu","lặng lẽ"],
+"倍速":["bèisù","bội tốc","tua nhanh (xem ×1.5, ×2)"],
+"副歌":["fùgē","phó ca","điệp khúc"],
+"结尾":["jiéwěi","kết vĩ","phần kết"],
+"剥":["bāo","bác","bóc"],
+"浪费":["làngfèi","lãng phí","lãng phí"],
+"散开":["sànkāi","tán khai","tan ra"],
+"谢":["xiè","tạ","(hoa) tàn"],
+"落后":["luòhòu","lạc hậu","tụt lại phía sau"],
+"口语":["kǒuyǔ","khẩu ngữ","khẩu ngữ, kỹ năng nói"],
+"翻译":["fānyì","phiên dịch","phiên dịch, biên dịch"],
+"害怕":["hàipà","hại phạ","sợ"],
+"论文":["lùnwén","luận văn","bài luận, luận văn"],
+"正确":["zhèngquè","chính xác","đúng đắn"],
+"裹":["guǒ","khỏa","quấn"],
+"快乐":["kuàilè","khoái lạc","vui vẻ, hạnh phúc","Tiếng Việt “khoái lạc” = khoái cảm hưởng lạc; 快乐 chỉ là vui vẻ.","t"],
+"骄傲":["jiāo'ào","kiêu ngạo","tự hào","Cẩn thận! Tiếng Việt “kiêu ngạo” là xấu; 骄傲 thường = tự hào.","t"],
+"相信":["xiāngxìn","tương tín","tin tưởng"],
+"出租屋":["chūzūwū","xuất tô ốc","phòng trọ"],
+"失眠":["shīmián","thất miên","mất ngủ"],
+"熄灭":["xīmiè","tức diệt","tắt (đèn, lửa)"],
+"庞大":["pángdà","bàng đại","khổng lồ"],
+"清醒":["qīngxǐng","thanh tỉnh","tỉnh táo"],
+"莫名":["mòmíng","mạc danh","không rõ vì sao"],
+"惆怅":["chóuchàng","trù trướng","bâng khuâng"],
+"素不相识":["sù bù xiāngshí","tố bất tương thức","chưa từng quen biết"],
+"榕树":["róngshù","dung thụ","cây đa"],
+"树枝":["shùzhī","thụ chi","cành cây"],
+"根须":["gēnxū","căn tu","rễ phụ"],
+"乘凉":["chéngliáng","thừa lương","hóng mát"],
+"荡秋千":["dàng qiūqiān","đãng thu thiên","đánh đu"],
+"目送":["mùsòng","mục tống","dõi theo (người ra đi)"],
+"恍惚":["huǎnghū","hoảng hốt","mơ màng, thoáng chốc","Không phải “hoảng hốt” (sợ hãi)! 恍惚 = mơ màng, lơ mơ.","t"],
+"相通":["xiāngtōng","tương thông","thông nhau"],
+"延伸":["yánshēn","diên thân","kéo dài, vươn ra"],
+"砍":["kǎn","khảm","chặt"],
+"绕":["rào","nhiễu","đi vòng"],
+"隆重":["lóngzhòng","long trọng","long trọng"],
+"悄无声息":["qiāo wú shēngxī","tiễu vô thanh tức","lặng lẽ, không một tiếng động"],
+"疫情":["yìqíng","dịch tình","dịch bệnh"],
+"送":["sòng","tống","tiễn"],
+"遗憾":["yíhàn","di hám","tiếc nuối"],
+"急着":["jízhe","cấp trước","vội (làm gì)"],
+"擅长":["shàncháng","thiện trường","giỏi về"],
+"司机":["sījī","tư cơ","tài xế"],
+"辛苦":["xīnkǔ","tân khổ","vất vả"],
+"往后":["wǎng hòu","vãng hậu","về phía sau"],
+"梦":["mèng","mộng","mơ, giấc mơ"],
+"从来":["cónglái","tòng lai","từ trước tới nay (luôn/chưa từng)"],
+"末班车":["mòbānchē","mạt ban xa","chuyến xe cuối"],
+"叹":["tàn","thán","thở dài"],
+"慢悠悠":["mànyōuyōu","mạn du du","thong thả"],
+"除了":["chúle","trừ liễu","ngoài… ra"],
+"打了个哈欠":["dǎ le ge hāqian","","ngáp một cái"],
+"罐头":["guàntou","quán đầu","đồ hộp"],
+"像样":["xiàngyàng","tượng dạng","ra hồn, tử tế"],
+"编号":["biānhào","biên hiệu","số hiệu"],
+"伤人":["shāngrén","thương nhân","làm tổn thương người khác"],
+"拉黑":["lāhēi","lạp hắc","chặn (block) trên mạng","Lóng mạng: 拉黑 = cho vào danh sách đen.","s"],
+"鬼使神差":["guǐshǐ shénchāi","quỷ sử thần sai","như có ma xui quỷ khiến"],
+"淡淡":["dàndàn","đạm đạm","nhàn nhạt"],
+"改变":["gǎibiàn","cải biến","thay đổi"],
+"不满":["bùmǎn","bất mãn","không hài lòng"],
+"懂事":["dǒngshì","đổng sự","hiểu chuyện, biết điều","Không phải “đổng sự” (thành viên hội đồng quản trị)! 懂事 = hiểu chuyện.","t"],
+"当下":["dāngxià","đương hạ","ngay lúc này"],
+"失物招领处":["shīwù zhāolǐng chù","thất vật chiêu lĩnh xứ","nơi nhận đồ thất lạc"],
+"收":["shōu","thu","nhận, thu"],
+"遗忘":["yíwàng","di vong","lãng quên"],
+"身份证":["shēnfènzhèng","thân phận chứng","căn cước, giấy tờ tùy thân"],
+"金色":["jīnsè","kim sắc","màu vàng kim"],
+"插画师":["chāhuàshī","sáp họa sư","họa sĩ minh họa"],
+"前途":["qiántú","tiền đồ","tương lai, triển vọng"],
+"领":["lǐng","lĩnh","nhận (về)"],
+"物归原主":["wù guī yuánzhǔ","vật quy nguyên chủ","trả về cho chủ cũ"],
+"牙刷":["yáshuā","nha xoát","bàn chải đánh răng"],
+"极光":["jíguāng","cực quang","cực quang"],
+"演讲":["yǎnjiǎng","diễn giảng","diễn thuyết, thuyết trình"],
+"安全":["ānquán","an toàn","an toàn"],
+"精彩":["jīngcǎi","tinh thải","đặc sắc, hấp dẫn"],
+"连衣裙":["liányīqún","liên y quần","váy liền"],
+"同时":["tóngshí","đồng thời","cùng lúc"],
+"程序员":["chéngxùyuán","trình tự viên","lập trình viên"],
+"精确":["jīngquè","tinh xác","chính xác"],
+"寂静":["jìjìng","tịch tĩnh","tĩnh lặng"],
+"时长":["shícháng","thời trường","thời lượng"],
+"念头":["niàntou","niệm đầu","ý nghĩ"],
+"静止":["jìngzhǐ","tĩnh chỉ","đứng yên"],
+"花坛":["huātán","hoa đàn","bồn hoa"],
+"波浪":["bōlàng","ba lãng","sóng"],
+"发送":["fāsòng","phát tống","gửi (tin nhắn)"],
+"没用":["méiyòng","một dụng","vô ích, “chẳng để làm gì”"],
+"尽头":["jìntóu","tận đầu","cuối (đường)"],
+"忘掉":["wàngdiào","vong điệu","quên đi"],
+"交往":["jiāowǎng","giao vãng","quen nhau, hẹn hò"],
+"打翻":["dǎfān","đả phiên","làm đổ"],
+"点点滴滴":["diǎndiǎn dīdī","điểm điểm tích tích","từng chút một"],
+"删除":["shānchú","san trừ","xóa"],
+"安放":["ānfàng","an phóng","đặt để (yên ổn)"],
+"积水":["jīshuǐ","tích thủy","vũng nước đọng"],
+"借":["jiè","tá","mượn, cho mượn"],
+"出售":["chūshòu","xuất thụ","bán ra"],
+"柜员":["guìyuán","quỹ viên","giao dịch viên"],
+"富商":["fùshāng","phú thương","thương nhân giàu có"],
+"转":["zhuǎn","chuyển","chuyển (khoản, cho người khác)"],
+"平静":["píngjìng","bình tĩnh","bình thản"],
+"干涉":["gānshè","can thiệp","can thiệp"],
+"可怜":["kělián","khả liên","đáng thương; ít ỏi"],
+"微笑":["wēixiào","vi tiếu","nụ cười mỉm"],
+"从容":["cóngróng","thung dung","ung dung, thong dong"]
+},
+S:[
+{id:"t7-1",lv:4,cat:"love",ser:"第七张桌子",ch:1,t:"第七张桌子（一）",
+x:`杭州的秋天来得很慢。阮玥在西湖边的一家小咖啡馆{兼职}，已经三个月了。她发现了一个{规律}：每个星期三下午三点，总有一个男生准时推门进来，点一杯不加糖的拿铁，然后坐在靠窗的第七张桌子。
+
+他从来不看手机，只是低着头，在一个厚厚的{素描本}上画画。有时候画一个小时，有时候一直画到{打烊}。
+
+“他是画家吗？”阿玥问店长。店长{耸耸肩}：“谁知道呢。不过他每次都{留}一样的小费——五块钱，压在杯子下面。”
+
+这个星期三，外面下起了大雨。三点过了，第七张桌子还是空的。阿玥{莫名其妙}地有点儿{失落}。她一边擦杯子，一边看着门口。
+
+三点二十分，门终于开了。男生全身都湿透了，素描本却被他{紧紧}地抱在怀里，一滴水也没有。
+
+他走到{柜台}前，第一次主动开口：“你好，今天……能借我一条毛巾吗？”`,
+q:[["那个男生每次坐在哪儿？",["第一张桌子","靠窗的第七张桌子","柜台前面"],1],["下雨那天，男生的素描本怎么样？",["全湿了","一点儿也没湿","忘在家里了"],1]]},
+{id:"t7-2",lv:4,cat:"love",ser:"第七张桌子",ch:2,t:"第七张桌子（二）",
+x:`递毛巾的时候，阿玥第一次看清了他的脸：{眉毛}很浓，笑起来有点儿{害羞}。他说他叫陆川，是美院建筑系的学生。
+
+“你每个星期三都来画画？”阿玥忍不住问。
+
+“嗯，在画{毕业设计}。”陆川说，“题目是‘城市里让人想{停留}的地方’。”
+
+阿玥想看看他画的是什么，陆川却很快把素描本{合上}了：“还没画完，不好意思。”
+
+那天以后，他们开始聊天。陆川知道了阿玥是越南人，来杭州读{硕士}；阿玥知道了陆川最喜欢她做的越南{滴漏}咖啡。“比拿铁{有个性}，”他说，“先苦，后甜。”
+
+有一次，阿玥{假装}去收杯子，偷偷看了一眼素描本。上面画的是咖啡馆的窗户、木门和{吧台}，每一张都画得很{细致}。可奇怪的是，吧台后面总是空的，好像少了一个人。`,
+q:[["陆川的毕业设计题目是什么？",["城市里让人想停留的地方","西湖的风景","越南咖啡的历史"],0],["素描本里奇怪的地方是什么？",["没有窗户","吧台后面总是空的","画的都是人"],1]]},
+{id:"t7-3",lv:4,cat:"love",ser:"第七张桌子",ch:3,t:"第七张桌子（三）",
+x:`十一月，阿玥的{签证}出了点儿问题，她要回河内一个月。走之前的那个星期三，陆川没有来。
+
+阿玥给他发{消息}：“我下周回越南，可能一个月以后才回来。”消息显示“已读”，却一直没有回复。
+
+她心里有点儿{委屈}：原来在他眼里，自己只是一个{普通}的店员。
+
+在河内的一个月，她每天都{忍不住}看手机。妈妈问她怎么了，她说没什么。直到{临走}前一天，她才收到陆川的一条长消息：
+
+“对不起，这一个月我在{医院}陪我爸爸做手术，没心情回消息。他现在好多了。另外，我的毕业设计完成了，下个月十号{答辩}。如果你那时候回来了，能来看看吗？有一张图，我一直在等你回来才画完。”
+
+阿玥把这条消息看了五遍，然后{订}了最早的一班飞机。`,
+q:[["陆川为什么一个月没回消息？",["他不喜欢阿玥","他在医院陪爸爸","他的手机坏了"],1],["收到消息以后，阿玥做了什么？",["订了最早的飞机","决定不回杭州","马上给他打电话"],0]]},
+{id:"t7-4",lv:4,cat:"love",ser:"第七张桌子",ch:4,t:"第七张桌子（四）",
+x:`答辩那天，阿玥第一次走进美院的展厅。墙上{挂}满了学生们的作品，有的是高楼，有的是公园，只有陆川的作品是一家小小的咖啡馆。
+
+{评委}老师问他：“为什么选一家咖啡馆？它并不{特别}。”
+
+陆川想了想，说：“一个地方让人想停留，不是因为它的{建筑}有多特别，而是因为里面的人。”
+
+他{翻}到最后一张图。那是阿玥熟悉的吧台，只是这一次，吧台后面不再是空的：一个女孩正低着头做咖啡，头发{别}在耳后，旁边放着一只越南滴漏。
+
+图的下面写着一行小字：“第七张桌子看到的风景。”
+
+展厅里很安静。阿玥站在人群最后面，眼睛一下子就{湿}了。`,
+q:[["最后一张图上画的是谁？",["陆川自己","吧台后面做咖啡的女孩","咖啡馆店长"],1],["陆川认为一个地方让人想停留是因为什么？",["建筑很特别","里面的人","价格便宜"],1]]},
+{id:"t7-5",lv:4,cat:"love",ser:"第七张桌子",ch:5,t:"第七张桌子（五）",
+x:`答辩结束后，陆川在展厅门口找到了阿玥。两个人都有点儿{不知所措}，最后还是陆川先开口：“画得像吗？”
+
+“不太像，”阿玥说，“我没有那么好看。”
+
+陆川笑了：“{画家}只画他看到的。”
+
+那天晚上，他们一起回到咖啡馆。店长看到他们，{意味深长}地笑了笑，在第七张桌子上{摆}了两杯咖啡：一杯不加糖的拿铁，一杯越南滴漏咖啡。
+
+“其实，”陆川说，“第一次来这里，我是为了画窗户。第二次来，是为了你。”
+
+阿玥低头喝了一口咖啡。今天的咖啡好像特别甜，她{明明}没有加糖。
+
+后来，陆川的毕业设计得了{优秀}，那幅画被挂在了咖啡馆的墙上。每个来店里的客人都会问：“画里的女孩是谁？”
+
+店长总是指指吧台：“她呀，就在那儿。”`,
+q:[["店长在第七张桌子上摆了什么？",["一杯拿铁","两杯不一样的咖啡","一块蛋糕"],1],["陆川第二次来咖啡馆是为了什么？",["画窗户","为了阿玥","喝拿铁"],1]]},
+{id:"bbw-1",lv:5,cat:"love",ser:"北部湾的来信",ch:1,t:"北部湾的来信（一）",
+x:`黎秋在海防一家物流公司做{报关}。她每天和中文文件打交道，却很少有机会和中国人真正聊天。
+
+一天晚上，她下载了一个叫“慢信”的App。这个App很特别：你写的信不会马上{送达}，而是按照两个人之间的真实距离，像{邮差}一样慢慢“走”过去。从海防到{对岸}的北海，大约要走一天半。
+
+她的第一封信写得很{随意}：“你好，{陌生人}。今天海防下了一场大雨，我的{摩托车}在路上{熄火}了。你那边的天气怎么样？”
+
+两天后，她收到了回信。写信的人叫林舟，是北海的一名小学美术老师。
+
+“北海今天是晴天。”他写道，“不过我们看的是{同一片}海。你那边的雨，说不定昨天就从我头顶上{飘}过去了。”
+
+黎秋看着这句话，第一次觉得，北部湾好像没有那么宽。`,
+q:[["“慢信”App有什么特别的地方？",["信马上就能收到","信按真实距离慢慢送达","只能发照片"],1],["林舟是做什么工作的？",["报关员","小学美术老师","邮差"],1]]},
+{id:"bbw-2",lv:5,cat:"love",ser:"北部湾的来信",ch:2,t:"北部湾的来信（二）",
+x:`就这样，他们一写就是半年。
+
+因为信走得慢，两个人都学会了{耐心}。黎秋会把一周的生活{攒}起来，写成一封长信：公司里难缠的客户，妈妈做的{鱼露}，夜市上新开的一家烤串店。林舟的信里总会{夹}着一张小画：学生们画的海、学校门口的木棉树，还有一只总来教室{蹭}饭的猫。
+
+慢慢地，黎秋发现自己开始{期待}每个星期三，那是林舟的信通常到达的日子。她甚至{养成}了一个习惯：读信之前，先泡一杯茶，像一种{仪式}。
+
+有一次，林舟在信里问：“如果有一天我们见面，你会不会{失望}？我本人没有信里那么有意思。”
+
+黎秋想了很久，回信说：“我也没有信里那么{勇敢}。可是，我们写的都是真话，对吧？”
+
+那封信寄出去以后，她第一次感到{忐忑}：一天半的距离，突然变得很长很长。`,
+q:[["林舟的信里总会夹着什么？",["一张小画","一些钱","一张自拍"],0],["黎秋读信之前会做什么？",["先泡一杯茶","先给妈妈打电话","先画一幅画"],0]]},
+{id:"bbw-3",lv:5,cat:"love",ser:"北部湾的来信",ch:3,t:"北部湾的来信（三）",
+x:`春节前，林舟突然写来一封很短的信：“学校放寒假了。二月十号，我想去东兴。从东兴过桥，就是芒街。如果你愿意，我们在{界河}边见一面，好吗？”
+
+东兴和芒街之间只{隔}着一条北仑河。黎秋查了一下：从海防坐车到芒街，只要三个小时。原来，他们之间的距离，比她想象的近多了。
+
+可是，越近反而越{紧张}。她{反复}问自己：如果见面以后感觉不一样了怎么办？如果他发现我说中文的时候{结结巴巴}呢？
+
+好朋友阿兰说：“你们已经写了半年信，你{了解}他的程度，比很多见过面的人还深。别想那么多了，去吧。”
+
+二月十号早上，黎秋穿上了妈妈年轻时的那件白色{奥黛}。镜子里的自己，看起来有点儿陌生，也有点儿{坚定}。`,
+q:[["东兴和芒街之间隔着什么？",["一座山","一条河","一片海"],1],["见面那天，黎秋穿了什么？",["妈妈年轻时的白色奥黛","公司的工作服","新买的裙子"],0]]},
+{id:"bbw-4",lv:5,cat:"love",ser:"北部湾的来信",ch:4,t:"北部湾的来信（四）",
+x:`北仑河边，风有点儿凉。黎秋远远就看见了他：个子不高，背着一个画板，手里拿着一束{木棉花}。和信里想象的一样，又好像完全不一样。
+
+“你好，陌生人。”林舟先开口，用的是她第一封信里的话。
+
+黎秋笑了，紧张一下子{消失}了一半：“你好。北海今天是晴天吗？”
+
+“不清楚，”他说，“我今天在芒街。”
+
+他们沿着河边慢慢地走，说的话比想象中少，可{沉默}一点儿也不尴尬。林舟打开画板，里面是半年来他画的所有小画，最后一张是空白的。
+
+“这一张，”他说，“我想画今天。”
+
+后来，“慢信”App{推出}了一个新功能：可以把两个人来往的信{打印}成一本书。黎秋和林舟的那一本，书名叫《一天半》。那是一封信从海防走到北海的时间，也是他们后来每次见面前，{彼此}最想念对方的时间。`,
+q:[["见面时林舟先说了什么？",["你好，陌生人","北海是晴天","我想画今天"],0],["他们的书为什么叫《一天半》？",["他们只见了一天半","那是一封信走过去的时间","林舟画了一天半"],1]]},
+{id:"umbrella",lv:3,cat:"love",t:"一把黑伞",
+x:`公交车站{突然}下起了大雨。小雨没有带伞，只好站在{站牌}下面等。
+
+旁边一个男生打开了一把很大的黑伞。他看了看小雨，有点儿{犹豫}，最后还是走过来说：“我们……一起{撑}吧？你坐几路车？”
+
+“十八路。”
+
+“我也是。”
+
+车来得很慢。两个人站在一把伞下，{肩膀}都湿了一半。男生说他是隔壁学校的，学{计算机}。小雨说她是越南留学生，学中文。男生{惊讶}地说：“你的中文好{标准}啊！”小雨{脸红}了。
+
+上车以后，男生把伞{塞}给她：“你拿着吧，我下车的地方离家很近。”
+
+“那我怎么还给你？”
+
+男生想了想，在伞上贴了一张{便利贴}，上面写着他的微信号。
+
+那天晚上，小雨看着那把伞想了很久，终于点了“添加朋友”。`,
+q:[["男生为什么把伞给了小雨？",["他下车的地方离家很近","他不喜欢这把伞","雨已经停了"],0],["男生用什么办法让小雨还伞？",["写了家里的地址","贴了写有微信号的便利贴","说明天在车站等她"],1]]},
+{id:"sticky",lv:3,cat:"love",t:"图书馆的便利贴",
+x:`期末考试前，图书馆三楼总是坐满了人。阿美每天都坐在同一个位置，因为那里{靠窗}，很安静。
+
+有一天，她在桌子上发现了一张{便利贴}：“同学，你每天都来得好早！加油！”她{左右}看了看，没有人。
+
+第二天，她也写了一张：“谢谢！你也加油！”{贴}在桌子上。
+
+从那以后，桌子上的便利贴越来越多。有时候是一个{笑话}，有时候是一道数学题的{答案}，有时候只是一个画得很{丑}的笑脸。阿美觉得，复习好像没有那么累了。
+
+考试的最后一天，便利贴上写着：“今天下午五点，图书馆门口，我请你喝奶茶。我会穿一件黄色的{外套}。”
+
+五点，阿美走出图书馆，看到门口站着一个穿黄色外套的男生，手里拿着两杯奶茶，正紧张地{挠}着头。原来，他就坐在她{对面}那张桌子——每一天，都在。`,
+q:[["第一张便利贴上写了什么？",["同学，你每天都来得好早！加油！","我请你喝奶茶","一道数学题的答案"],0],["写便利贴的男生坐在哪儿？",["图书馆门口","阿美对面的桌子","楼下的教室"],1]]},
+{id:"takeout-note",lv:3,cat:"love",t:"外卖备注",
+x:`大学毕业后，小敏在上海一家公司上班，每天加班到很晚。她常常在楼下一家小面馆点外卖。
+
+有一天，她在{备注}里写：“今天好累，可以多放一点儿香菜吗？”外卖到的时候，袋子上贴着一张小{纸条}：“多放了！累的时候，要多吃一点儿。”
+
+第二天，她又写：“谢谢昨天的纸条，今天{心情}好多了。”纸条回答：“那今天送你一个{煎蛋}。”
+
+就这样，他们通过备注和纸条“聊天”聊了一个月。小敏知道了面馆的老板叫阿杰，和她一样大，以前是五星级酒店的{厨师}，因为喜欢自由，自己开了这家小店。
+
+一个周末，小敏没有点外卖，而是第一次走进了那家面馆。阿杰正在忙，抬头看见她，愣了一下，然后笑着说：“香菜多放，对吧？”`,
+q:[["小敏第一次在备注里写了什么？",["多放一点儿香菜","不要辣","快一点儿送"],0],["周末小敏做了什么？",["又点了外卖","第一次走进了那家面馆","给阿杰写了一封信"],1]]},
+{id:"elevator",lv:3,cat:"love",t:"电梯里的三分钟",
+x:`早上八点五十，公司大楼的电梯里挤满了人。到了十二楼，人都走了，只剩下林悦和一个不认识的男生。
+
+突然，电梯“咚”的一声停了，灯也{暗}了一下。
+
+“坏了？”林悦紧张地按了好几次{按钮}，电梯一动不动。
+
+男生很{冷静}，按了{紧急}呼叫键，说：“别怕，工作人员马上就来。”为了让她不紧张，他开始{找话题}：“你在几楼上班？”“十八楼。”“我也是！我怎么从来没见过你？”“我是新来的，今天第三天。”
+
+他们聊了三分钟：喜欢吃什么、周末做什么、为什么来上海……电梯又动了。门打开的时候，林悦{竟然}有点儿舍不得。
+
+下午，林悦的{部门}开会，经理介绍一位新同事：“这是我们部门新来的设计师。”她抬起头，看见了电梯里的那个男生。他也看见了她，两个人都笑了。`,
+q:[["电梯停了的时候，男生做了什么？",["他也很紧张","按了紧急呼叫键，还和她聊天","打电话给经理"],1],["下午林悦发现了什么？",["男生是她的新同事","电梯又坏了","男生在十二楼上班"],0]]},
+{id:"same-sweater",lv:3,cat:"love",t:"撞衫",
+x:`学校的新年晚会上，阿兰穿了一件{淡蓝色}的毛衣。她刚进门，就看见舞台旁边一个男生穿着{一模一样}的毛衣。
+
+周围的同学都笑了：“你们是不是{约好}的？”阿兰的脸一下子红了，想{躲}到人群后面去。
+
+那个男生却大大方方地走过来，说：“看来我们的{眼光}一样好。”他叫子豪，是学生会的，今天负责{主持}晚会。
+
+晚会进行到一半，子豪突然说：“下面是一个{互动}游戏，我需要一位同学上台。”他看着阿兰：“就请这位穿蓝毛衣的同学吧！”
+
+全场又笑了。阿兰只好上台。游戏是两个人一起唱一首歌。她选了一首越南歌，子豪一句也听不懂，却跟着{节奏}拍手，拍得特别认真。
+
+后来，那张两个人穿着同样毛衣的照片，在学校的{表白墙}上火了一个星期。`,
+q:[["晚会上发生了什么有意思的事？",["阿兰和一个男生穿了一样的毛衣","阿兰唱错了歌","晚会停电了"],0],["子豪在晚会上负责什么？",["拍照","主持晚会","唱歌"],1]]},
+{id:"playlist",lv:4,cat:"love",t:"给不认识的你",
+x:`晓雯有一个{习惯}：难过的时候，就在音乐App上建一个新歌单。她的歌单都是{公开}的，名字也很奇怪，比如《下雨天不想上课》《第一次在外国过生日》。
+
+有一天，她发现有一个叫“北风”的用户{收藏}了她所有的歌单，还在《第一次在外国过生日》下面留言：“生日快乐。虽然晚了三天。”
+
+她有点儿{好奇}，点进了北风的主页。他只有一个歌单，叫《给不认识的你》。里面的每首歌，都像是对她的歌单的“回答”：她放了一首关于{孤独}的歌，他就放一首关于{陪伴}的歌；她放了一首{告别}的歌，他就放一首关于重新开始的歌。
+
+晓雯决定给他发一条{私信}：“你到底是谁？”
+
+回复很快就来了：“我是你们宿舍楼下修自行车的那个男生。你每天早上都戴着耳机{哼}歌，哼得特别{跑调}。我好奇你在听什么，就找到了你。”
+
+晓雯{哭笑不得}。第二天早上，她特意没戴耳机，在楼下停了停：“喂，北风，你的歌单不错。”`,
+q:[["北风的歌单有什么特点？",["都是外国歌","每首歌都像是对晓雯歌单的回答","都是很悲伤的歌"],1],["北风是怎么注意到晓雯的？",["在音乐App上随便看到的","她每天早上戴着耳机哼歌","朋友介绍的"],1]]},
+{id:"radio",lv:4,cat:"love",t:"晚安电台",
+x:`每天晚上十点，学校广播站都会{播}一个节目，叫《晚安电台》。主持人的声音很{温柔}，大家都叫他“晚安先生”，可是没有人知道他是谁。
+
+阿秋是越南留学生，刚来中国的时候很{想家}。有一天晚上，她给电台写了一封邮件：“我在这里没有朋友，说中文也不太好。有时候我觉得，自己像一个{透明}的人。”
+
+第二天晚上，晚安先生读了她的邮件。他说：“这位越南同学，你一点儿也不透明。你愿意用另一种语言重新认识世界，这本身就很{了不起}。”然后，他放了一首越南歌，发音不太标准，但唱得很认真。
+
+阿秋在宿舍里听着，忍不住哭了。
+
+一个学期后，广播站{招}新人，阿秋鼓起勇气去{面试}。负责面试的是一个戴眼镜的男生。他一开口，阿秋就愣住了——那个声音，她听了整整一个学期。
+
+“欢迎你，越南同学。”他笑着说，“这次你来读，我来听。”`,
+q:[["阿秋在邮件里说自己像什么？",["一个透明的人","一个主持人","一只小鸟"],0],["面试阿秋的人是谁？",["广播站的老师","晚安先生","她的室友"],1]]},
+{id:"voice-msg",lv:4,cat:"love",t:"发错的语音",
+x:`凌晨一点，阿凤在和{闺蜜}吐槽工作。她按住{语音}键，说了一大段：“我跟你说，今天那个新来的{产品经理}太{过分}了，开会的时候一直打断我，长得帅有什么用……”
+
+说完，她就睡了。
+
+第二天早上醒来，她发现，那条六十秒的语音，发给了……新来的产品经理本人。
+
+阿凤{崩溃}了。语音已经超过两分钟，不能{撤回}了。对方的回复只有一行字：“收到。帅的部分我{接受}，打断你的部分，我{道歉}。”
+
+那天她一整天都不敢抬头。下班的时候，产品经理在电梯口等她：“我想了一下，你昨天开会时说的那个方案，其实很好。明天你能再讲一遍吗？这次我{保证}不打断。”
+
+第二天的会上，她讲完了方案，他第一个{鼓掌}。散会后，他给她发了一条消息：“另外，那条语音我{保存}了。等以后再放给你听。”
+
+“以后？”阿凤看着屏幕，心跳得很快。`,
+q:[["阿凤的语音发给了谁？",["她的闺蜜","新来的产品经理","她的妈妈"],1],["产品经理收到语音后怎么做？",["非常生气","道歉，并请她再讲一遍方案","告诉了老板"],1]]},
+{id:"corgi",lv:4,cat:"love",t:"柯基当红娘",
+x:`每天傍晚，阿芸都会带她的柯基“豆豆”去小区公园散步。豆豆什么都好，就是太{热情}，见到谁都想扑上去。
+
+一天，豆豆突然挣开了绳子，冲向一只大金毛。金毛的主人是一个穿运动服的男生，他吓了一跳，手里的咖啡洒了一身。
+
+“对不起对不起！”阿芸红着脸，不停地{道歉}。男生看看自己的衣服，又看看已经和金毛玩成一团的豆豆，笑了：“没关系，看来它们比我们{合得来}。”
+
+从那天起，豆豆一到公园，就{拼命}往金毛那边跑。阿芸和男生也慢慢熟了起来。他叫浩然，是一名{兽医}。他教她怎么训练豆豆不扑人，她给他带越南的{椰子}糖。
+
+三个月后，浩然说：“豆豆的训练可以毕业了。我们能不能……不带狗，{单独}见一次面？”
+
+阿芸低头看了看豆豆。豆豆{摇}着尾巴，好像在说：快答应啊！`,
+q:[["阿芸和浩然是怎么认识的？",["豆豆挣开绳子冲向了他的金毛","在宠物医院看病","朋友介绍"],0],["浩然是做什么工作的？",["训狗师","兽医","咖啡师"],1]]},
+{id:"confession",lv:4,cat:"love",t:"告白失败以后",
+x:`大二那年的{情人节}，阿玲终于鼓起勇气，向喜欢了一年的学长{告白}。
+
+学长沉默了一会儿，认真地说：“谢谢你。但是我一直把你当妹妹，我不想骗你。”
+
+阿玲回到宿舍，哭了一整晚。室友们陪她吃了一大桶冰淇淋，还帮她{分析}：“他不喜欢你，是他的{损失}。”
+
+第二天，她以为自己会很{尴尬}，不敢去社团。可是学长像{往常}一样跟她打招呼，还把她负责的{活动}{安排}得清清楚楚。阿玲突然觉得，被拒绝也没有那么可怕。
+
+后来，她把更多的时间用在了自己身上：她报了一个摄影班，学会了一个人去旅行，还拿到了去上海{实习}的机会。
+
+毕业的时候，学长给她写了一张卡片：“谢谢你当时的勇敢。你让我知道，喜欢一个人可以很{体面}。”
+
+阿玲笑了。她发现，那次告白最大的收获，不是得到一个人，而是变成了一个更好的自己。`,
+q:[["学长为什么拒绝了阿玲？",["他已经有女朋友了","他一直把她当妹妹","他要出国了"],1],["告白失败后，阿玲做了什么？",["再也不去社团了","把更多时间用在自己身上","换了一所学校"],1]]},
+{id:"grad-photo",lv:5,cat:"love",t:"一张毕业照",
+x:`整理旧手机的时候，陈默{翻}出了一张大学毕业照。照片上，全班同学站成三排，他站在最左边，眼睛却看着右边——看着站在第二排的苏晴。
+
+那是七年前。那一年，他写了一封长长的信，在{口袋}里放了整整一个星期，最终也没送出去。毕业后，大家{各奔东西}，苏晴去了越南的一家{中资企业}，而他留在了广州。
+
+七年里，他{偶尔}会在朋友圈看到她的{动态}：岘港的海、胡志明市的夜市、她学会了骑摩托车。他每次都点一个赞，却从来没有留过言。
+
+今年同学聚会前，班长在群里发了这张毕业照，问：“照片上谁在偷看谁，自己{承认}吧！”
+
+群里{一片}“哈哈哈”。过了一会儿，苏晴发了一条消息：“其实我早就发现了。我当时一直在等，等某个人把口袋里那封信拿出来。”
+
+陈默{盯}着屏幕，手心出汗。七年的时间，原来只隔着一封没有寄出的信。
+
+那天晚上，他打开那封已经发黄的信，拍了照片，发给了她。{附言}只有一句：“{迟到}了七年，对不起。现在{补}上，还来得及吗？”`,
+q:[["毕业照上，陈默在看谁？",["班长","苏晴","摄影师"],1],["苏晴在群里说了什么？",["她不记得这张照片了","她早就发现了，一直在等那封信","她下个月要结婚了"],1]]},
+{id:"timezone",lv:5,cat:"love",t:"六个小时的时差",
+x:`阿梅在河内，男朋友嘉明在米兰读博士。两个城市之间，隔着六个小时的{时差}——冬天是六个，夏天是五个。
+
+刚开始{异地}的时候，他们约定每天视频一次。可是很快，时差就变成了一个{难题}：阿梅下班回到家，是米兰的下午，嘉明正在实验室忙；嘉明终于有空，河内已经是半夜，阿梅困得睁不开眼睛。
+
+他们{吵}过架。阿梅说：“你总是在忙。”嘉明说：“你根本不{理解}读博的{压力}。”挂了电话，两个人都睡不着。
+
+后来，他们想了一个办法：既然时间对不上，就把生活“{错开}”分享。阿梅每天早上{录}一段一分钟的视频：上班路上的街道、路边的法棍面包、下雨的还剑湖，嘉明醒来时正好能看到。嘉明睡前也录一段：米兰的大教堂、实验室的灯、他学着做的越南春卷——卷得歪歪扭扭。
+
+一年下来，他们的手机里存了七百多段视频。阿梅说，这些视频像一本只有两个人能看懂的{日记}。
+
+圣诞节，嘉明终于回到河内。见面的第一句话，他说：“这次，我们终于在同一个{时区}了。”`,
+q:[["刚开始异地时，他们最大的问题是什么？",["没有钱买机票","时差让他们很难同时有空","网络不好"],1],["后来他们想了什么办法？",["每天录一段视频给对方","搬到同一个城市","每周只打一次电话"],0]]},
+{id:"blind-date",lv:5,cat:"love",t:"相亲角",
+x:`周末的人民公园，有一个特别的角落——“相亲角”。几百位父母坐在小凳子上，面前摆着一张张A4纸：孩子的年龄、身高、学历、工作、有没有房……像一个安静的{市场}。
+
+二十九岁的林夏是被妈妈“{骗}”来的。妈妈说来公园散步，结果一到就{熟练}地打开了一把伞，伞上贴着林夏的{简历}。
+
+林夏又生气又{无奈}，坐在旁边的长椅上刷手机。一个同样{无精打采}的男生坐在她旁边，他的爸爸正在不远处和别人“{交换}资料”。
+
+“你也是被骗来的？”男生问。
+
+“{显而易见}。”林夏说。
+
+两个人都笑了。他们开始聊天，从{荒唐}的相亲角聊到各自的工作，从喜欢的电影聊到小时候的{糗事}。不知不觉，聊了两个小时。
+
+快走的时候，两边的父母都过来了。林夏的妈妈看了看男生的“简历”，{摇头}：“身高不够。”男生的爸爸看了看林夏的，也摇头：“年龄太大。”
+
+林夏和男生{对视}了一眼，默默加了微信。
+
+后来，他们真的在一起了。不过，他们一直没告诉父母，两个人是在哪儿认识的。`,
+q:[["林夏是怎么来到相亲角的？",["她自己想来","妈妈说去散步，把她骗来了","朋友介绍的"],1],["父母们看了对方的“简历”后有什么反应？",["都很满意","都摇了头","都没有看"],1]]},
+{id:"first-day",lv:3,cat:"work",t:"第一天上班",
+x:`阿玉大学毕业后，在胡志明市一家中国公司找到了工作。上班第一天，她七点就起床{化妆}，穿上了新买的白衬衫。
+
+到了公司，{前台}的姐姐带她去见经理。经理姓王，是个说话很快的中国人。“欢迎欢迎！你的中文怎么样？”“还……还可以。”阿玉紧张得声音都小了。
+
+王经理给了她一本厚厚的{资料}：“这是我们公司的产品介绍，你先看看。有不懂的随时问我。”
+
+中午，同事们叫她一起去吃饭。大家用中文和越南语{混}着聊天，一会儿说“好吃”，一会儿说“ngon quá”，阿玉觉得很{亲切}。
+
+下午，她把资料里不认识的词都{抄}在本子上，一共有五十多个。下班的时候，王经理看到她的本子，笑着说：“第一天就这么{认真}，很好！明天我请你喝咖啡。”
+
+回家的路上，阿玉给妈妈打电话：“妈，我觉得我会喜欢这份工作。”`,
+q:[["王经理给了阿玉什么？",["一本产品资料","一杯咖啡","一台电脑"],0],["阿玉下午做了什么？",["和同事聊天","把不认识的词抄在本子上","提前下班了"],1]]},
+{id:"mute",lv:3,cat:"work",t:"忘了静音",
+x:`周一早上九点，公司开{线上}会议。小林在家工作，她打开电脑，{进入}了会议。
+
+经理在讲这个月的{计划}，讲了半个小时。小林有点儿饿了，就去厨房做早饭。她一边煮面，一边跟妈妈打电话：“妈，今天的会好{无聊}啊，经理一直在说，一直在说……”
+
+突然，她的手机响了，是同事阿强发来的消息：“你没{静音}！！！”
+
+小林{吓}得马上跑回电脑前。屏幕上，二十个同事都在看着她，经理也不说话了。
+
+“对……对不起！”小林的脸红得像苹果。
+
+经理{沉默}了两秒，笑着说：“看来我的会确实太长了。好，今天就到这里，大家休息一下。”
+
+会议结束后，经理给小林发了一条消息：“谢谢你的{反馈}。下次开会，我会{控制}在十五分钟以内。”
+
+从那天起，公司的会真的变短了。同事们都说，要感谢小林的那碗面。`,
+q:[["小林在电话里说了什么？",["今天的会好无聊","面太好吃了","经理很帅"],0],["那天以后公司有什么变化？",["会议变短了","不能在家工作了","小林换了工作"],0]]},
+{id:"midnight-snack",lv:3,cat:"work",t:"加班的夜宵",
+x:`年底，公司特别忙。设计部的五个人已经连续{加班}一个星期了。
+
+晚上十点，大家都很累，没有人说话，办公室里只有{键盘}的声音。新来的越南同事阿明突然站起来说：“我请大家吃{夜宵}吧！”
+
+他打开手机，点了一大份越南春卷和五杯{冰}咖啡。外卖到了，他把春卷放在桌子中间，教大家怎么{蘸}鱼露。
+
+“哇，这个{酱}好香！”“咖啡太甜了，但是我喜欢！”办公室一下子热闹起来。
+
+组长老陈吃着春卷说：“我在这家公司工作十年了，第一次觉得加班也可以这么开心。”
+
+那天晚上，他们十二点才下班，可是大家都在笑。后来，组里有了一个新{传统}：每次加班，都由一个人请大家吃自己家乡的夜宵。四川的同事请吃火锅，广东的同事请吃{肠粉}……阿明说：“我们组的夜宵，可以开一个国际美食节了。”`,
+q:[["阿明请大家吃了什么？",["越南春卷和冰咖啡","火锅","肠粉"],0],["后来组里有了什么新传统？",["每周开一次会","加班时轮流请大家吃家乡夜宵","每天准时下班"],1]]},
+{id:"birthday-cake",lv:3,cat:"work",t:"同事的生日",
+x:`下个星期五是同事小李的生日。办公室的{群主}张姐在一个{秘密}微信群里说：“大家每人出五十块，我们给小李买个{礼物}吧。”
+
+阿芳刚来公司一个月，她有点儿{犹豫}：五十块不多，可是她和小李还不太熟。在她以前的越南公司，大家不常这样{凑钱}买礼物。
+
+她问旁边的同事：“一定要{参加}吗？”同事说：“不是一定，但是大家一起准备，小李会很开心的。这也是认识大家的好机会。”
+
+阿芳想了想，不但出了钱，还{主动}说：“我会做越南的椰子蛋糕，我来做蛋糕吧！”
+
+星期五下午，大家把小李叫到会议室。灯一关，阿芳{端}着蛋糕走进来，大家一起唱生日歌。小李吃了一口蛋糕，{感动}地说：“这是我吃过最好吃的生日蛋糕！”
+
+从那以后，同事们都叫阿芳“蛋糕{师傅}”。她发现，{融入}一个新环境，有时候只需要一块蛋糕。`,
+q:[["张姐让大家做什么？",["每人出五十块买礼物","一起去吃饭","给小李写卡片"],0],["阿芳为小李准备了什么？",["一本书","椰子蛋糕","一束花"],1]]},
+{id:"received",lv:4,cat:"work",t:"工作群里的“收到”",
+x:`阿华进公司的第一个星期，就被{拉}进了十几个微信群：部门群、项目群、午饭群……
+
+周一早上，经理在部门群里发了一条{通知}：“下午两点开会，请大家准备好上周的数据。”{紧接着}，群里出现了一排“收到”“收到”“收到！”
+
+阿华觉得有点儿奇怪：大家都看到了，为什么还要回复？他没有回。
+
+半小时后，经理{私聊}他：“阿华，你看到通知了吗？”
+
+阿华这才明白，在中国的工作群里，“收到”不是{废话}，而是一种{礼貌}，让发消息的人知道你已经看到了。
+
+后来，同事阿美又教了他几条“群{规矩}”：领导发通知要回“收到”；别人帮了忙要说“辛苦了”；发重要文件要提醒相关的人；晚上十点以后{尽量}不发工作消息。
+
+“还有，”阿美{神秘}地说，“千万别在工作群里发{表情包}，除非领导先发。”
+
+阿华认真地记在了本子上。一个月后，他已经能在三秒内回复“收到”了。`,
+q:[["在工作群里回复“收到”是为了什么？",["让发消息的人知道你看到了","表示不同意","结束聊天"],0],["阿美说什么时候才能在工作群里发表情包？",["任何时候","领导先发以后","晚上十点以后"],1]]},
+{id:"report",lv:4,cat:"work",t:"第一次汇报",
+x:`进公司半年后，阿玲第一次要向{总监}{汇报}自己负责的项目。
+
+她准备了三十页的PPT，每一页都写满了字。前一天晚上，她对着镜子{练习}了五遍，还是紧张得睡不着。
+
+汇报开始了。她讲到第五页，总监突然{打断}她：“先说{结论}。这个项目到底能不能按时完成？”
+
+阿玲愣住了。她的结论在第二十八页。她手忙脚乱地翻到最后，{结结巴巴}地说完了。会议室里很安静，她觉得自己的脸在发烫。
+
+会后，{前辈}老周找到她：“别{灰心}。总监每天要听很多汇报，他最需要的是三件事：结论、问题、需要什么支持。其他的，他想听再说。”
+
+阿玲把三十页的PPT改成了五页。第一页只有一句话：“项目可以按时完成，但需要增加一名设计师。”
+
+第二次汇报只用了八分钟。总监听完，点点头：“{思路}很清楚。人，我给你。”
+
+走出会议室，阿玲终于明白：汇报不是展示你做了多少，而是帮别人用最短的时间做{决定}。`,
+q:[["总监为什么打断阿玲？",["他想先听结论","他不喜欢PPT","他要去开别的会"],0],["老周说总监最需要哪三件事？",["结论、问题、需要的支持","数据、图片、故事","时间、地点、人物"],0]]},
+{id:"deposit",lv:4,cat:"work",t:"一个字的错误",
+x:`阿青在一家中越贸易公司做翻译。有一次，她翻译一份{合同}，客户是越南的一家咖啡工厂。
+
+合同里有一句：“{定金}为总价的百分之三十。”阿青翻得很快，没有{注意}到，在中文版的修改稿里，她把“定金”打成了“{订金}”。
+
+在越南语里，这两个词都可以翻成“tiền đặt cọc”。可是在中国的法律里，它们的意思{差别}很大：如果买方{违约}，“定金”不能退，“订金”却可以退。
+
+一个月后，客户{取消}了订单，要求退回三十万元。公司的{律师}拿出中文合同一看，脸色都变了。
+
+经理把阿青叫到办公室。阿青以为自己要被{开除}了，眼泪一直在眼眶里打转。
+
+可是经理只是叹了口气：“这次的损失，公司会想办法{承担}。但你要记住：翻译不是换一种语言说话，而是要对每一个字{负责}。”
+
+从那以后，阿青的桌子上多了一本厚厚的法律词典。每次翻译合同，她都要{核对}三遍。她说：“那一个字，教会我的比四年大学还多。”`,
+q:[["阿青把哪个词弄错了？",["合同","定金","总价"],1],["定金和订金有什么区别？",["没有区别","违约时定金不能退，订金可以退","订金不能退，定金可以退"],1]]},
+{id:"mentor",lv:4,cat:"work",t:"四点钟的问答",
+x:`工作第三年，阿杰第一次当“{师傅}”，带一个刚毕业的越南实习生阿雪。
+
+阿杰本来以为，带新人就是教她怎么做事。可是第一周，他就发现了问题：阿雪从来不问问题。他让她做一份表格，她{默默}做了一整天，结果{格式}全错了。
+
+“你不懂为什么不问我？”阿杰有点儿{着急}。
+
+阿雪低着头说：“我怕问太多，你会觉得我很{笨}。”
+
+阿杰想起了自己刚工作时的样子：也是不敢问，也是一个人偷偷{熬夜}。他的{语气}一下子软了下来：“这样吧，我们每天下午四点，用十五分钟，你把一天的问题都问我。没有{愚蠢}的问题，只有没问的问题。”
+
+从那天起，“四点钟问答”成了两个人的{固定}时间。阿雪的问题越来越少，也越来越{专业}。三个月后，她已经能{独立}负责一个小项目了。
+
+{实习期}结束那天，阿雪送给阿杰一张卡片：“谢谢你的四点钟。以后我带新人，也要给他们一个四点钟。”`,
+q:[["阿雪为什么不问问题？",["她都懂","她怕别人觉得她笨","阿杰太忙了"],1],["阿杰想了什么办法？",["每天四点用十五分钟回答问题","让别人带她","写一本工作手册"],0]]},
+{id:"banquet",lv:5,cat:"work",t:"酒桌上的规矩",
+x:`{入职}第二个月，阿龙第一次跟着经理去{应酬}。客户是一家广东的大公司，晚饭订在一家很高级的海鲜酒楼。
+
+一进{包间}，阿龙就{懵}了：座位怎么坐？谁先动筷子？什么时候{敬酒}？这些课本上都没教过。
+
+好在出发前，经理已经{提醒}过他几条：主人坐在正对门的位置，最重要的客人坐在主人右边；敬酒时，自己的杯子要比对方的低；领导没动筷子，自己不要先吃。
+
+饭吃到一半，客户的老总举起杯子：“听说你是越南人？越南人能喝酒，来，{干杯}！”
+
+阿龙不太会喝酒，心里很{为难}。他想起经理说过：“酒桌上，态度比酒量重要。”于是他站起来，双手举杯，用中文说了一段{祝酒词}，最后加了一句越南语：“Một, hai, ba, dô！”
+
+全桌人都笑了。老总说：“这句越南话好！大家一起来！”那天晚上，“một, hai, ba, dô”的声音响了一整晚。
+
+回去的路上，经理拍拍他的肩膀：“今天{表现}不错。不过记住，应酬是为了建立{信任}，不是为了喝醉。下次实在喝不了，就{以茶代酒}，没有人会为难你的。”`,
+q:[["敬酒时，自己的杯子应该怎么样？",["比对方的高","比对方的低","和对方一样高"],1],["经理说应酬是为了什么？",["喝醉","建立信任","吃海鲜"],1]]},
+{id:"job-hop",lv:5,cat:"work",t:"跳槽",
+x:`在同一家公司干了三年，阿诚开始犹豫要不要{跳槽}。
+
+{猎头}给他推荐了一个机会：一家互联网公司，工资比现在高百分之四十，{职位}也高一级。听起来，几乎没有{理由}拒绝。
+
+可是他想起了现在的团队：一起熬过的{通宵}，一起庆祝过的项目上线，还有一直{栽培}他的领导老吴。他觉得，现在离开，好像有点儿对不起大家。
+
+他去问已经跳过三次槽的大学同学阿峰。阿峰说：“别把工作当成{感情}。公司不会因为你{忠诚}就给你涨工资，你也不用因为{内疚}放弃更好的机会。但是，跳槽前要想清楚三个问题：你是在{逃离}什么，还是在{追求}什么？新的平台能让你学到什么？五年后的你，会{感谢}现在的选择吗？”
+
+阿诚想了一个星期。最后，他接受了新的工作。
+
+离职那天，他请整个团队吃了一顿饭，还给老吴写了一封长长的感谢信。老吴看完，笑着说：“好好干。如果哪天想回来，这里的门一直开着。”
+
+后来阿诚常说，跳槽最难的不是做决定，而是学会{体面}地告别。`,
+q:[["阿诚为什么犹豫要不要跳槽？",["新工作工资太低","觉得对不起现在的团队","不喜欢互联网公司"],1],["阿峰让他想清楚几个问题？",["一个","三个","五个"],1]]},
+{id:"pie",lv:5,cat:"work",t:"年终总结与“画饼”",
+x:`十二月，公司又到了写{年终总结}的时候。部门群里，大家都在{哀嚎}：“一年做了什么？我自己都不记得了。”
+
+阿兰翻了翻这一年的{日程}，发现自己做了不少事：完成了四个项目，{培训}了两个新人，还帮公司{开拓}了越南市场的两个客户。可是写成文字，总觉得很{平淡}。
+
+同事小刘传授经验：“年终总结要有数据，比如‘客户{增长}百分之三十’；要有{亮点}，比如‘第一次……’；最后再写一点儿明年的计划，显得你有{规划}。”
+
+年终{述职}会上，老板听完大家的总结，开始讲明年的{愿景}：“明年我们要{翻倍}增长！做得好的同事，年底都有大奖励。以后公司上市，大家都是{元老}！”
+
+散会后，小刘在群里发了一张图：一个人在画一张大饼。大家都{心领神会}地笑了。
+
+阿兰问：“‘{画饼}’是什么意思？”
+
+小刘解释：“就是老板给你描述一个很美好的未来，但是不一定会实现。”
+
+阿兰想了想说：“在越南，我们叫它‘hứa lèo’。看来，全世界的老板都会画饼。”
+
+不过，她还是在明年的计划里认真写下了一句：“不管饼大不大，先把自己的能力做大。”`,
+q:[["小刘说年终总结里要有什么？",["数据、亮点和明年的计划","很多图片","老板的名字"],0],["“画饼”是什么意思？",["真的画一张饼","描述美好但不一定实现的未来","请大家吃饼"],1]]},
+{id:"cq-rail",lv:3,cat:"travel",t:"穿楼而过的轻轨",
+x:`阮青在网上看过一个视频：在重庆，{轻轨}会从一栋居民楼中间穿过去。她一直不相信。这个国庆节，她决定自己去看看。
+
+她坐上了2号线。车开着开着，前面突然出现了一栋十九层的高楼，轻轨就这样{直接}开了进去！车厢里的游客都拿起手机{拍照}，她也忍不住“哇”了一声。
+
+下了车，她在楼下的{观景台}上等下一班车。旁边一位老爷爷说，他就住在这栋楼里，已经十几年了。“吵吗？”阮青问。“不吵，{习惯}了。现在每天楼下都有很多游客，热闹得很！”
+
+晚上，她去吃了重庆火锅，辣得一直喝水，眼泪都流出来了。服务员笑着说：“{微辣}已经是我们这里最不辣的了。”
+
+阮青觉得，重庆是一个很{神奇}的城市：楼像山，山像楼，连火锅都比别的地方{热情}。`,
+q:[["重庆的轻轨有什么特别？",["从居民楼中间穿过去","在海上开","没有司机"],0],["服务员说“微辣”是什么样的？",["最辣的","这里最不辣的","一点儿也不辣"],1]]},
+{id:"first-snow",lv:3,cat:"travel",t:"第一次看见雪",
+x:`阿明是在胡志明市长大的。在那里，一年只有两个{季节}：雨季和{旱季}。他从来没有见过雪。
+
+寒假，他和中国同学一起去了哈尔滨。下飞机的时候，外面是零下二十五度。阿明穿了三件毛衣、一件{羽绒服}，还是冷得说不出话来。
+
+“快看！下雪了！”同学喊。
+
+阿明抬起头，白白的雪花一片一片地落下来，落在他的头发上、{手套}上。他伸出手，雪花一碰到手心，就{化}了。他像小孩子一样在雪地里跑来跑去，还{摔}了好几次。
+
+晚上，他们去看了冰雪大世界。那里的房子、{城堡}、滑梯，全都是用冰做的，在灯光下{闪闪发光}，像童话一样。
+
+回到酒店，阿明给妈妈发了一张照片：他戴着帽子，脸冻得红红的，笑得很开心。妈妈回复：“你的鼻子怎么像{番茄}一样？”`,
+q:[["胡志明市一年有几个季节？",["两个","四个","一个"],0],["冰雪大世界的房子是用什么做的？",["木头","冰","石头"],1]]},
+{id:"piano-island",lv:3,cat:"travel",t:"鼓浪屿的钢琴声",
+x:`从厦门坐{轮渡}，十五分钟就到了鼓浪屿。这个小岛上没有汽车，只能走路。
+
+阿兰一下船，就听到了钢琴声。原来，鼓浪屿被叫做“钢琴之岛”，岛上有很多老房子，很多人家里都有钢琴。
+
+她{沿着}小路慢慢走。路两边是红色的老房子和{开满}花的树。一个小院子里，一个女孩正在练琴。曲子很简单，弹错了，又重新开始。阿兰站在门外听了很久。
+
+中午，她在小吃街吃了{沙茶面}和{海蛎煎}。下午，她找了一家安静的咖啡馆，写了一张{明信片}，寄给一年以后的自己：“希望那时候的你，也能像今天一样，不着急，慢慢走。”
+
+岛上的{邮局}说，这张明信片会在明年的今天{寄到}。`,
+q:[["为什么鼓浪屿叫“钢琴之岛”？",["岛的样子像钢琴","岛上很多人家里有钢琴","岛上有一个钢琴工厂"],1],["阿兰的明信片寄给了谁？",["她的妈妈","一年以后的自己","中国朋友"],1]]},
+{id:"sh-breakfast",lv:3,cat:"travel",t:"弄堂里的早餐",
+x:`在上海的第一个周末，阿芳决定不去外滩，也不去南京路，而是去{弄堂}里吃早餐。
+
+早上七点，弄堂里已经很热闹了。阿姨们拿着{塑料}袋排队买{生煎}，老爷爷坐在门口，一边喝{豆浆}一边看报纸。
+
+阿芳排了二十分钟，买到了四个生煎包。她咬了一口，热热的汤一下子流了出来，{烫}得她直跳。卖生煎的阿姨笑了：“小姑娘，要先咬一个小口，{吸}汤，再吃！”
+
+她又买了大饼和油条，学着旁边的人把油条{卷}在大饼里。旁边的爷爷说：“大饼、油条、豆浆、{粢饭}，这叫‘{四大金刚}’，是上海人最喜欢的早饭。”
+
+吃完早饭，阿芳觉得，自己好像离上海又近了一点儿。原来，认识一个城市最好的方法，是吃它的早餐。`,
+q:[["吃生煎要先做什么？",["先吃皮","先咬一个小口吸汤","先放醋"],1],["“四大金刚”是什么？",["四种上海早餐","四座寺庙","四个老爷爷"],0]]},
+{id:"lijiang",lv:4,cat:"travel",t:"在丽江丢了手机",
+x:`在丽江古城的第二天，阿梅{遭遇}了旅行中最可怕的事——手机丢了。
+
+没有手机，她不能付钱，不能看地图，也联系不上朋友。古城的小路像{迷宫}一样，她越走越{慌}，最后坐在一座小石桥上，差点儿哭了出来。
+
+一家小吃店的老板娘看见了她，走过来问：“姑娘，怎么了？”听完阿梅的话，老板娘先给她端来一碗热乎乎的米线：“别急，先吃饭。”然后用自己的手机帮她给朋友打了电话，又陪她去了附近的{派出所}。
+
+傍晚，派出所打来电话：一个游客在{酒吧}里{捡}到了她的手机，已经送来了。阿梅激动得{连连}说谢谢。
+
+回到小吃店，她想付米线的钱，老板娘却{摆摆手}：“出门在外，谁都会遇到{麻烦}。以后你看到需要帮助的人，也帮一把就行了。”
+
+离开丽江的时候，阿梅在小吃店的留言墙上写了一句话：“丽江最美的风景，不是雪山，是人。”`,
+q:[["老板娘先为阿梅做了什么？",["给她端了一碗米线","送她去机场","借给她钱"],0],["手机是在哪儿找到的？",["小石桥上","酒吧里","小吃店里"],1]]},
+{id:"lhasa",lv:4,cat:"travel",t:"高原反应",
+x:`飞机降落在拉萨的时候，阿杰觉得自己{状态}特别好。他是学校足球队的，平时{体力}很好，觉得“{高原反应}”只是别人{夸张}了。
+
+他不听导游的话，一下飞机就跑去拍照，晚上还洗了个热水澡。
+
+结果半夜，他头疼得睡不着，{呼吸}也很困难，像有人坐在他胸口上。他只好叫醒了室友。室友马上找来{氧气}瓶，又{陪}他去了医院。
+
+医生说：“高原反应和体力没有关系。越是年轻{强壮}的人，越容易{大意}。前两天一定要多休息，慢慢走，少洗澡。”
+
+在医院休息了一天，阿杰终于好多了。后面几天，他学会了慢慢走路、慢慢说话，甚至慢慢呼吸。他在布达拉宫前坐了整整一个下午，看{转经}的人们一圈一圈地走。
+
+他在日记里写：“在{海拔}三千六百米的地方，我第一次明白，有时候，慢一点儿才能看得更清楚。”`,
+q:[["阿杰为什么觉得自己不会有高原反应？",["他吃了药","他平时体力很好","他以前来过拉萨"],1],["医生说高原反应和什么没有关系？",["体力","天气","休息"],0]]},
+{id:"zhangjiajie",lv:4,cat:"travel",t:"张家界的云",
+x:`很多人第一次听说张家界，是因为一部好莱坞科幻电影。阿秋也是。她一直想看看，电影里那些“{悬浮}”在空中的山，是不是真的存在。
+
+到张家界的那天，下着小雨。导游说：“雨天来张家界，是你们的{运气}。”大家都不明白：下雨有什么好的？
+
+坐了很长时间的{缆车}，他们到了山顶。阿秋往下看，一下子说不出话来：几千座石头山像一根根{柱子}，从云海里{冒}出来。云在山中间慢慢{流动}，山就像在云上{漂}着一样。
+
+“现在明白了吧？”导游笑着说，“没有雨，就没有云；没有云，这些山就只是山。”
+
+阿秋拍了很多照片，可是没有一张能拍出她眼睛看到的样子。最后，她放下手机，只是安安静静地看。
+
+她想，有些{风景}，不是用来拍的，是用来记住的。`,
+q:[["导游为什么说雨天来是运气？",["雨天人少","下雨才有云海","雨天门票便宜"],1],["最后阿秋做了什么？",["拍了更多照片","放下手机，安静地看","坐缆车下山"],1]]},
+{id:"detian",lv:4,cat:"travel",t:"一条河，两个国家",
+x:`德天瀑布在广西和越南的{边境}上。瀑布的一半在中国，另一半在越南，越南人叫它“Bản Giốc”。
+
+阿龙是越南高平人，从小就听奶奶讲这个瀑布。这一次，他和中国朋友小周一起，从中国这边去看。
+
+还没走近，就听到了“{轰隆隆}”的水声。瀑布有好几层，白色的水从高高的{悬崖}上{冲}下来，{溅}起的水雾在阳光下变成了一道小小的{彩虹}。
+
+河边有一块{界碑}，一边写着“中国”，一边写着“Việt Nam”。小周{开玩笑}说：“你看，一条河，两个国家，同一道彩虹。”
+
+他们坐上{竹筏}，慢慢靠近瀑布。对面，也有一条越南的竹筏，上面的游客正在向他们{挥手}。阿龙用越南语大喊：“Xin chào！”对面的人愣了一下，也笑着喊回来：“你好！”
+
+那一刻，阿龙觉得，边境不是一条线，而是一个两边的人都能互相{打招呼}的地方。`,
+q:[["德天瀑布在哪儿？",["中越边境上","北京附近","越南南部"],0],["界碑上写着什么？",["一边“中国”，一边“Việt Nam”","德天瀑布","欢迎光临"],0]]},
+{id:"green-train",lv:5,cat:"travel",t:"绿皮火车上的一夜",
+x:`为了{体验}“慢旅行”，阿诚没有坐高铁，而是买了一张从昆明到成都的{绿皮火车}{卧铺}票，要坐十九个小时。
+
+车厢里很{拥挤}，{充满}了泡面、瓜子的味道和各地的{方言}。下铺是一位回老家的大叔，中铺是一对抱着孩子的年轻夫妻，对面是一个去成都看男朋友的大学生。
+
+一开始，阿诚戴着耳机，不想和别人说话。可是没过多久，大叔就热情地递过来一个橘子：“小伙子，哪里人？”一听说他是越南人，整个车厢都好奇了：“越南的河粉好吃吗？”“你们那边也过春节？”“越南女孩是不是都穿奥黛？”
+
+他们从中午聊到晚上。大叔讲他年轻时在边境做生意的故事；年轻妈妈教阿诚说云南方言；大学生给他看男朋友的照片，问他“帅不帅”。窗外，山一座接着一座，{隧道}一个连着一个，{信号}时有时无。
+
+夜里，火车在一个不知名的小站停了五分钟。站台上只有一盏昏黄的灯和一个卖{烤红薯}的老奶奶。阿诚下车买了几个，回来分给大家。
+
+第二天早上到了成都，大家互相{道别}，加了微信，又很快消失在人群里。阿诚后来常想：高铁节省的是时间，而绿皮火车给他的，是一整个车厢陌生人的{善意}。`,
+q:[["阿诚为什么选择坐绿皮火车？",["票更便宜","想体验慢旅行","高铁票卖完了"],1],["阿诚在小站上买了什么？",["泡面","烤红薯","橘子"],1]]},
+{id:"dunhuang",lv:5,cat:"travel",t:"敦煌的星空",
+x:`如果说有什么地方能让人感受到自己的{渺小}，那一定是夜晚的敦煌{沙漠}。
+
+阿玥报了一个沙漠{露营}团。傍晚，他们骑着骆驼走进鸣沙山。太阳落山的时候，整片沙漠从金黄变成橙红，又慢慢变成{深紫}，像一幅正在{褪色}的油画。
+
+晚上十点，营地的灯全部关掉了。阿玥躺在沙子上，抬头一看，整个人都{呆}住了：{银河}从地平线的一边伸到另一边，星星{密密麻麻}，多得好像随时会掉下来。在城市里长大的她，从来没有见过这么多星星。
+
+向导是一个当地的年轻人。他指着天空，一颗一颗地给大家介绍：“那是织女星，那是牛郎星，中间隔着的，就是银河。”他讲起了牛郎织女的故事。阿玥突然想起，越南也有一样的{传说}——Ngưu Lang Chức Nữ，每年七月初七，乌鸦会搭成一座桥。
+
+“原来，我们看的是同一片星空，讲的是同一个故事。”她轻声说。
+
+那一夜，她几乎没睡。凌晨四点，一颗{流星}划过天空。她没来得及{许愿}，却一点儿也不觉得遗憾——能躺在这片星空下，本身就已经是一个愿望的{实现}。`,
+q:[["向导讲了什么故事？",["牛郎织女","西游记","敦煌的历史"],0],["阿玥为什么不遗憾没来得及许愿？",["她已经许过愿了","躺在星空下本身就是愿望的实现","她不相信流星"],1]]},
+{id:"rainy",lv:3,cat:"essay",t:"雨季",
+x:`河内的夏天，雨总是来得很突然。
+
+刚才还是大太阳，{一转眼}，天就黑了。风{吹}起路边的树叶，人们骑着摩托车，急急忙忙地找地方{躲雨}。
+
+小时候，我最喜欢下雨。雨一来，妈妈就不让我出去玩，我只好坐在窗前，看雨从{屋檐}上一滴一滴地落下来。妈妈在厨房里煮绿豆汤，屋子里都是甜甜的味道。
+
+后来我来到中国读书。这里的雨不一样，{细细}的，软软的，一下就是好几天。中国朋友说，这叫“{梅雨}”。
+
+有一天下雨，我在宿舍里煮了一锅绿豆汤。汤的味道和妈妈做的不太一样，可是看着窗外的雨，我突然觉得，河内好像也没有那么远。
+
+雨把两个地方{连}在了一起。`,
+q:[["小时候下雨时，妈妈在做什么？",["煮绿豆汤","骑摩托车","看书"],0],["中国的“梅雨”是什么样的？",["很大很急","细细软软，一下就是好几天","只下一会儿"],1]]},
+{id:"porridge",lv:3,cat:"essay",t:"一碗粥",
+x:`来中国的第一个冬天，我生病了。
+
+发烧三十九度，{全身}没有力气。室友去上课了，宿舍里只有我一个人。我躺在床上，很想妈妈。在越南，我一生病，妈妈就会给我煮一碗{白粥}，放一点儿姜和葱。
+
+中午，有人{敲}门。是楼下的{宿管}阿姨。她{端}着一碗热热的粥，说：“听你室友说你病了，我给你煮了点儿粥。{趁热}喝。”
+
+粥里有小米，还有红枣，和妈妈的粥不一样，可是一样{暖}。我喝着喝着，眼泪就掉了下来。
+
+阿姨拍拍我的头说：“傻孩子，一个人在外面，生病了要说，别{硬撑}。”
+
+那碗粥，我记了很多年。我常常想，家不一定是一个地方。有时候，它是一碗在你最需要的时候出现的粥。`,
+q:[["“我”生病的时候，谁送来了粥？",["室友","宿管阿姨","妈妈"],1],["阿姨的粥和妈妈的粥有什么一样的地方？",["味道一样","一样暖","材料一样"],1]]},
+{id:"motorbike",lv:4,cat:"essay",t:"母亲的摩托车",
+x:`在越南，几乎每个家庭都有一辆摩托车。我们家的那辆，是一辆红色的老“Dream”，比我的年龄还大。
+
+小时候，妈妈每天骑着它送我上学。我坐在她身后，抱着她的腰，脸{贴}在她的背上。下雨的时候，她会把{雨衣}的后半部分{盖}在我身上，自己的{裤子}却全湿了。
+
+上中学以后，我开始觉得这辆车太旧、太{土}，不愿意让同学看见。我总是让妈妈在学校前面的路口就停下来。妈妈从来没有问为什么，只是每次都说：“慢点儿走，好好上课。”
+
+去年我回国，那辆摩托车还在。妈妈的头发白了，骑车的速度也慢了。我{主动}说：“妈，这次我{载}你吧。”
+
+她坐在我身后，有点儿不{习惯}，手不知道往哪儿放。我说：“抱着我。”
+
+骑过熟悉的街道，我才明白：这些年，那辆旧摩托车载着的，从来不只是我，还有她所有说不出口的爱。`,
+q:[["下雨的时候，妈妈怎么做？",["让“我”自己走路","把雨衣盖在“我”身上","不出门了"],1],["去年回国，“我”做了什么？",["买了一辆新车","载着妈妈","卖了旧车"],1]]},
+{id:"old-bookshop",lv:4,cat:"essay",t:"旧书店",
+x:`学校后门有一家旧书店，没有名字，只有一块写着“旧书”两个字的木牌。
+
+店很小，书从地上一直{堆}到天花板。老板是一个戴眼镜的老爷爷，总是坐在门口{晒太阳}，看书，从来不{招呼}客人。你想买什么，自己找；找到了，他看一眼，说个价格，一般不超过十块钱。
+
+我最喜欢在旧书里发现别人留下的{痕迹}：一张电影票，一片{干}了的树叶，书页边上写着的一句“这里写得真好”。有一次，我在一本诗集里看到一行小字：“1998年秋，送给我最好的朋友。”我常常想，这两个朋友，后来怎么样了？
+
+去年冬天，书店{关门}了。门上贴着一张纸：“年纪大了，回老家。谢谢这些年来看书的人。”
+
+我在门口站了很久。那些旧书去了哪儿，我不知道。但我知道，有一些东西，被它们{悄悄}地留在了我心里。`,
+q:[["旧书店的老板是什么样的人？",["很热情","从来不招呼客人","很年轻"],1],["书店为什么关门了？",["老板年纪大了，回老家","没有人买书","房子要拆了"],0]]},
+{id:"slow",lv:4,cat:"essay",t:"慢",
+x:`我们这一代人，好像总是很着急。
+
+看视频要{倍速}，听歌只听{副歌}，读小说先看{结尾}，谈恋爱也想快点儿知道结果。手机上的一切都在说：快一点儿，再快一点儿。
+
+去年夏天，我去云南的一个小村子住了一个月。村子里的时间好像停了。早上，奶奶们坐在门口{剥}豆子，一剥就是一上午；下午，老人在树下下棋，一盘棋可以下两个小时；晚上没有路灯，大家早早就睡了。
+
+刚开始，我很不习惯，总觉得在{浪费}时间。可是一个星期后，我开始注意到以前看不到的东西：早上的雾怎样慢慢{散开}，一朵花从开到{谢}要几天，邻居家的小狗每天几点来找我玩。
+
+回到城市以后，我关掉了视频的倍速。我发现，有些故事，就是要慢慢看，才看得懂；有些人，也是要慢慢{相处}，才会真正了解。
+
+慢，不是{落后}。慢，是一种{温柔}的认真。`,
+q:[["在村子里住了一个星期后，作者发现了什么？",["以前看不到的东西","很多好玩的游戏","很快的网络"],0],["回到城市后，作者做了什么改变？",["关掉了视频的倍速","搬到了村子里","不再用手机了"],0]]},
+{id:"letter-10",lv:4,cat:"essay",t:"写给十年后的自己",
+x:`十年后的我：
+
+你好吗？现在是二〇二六年冬天，我二十二岁，在中国读大学三年级。今天老师让我们给十年后的自己写一封信，我想了很久，不知道该写什么。
+
+我想问你：你还在说中文吗？那个每天背五十个单词、看中国电视剧练{口语}的女孩，后来有没有成为一名{翻译}？你还{害怕}在很多人面前说话吗？
+
+我想{告诉}你：现在的我，有很多{烦恼}。考试、{论文}、找工作，还有和家人在视频里吵架。有时候我会怀疑，自己来中国是不是一个{正确}的选择。
+
+可是我也想{提醒}你：不管你现在在哪里、做什么，请不要忘记二十二岁的这个冬天。宿舍的暖气坏了，我和室友{裹}着被子吃火锅，笑到肚子疼。那时候我们什么都没有，可是很{快乐}。
+
+如果你已经过上了想要的生活，请替我{骄傲}一下。如果还没有，也没关系。二十二岁的我{相信}你。
+
+二十二岁的我`,
+q:[["写信的人现在多大？",["十二岁","二十二岁","三十二岁"],1],["她最想让十年后的自己记住什么？",["考试成绩","和室友裹着被子吃火锅的冬天","第一次面试"],1]]},
+{id:"window-lights",lv:5,cat:"essay",t:"窗外的灯",
+x:`搬进这间{出租屋}的第一个晚上，我{失眠}了。
+
+房间在十七楼，窗外是另一栋{密密麻麻}的居民楼。凌晨一点，对面还有十几盏灯亮着。我睡不着，就一扇窗一扇窗地看过去，开始想象每盏灯下面的生活。
+
+左上角那盏台灯，每天都亮到很晚，大概是一个准备考试的学生；中间那扇窗总是闪着电视的蓝光，也许住着一位睡不着的老人；右下角那家，每天晚上十一点，会准时传来婴儿的哭声，然后灯亮起，过了很久才{熄灭}。
+
+我从来没有见过他们，他们也不知道我的存在。可是在这座{庞大}的城市里，这些灯光让我觉得，自己并不是唯一一个在深夜{清醒}着的人。
+
+后来，我也养成了一个习惯：每天睡觉前，看一眼对面的窗户，在心里对它们说一声“晚安”。
+
+有一天晚上，左上角那盏灯熄灭了，再也没有亮起来。我{莫名}地有点儿{惆怅}，又有点儿高兴——也许那个学生考上了理想的学校，搬去了新的城市。
+
+城市里的人，大概就是这样：{素不相识}，却在同一片夜色里，{默默}地{陪伴}着{彼此}。`,
+q:[["作者每天睡觉前会做什么？",["看一眼对面的窗户，说声晚安","给家人打电话","关掉所有的灯"],0],["左上角的灯熄灭后，作者是什么感觉？",["非常生气","有点儿惆怅，又有点儿高兴","一点儿感觉也没有"],1]]},
+{id:"banyan",lv:5,cat:"essay",t:"故乡的榕树",
+x:`我的故乡在越南北部的一个小村子。村口有一棵老{榕树}，没有人知道它有多少岁了。奶奶说，她小时候，这棵树就已经这么大了。
+
+榕树的{树枝}上会垂下很多{根须}，落到地上，又长成新的树干。远远看去，一棵树就像一片小树林。夏天，全村的人都喜欢到树下{乘凉}：老人下棋，女人们聊天，孩子们抓着根须{荡秋千}。
+
+我第一次离开村子去河内上大学，是爸爸骑摩托车送我的。车经过榕树的时候，我回头看了一眼。那一刻，我突然觉得，它像一位老人，安静地站在那儿，{目送}着每一个离开的孩子。
+
+后来我去了更远的地方——中国。在杭州的西湖边，我也看到了一棵很老的树。导游说它有三百年了。我站在树下，{恍惚}间觉得，世界上所有的老树好像都是{相通}的：它们的根在地下，我们看不见，却一直{延伸}着，把一个个故乡连在一起。
+
+今年春节回家，村里正在修路，有人说要把榕树{砍}掉。全村人都{反对}。最后，路{绕}了一个弯，从树旁边过去了。
+
+我想，一个地方之所以成为故乡，不是因为它有多好，而是因为那里有一些东西，大家都{舍不得}失去。`,
+q:[["夏天榕树下大家做什么？",["乘凉、下棋、聊天","种菜","开会"],0],["修路时，最后怎么处理那棵榕树？",["把它砍掉了","路绕了一个弯","把它搬走了"],1]]},
+{id:"goodbye",lv:5,cat:"essay",t:"学会告别",
+x:`小时候，我以为告别是一件很{隆重}的事：要拥抱，要流泪，要说“再见”。
+
+长大以后才发现，生活中大部分的告别，都发生得{悄无声息}。
+
+最后一次和小学同桌一起放学，我们不知道那是最后一次；最后一次去楼下那家米粉店，第二天它就变成了奶茶店；最后一次听奶奶讲她年轻时的故事，我还在低头玩手机，想着“下次再听吧”。
+
+可是，很多“下次”，再也没有来过。
+
+来中国留学的第三年，奶奶走了。我在宿舍里接到电话，因为{疫情}，没能回去{送}她最后一程。那段时间，我常常{后悔}：为什么那天不放下手机？为什么不多打几个视频电话？
+
+后来，一位中国老师对我说：“{遗憾}是告别的一部分。但我们能做的，是让现在的每一次见面，都{值得}成为最后一次。”
+
+从那以后，我学会了一些小事：和朋友分开时，认真地说一声“路上小心”；给家人打电话，不再{急着}挂断；遇到喜欢的小店，多去几次，多和老板聊几句。
+
+我仍然不{擅长}告别。但我开始学着，好好地在一起。`,
+q:[["作者小时候以为告别是什么样的？",["很隆重的","悄无声息的","很快乐的"],0],["老师说我们能做的是什么？",["不再告别","让每一次见面都值得成为最后一次","多拍一些照片"],1]]},
+{id:"last-bus",lv:3,cat:"fantasy",t:"最后一班公交",
+x:`晚上十一点，阿兰加完班，跑到车站，正好赶上最后一班公交车。
+
+车上只有她一个乘客。{司机}是一位白头发的老爷爷，他回头笑了笑：“{辛苦}了，坐好。”
+
+车开得很慢，窗外的路灯一盏一盏地{往后}跑。阿兰太累了，靠着窗户睡着了。
+
+不知道过了多久，司机叫醒了她：“姑娘，到站了。”她下了车，一看，竟然是她老家的那条街！路边的小吃店、楼下的大榕树，还有……站在门口等她的妈妈。
+
+“回来啦？饭在锅里，还热着呢。”妈妈说。
+
+阿兰揉揉眼睛，再一看——她还坐在公交车上，车已经停在了她上海的家门口。司机说：“刚才你一直在笑，{梦}到什么了？”
+
+她下了车，马上给妈妈打了一个电话。电话那头，妈妈说：“这么晚还没睡？想家了吧？”
+
+阿兰说：“嗯。妈，春节我一定回家。”
+
+后来，她再也没有坐过那位老爷爷开的车。公交公司的人说，那条线路的{末班车}，{从来}都是一位年轻司机开的。`,
+q:[["阿兰在车上梦到了什么？",["老家的街和妈妈","公司的老板","大海"],0],["公交公司的人说了什么奇怪的话？",["那条线没有末班车","末班车一直是年轻司机开的","老爷爷是他们的经理"],1]]},
+{id:"talking-cat",lv:3,cat:"fantasy",t:"会说话的猫",
+x:`小雪养了一只橘猫，叫“胖胖”。胖胖每天只做三件事：吃、睡、看窗外。
+
+一天晚上，小雪对着电脑写论文，写到半夜还没写完。她{叹}了一口气：“唉，我怎么这么笨……”
+
+“你不笨，你只是太累了。”一个声音说。
+
+小雪吓了一跳。回头一看，只有胖胖坐在沙发上，{慢悠悠}地舔着爪子。
+
+“是……是你在说话？”
+
+“{除了}我还有谁？”胖胖{打了个哈欠}，“我每天看着你，早上七点起床，晚上两点睡觉，饭也不好好吃。你对我都比对自己好。”
+
+小雪愣住了。她想起来，自己真的已经很久没有好好吃一顿饭、好好睡一觉了。
+
+“去睡吧，”胖胖说，“论文明天再写。还有，明天早上给我开一个{罐头}。”
+
+小雪关了电脑，躺在床上，一下子就睡着了。第二天早上醒来，她问胖胖：“昨天晚上……是你在跟我说话吗？”
+
+胖胖看了她一眼，只说了一个字：“喵。”
+
+不过，那天早上，小雪给它开了一个罐头，也给自己做了一顿{像样}的早饭。`,
+q:[["胖胖说小雪有什么问题？",["太笨了","太累了，不好好照顾自己","太懒了"],1],["第二天小雪问它的时候，胖胖说了什么？",["喵","是我","不是我"],0]]},
+{id:"yesterday-train",lv:4,cat:"fantasy",t:"开往昨天的地铁",
+x:`城市里流传着一个{传说}：每个月的十三号，晚上十一点十三分，地铁3号线会出现一班没有{编号}的列车。坐上它，你就能回到昨天。
+
+阿杰一直不信。直到那天，他和女朋友小静大吵了一架。他说了很多{伤人}的话，小静哭着说“分手吧”，然后{拉黑}了他。
+
+那天正好是十三号。晚上十一点，阿杰{鬼使神差}地来到了3号线的站台。十一点十三分，一班没有编号的列车，真的{悄悄}地开进了站。车厢里空无一人，灯光是{淡淡}的黄色。
+
+他上了车。车门关上的一瞬间，广播里传来一个温和的声音：“欢迎乘坐‘昨天号’。请注意，您只能回到昨天一次，也只能{改变}一件事。”
+
+阿杰醒来的时候，发现自己坐在家里的沙发上，手机屏幕上显示的是昨天的日期。几分钟后，小静推门进来，和昨天一样，带着一点儿{不满}：“你又忘了我们今天约好去看电影。”
+
+上一次，他说的是：“我工作那么忙，你能不能{懂事}一点儿？”
+
+这一次，他站起来，抱住了她：“对不起，是我的错。电影我们现在就去。”
+
+小静愣了一下，眼睛红了。
+
+后来，阿杰再也没在十三号看到那班列车。但他常常想：其实不需要什么魔法列车。大部分的后悔，只要在{当下}多说一句“对不起”，就不会发生。`,
+q:[["“昨天号”列车有什么规则？",["可以回到昨天很多次","只能回到昨天一次，改变一件事","只能回到一年前"],1],["这一次阿杰改变了什么？",["他道歉了，马上去看电影","他没有回家","他也生气了"],0]]},
+{id:"lost-found",lv:4,cat:"fantasy",t:"失物招领处",
+x:`火车站的角落里，有一个很少有人注意的小窗口，上面写着：{失物招领处}。
+
+管理员是一位叫老周的大叔。和别的失物招领处不一样，他这里{收}的不只是钱包、雨伞和手机，还有一些奇怪的东西：一段被{遗忘}的童年记忆、一句没有说出口的道歉、一种很久没有感受到的勇气……
+
+阿秋第一次来，是因为丢了{身份证}。老周帮她找到了证件，又从柜子里拿出一个小玻璃瓶：“这个，好像也是你的。”
+
+瓶子里装着一点点{金色}的光。阿秋打开瓶子，光一下子飞进了她的心里。她突然想起来了：小时候，她最喜欢画画，梦想是当一名{插画师}。后来因为大人说“画画没有{前途}”，她就再也没有拿起过画笔。
+
+“这是你十岁那年丢的，”老周说，“一直没人来{领}。”
+
+那天晚上，阿秋在网上买了一套画笔。她画的第一幅画，就是火车站角落里的那个小窗口。
+
+第二天，她想把画送给老周，可是那个窗口不见了，只剩下一面白墙。墙上贴着一张小纸条：“{物归原主}，祝你好运。”`,
+q:[["玻璃瓶里装的是什么？",["阿秋丢失的梦想","一枚戒指","一张火车票"],0],["第二天阿秋再去时发生了什么？",["老周在等她","窗口不见了，只剩一面白墙","窗口关门休息"],1]]},
+{id:"mirror",lv:4,cat:"fantasy",t:"镜子里的我",
+x:`阿玲搬进新公寓的第一天，发现卫生间的镜子有点儿奇怪：镜子里的她，比她慢半秒。
+
+她以为是自己太累了。可是第二天早上刷牙的时候，镜子里的她突然停了下来，对她说：“你今天又要穿那件灰色的衣服吗？”
+
+阿玲吓得{牙刷}都掉了。
+
+“别怕，”镜子里的她说，“我是你没有{选择}的那个自己。你每次{放弃}一件想做的事，我就会去做。”
+
+原来，镜子里的那个阿玲，学了吉他，剪了短发，去冰岛看了{极光}，大学时还{勇敢}地参加了{演讲}比赛。而镜子外的阿玲，每天穿着灰色的衣服，过着{安全}、普通的生活。
+
+“你羡慕我吗？”镜子里的她问。
+
+阿玲想了想，说：“羡慕。可是，你的生活再{精彩}，也是在镜子里的。”
+
+镜子里的她笑了：“没错。所以，你为什么不自己去试试呢？”
+
+从那天起，阿玲开始做一些小小的改变：报了一个吉他班，买了一件黄色的{连衣裙}，第一次在会议上提出了自己的想法。
+
+一个月后，她发现镜子恢复正常了。镜子里的她，和她{同时}笑了起来。`,
+q:[["镜子里的阿玲是谁？",["阿玲的双胞胎姐姐","阿玲没有选择的那个自己","一个鬼"],1],["后来镜子为什么恢复正常了？",["阿玲换了镜子","阿玲开始自己去做想做的事","阿玲搬家了"],1]]},
+{id:"hour-25",lv:5,cat:"fantasy",t:"第二十五小时",
+x:`程远是一名{程序员}，每天的生活被切成了{精确}的格子：九点上班，十二点吃饭，晚上十点下班，凌晨一点睡觉。他常常对朋友抱怨：“要是一天有二十五个小时就好了。”
+
+一个周五的深夜，他在加班时，电脑右下角的时间从“23:59”跳到了“24:00”，然后——停住了。窗外的城市一片{寂静}：车不动了，飘在空中的雨滴也停了下来，像一颗颗挂在半空的玻璃珠。
+
+他的手机上弹出一条消息：“恭喜您获得‘第二十五小时’。此时间仅限您一人使用，{时长}六十分钟。”
+
+程远愣了半天，第一个{念头}是：太好了，可以把没写完的代码写完！他坐回电脑前，敲了十分钟键盘，却突然停了下来。
+
+他想：如果世界多给了我一个小时，我真的要用它来工作吗？
+
+他关上电脑，走出了办公楼。整个城市像一张{静止}的照片。他走过平时匆匆经过的天桥，第一次注意到桥下有一片小小的{花坛}；他在便利店门口，看见一个停在半空中、正要落地的塑料袋；他走到江边，看着静止的{波浪}，想起了很久没有联系的父母。
+
+第六十分钟，他给妈妈写了一条短信：“妈，下周末我回家吃饭。”
+
+时间重新开始流动。雨落了下来，汽车按着喇叭开过。他发现，短信已经{发送}成功。
+
+后来，“第二十五小时”再也没有出现过。但程远每天都会给自己留出一个小时——不加班，不看手机，只是去做一些“{没用}”的事情。他说，那才是他一天中真正属于自己的时间。`,
+q:[["程远最后怎么用了第二十五小时？",["写完了代码","在城市里散步，给妈妈发短信","睡了一觉"],1],["后来程远养成了什么习惯？",["每天加班一小时","每天留一小时做“没用”的事","每天给妈妈打电话"],1]]},
+{id:"forget-tea",lv:5,cat:"fantasy",t:"忘忧茶馆",
+x:`老城区的一条小巷{尽头}，有一家只在雨夜开门的茶馆，叫“忘忧”。
+
+店主是一个看不出年龄的女人，大家叫她“孟姐”。她的菜单上只有一种饮料：忘忧茶。据说，喝下一杯，就能{忘掉}一段让你痛苦的记忆。
+
+那天晚上，小林推开了店门。她刚刚和{交往}了五年的男朋友分手，每天晚上都会想起他们在一起的{点点滴滴}，痛苦得睡不着。
+
+“我想忘掉他，”小林说，“全部。”
+
+孟姐没有马上做茶，而是给她倒了一杯白开水：“喝之前，你得先告诉我，你想忘掉的是什么。”
+
+小林开始讲：第一次见面时，他紧张得{打翻}了咖啡；她生病时，他骑车穿过半个城市给她送药；他们在出租屋里一起吃过无数顿泡面；还有最后那次争吵，他摔门而去的声音……
+
+她讲了整整两个小时，哭了，又笑了。
+
+讲完的时候，雨停了。孟姐把那杯忘忧茶推到她面前：“现在，你还想喝吗？”
+
+小林看着那杯茶，沉默了很久，摇了摇头：“不喝了。那些痛苦是真的，可是那些快乐也是真的。如果全部忘掉，那五年的我，也就不存在了。”
+
+孟姐笑了：“大部分人讲完，都不喝了。”
+
+“那这杯茶，到底有没有用？”
+
+“谁知道呢。”孟姐把茶倒掉，“我只是给你们一个说出来的地方。记忆不需要被{删除}，只需要被好好地{安放}。”
+
+小林走出小巷，回头一看，茶馆已经{消失}在夜色里，只有地上的{积水}倒映着一盏路灯。`,
+q:[["孟姐在做茶之前让小林做什么？",["先付钱","先讲出想忘掉的事","先睡一觉"],1],["小林最后为什么不喝忘忧茶了？",["茶太贵了","她不想连快乐的记忆也忘掉","茶已经凉了"],1]]},
+{id:"time-bank",lv:5,cat:"fantasy",t:"时间银行",
+x:`在不远的未来，时间可以像钱一样存进银行。
+
+每个人出生时，账户里都有八十年。你可以把用不上的时间存起来，也可以把时间{借}给别人，甚至{出售}。有钱人买别人的时间，活到一百五十岁；穷人卖掉自己的时间，换来房租和饭钱。
+
+许诺是时间银行的一名{柜员}。她每天看着人们来来去去：一个年轻人卖掉了五年，为了给母亲治病；一位{富商}一次买了二十年，却在柜台前不停地看手表，好像连这十分钟都舍不得。
+
+有一天，一位老奶奶来到柜台前，说要把自己剩下的全部时间——三个月——{转}给一个陌生人。
+
+“您确定吗？”许诺忍不住问，“转出去以后，您就……”
+
+“我知道。”老奶奶{平静}地说，“那个孩子才九岁，生了病，他更需要时间。我这一辈子，已经看过足够多的春天了。”
+
+许诺的手在发抖。按照规定，她不能{干涉}客户的决定。她只能按下“确认”。
+
+那天下班后，许诺坐在公园里，第一次认真地算了算自己的时间：每天八个小时在柜台，两个小时在路上，三个小时刷手机……真正属于自己、和自己爱的人在一起的时间，少得{可怜}。
+
+她想起老奶奶离开时的{微笑}。那个笑容，比她见过的任何一个买了二十年的富人都{从容}。
+
+第二天，许诺{辞职}了。她说：“时间银行教会我一件事：时间的价值，不在于你有多少，而在于你把它给了谁。”`,
+q:[["老奶奶把时间转给了谁？",["她的孙子","一个生病的九岁孩子","许诺"],1],["许诺最后明白了什么？",["时间越多越好","时间的价值在于你把它给了谁","应该多买一些时间"],1]]}
+]};
+
+</script>
+<script>
 {
 const SPK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
 const STAR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4 6.5 20.3l1-6.2L3 9.7l6.2-.9z"/></svg>';
-const DATA=window.DUDIAN||{D:{},S:[]};
-const D=DATA.D;
-const S=DATA.S.map((s,i)=>({...s,i})).sort((a,b)=>a.lv-b.lv||a.i-b.i);
+const A=window.DUDIAN||{D:{},S:[]},B=window.DUDIAN_N||{D:{},S:[]};
+const D={...A.D,...B.D};
+const CATS={love:['青春言情','Tình yêu tuổi trẻ'],work:['职场交际','Công sở'],travel:['旅行见闻','Du ký'],essay:['文学散文','Tản văn'],fantasy:['都市奇幻','Kỳ ảo đô thị']};
+const CK=Object.keys(CATS);
+const SHORT=A.S.map((s,i)=>({...s,i,col:'short',cat:'short'})).sort((a,b)=>a.lv-b.lv||a.i-b.i);
+const NOVEL=B.S.map((s,i)=>({...s,i,col:'novel',topic:CATS[s.cat][0]+' · '+CATS[s.cat][1]})).sort((a,b)=>CK.indexOf(a.cat)-CK.indexOf(b.cat)||(a.ser?0:1)-(b.ser?0:1)||(a.ser?a.i-b.i:a.lv-b.lv||a.i-b.i));
+const S=[...SHORT,...NOVEL];
+const serLen={};NOVEL.forEach(s=>{if(s.ser)serLen[s.ser]=(serLen[s.ser]||0)+1});
 
 const $=s=>document.querySelector(s);
 const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
@@ -911,34 +2368,15 @@ const count=t=>plain(t).replace(/[^一-鿿]/g,'').length;
 const wordsOf=s=>[...new Set((s.x.match(/\{([^}]+)\}/g)||[]).map(m=>m.slice(1,-1)))];
 const where={};S.forEach(s=>wordsOf(s).forEach(w=>(where[w]=where[w]||[]).push(s.id)));
 const TRAPS=Object.keys(D).filter(w=>D[w][4]==='t'&&where[w]);
+const norm=t=>t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d');
+const catCls=s=>'c-'+(s.col==='short'?'short':s.cat);
+const tagOf=s=>s.col==='short'?`<span class="tag c-short">${esc(s.topic.split(' · ')[1]||s.topic)}</span>`:`<span class="tag ${catCls(s)}">${CATS[s.cat][0]}</span>`;
+
 function sentOf(w,sid){const ids=sid?[sid]:(where[w]||[]);for(const id of ids){const s=S.find(x=>x.id===id);if(!s)continue;const ss=plain(s.x).replace(/\n+/g,'').match(/[^。！？]+[。！？]+[”」]?/g)||[];const f=ss.find(x=>x.includes(w));if(f)return {t:f.trim(),s}}return null}
 function markIn(t,w){return esc(t).split(esc(w)).join('<mark>'+esc(w)+'</mark>')}
 const shuf=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
-function newTrap(){const pool=TRAPS.filter(w=>!st.tq||w!==st.tq.w);const w=pool[Math.floor(Math.random()*pool.length)];
-  const others=shuf(TRAPS.filter(x=>x!==w&&D[x][2]!==D[w][2])).slice(0,2);st.tq={w,opts:shuf([w,...others]),pick:null}}
-function renderTraps(){
-  if(!st.tq)newTrap();const q=st.tq,w=q.w,e=D[w],ans=q.pick!==null,ex=sentOf(w),saved=book.includes(w);
-  $('#story').innerHTML=`<div class="meta"><span>Luyện tập</span><span>${TRAPS.length} từ dễ nhầm</span><span class="score">Đúng ${st.score.ok}/${st.score.n}</span></div>
-  <h2 class="zh">Bẫy Hán Việt</h2>
-  <p class="lead">Những từ này đọc theo âm Hán Việt rất quen, nhưng nghĩa trong tiếng Trung lại khác. Nhìn âm Hán Việt, đừng vội đoán theo tiếng Việt.</p>
-  <section class="tq">
-    <div><p class="big">${esc(w)}</p><p class="pin">${esc(e[0])}</p>
-      <div class="hvbox">Âm Hán Việt: <b>${esc(e[1])}</b></div>
-      <div class="acts"><button class="btn" type="button" id="tsay">${SPK}Phát âm</button><button class="btn" type="button" id="tsave" aria-pressed="${saved}">${STAR}${saved?'Đã lưu':'Lưu vào sổ'}</button></div></div>
-    <div><h3>Trong tiếng Trung, ${esc(w)} nghĩa là gì?</h3>
-      <div class="opts">${q.opts.map((o,i)=>{const c=!ans?'':(o===w?' right':(q.pick===i?' wrong':''));return `<button class="opt${c}" type="button" data-tp="${i}">${esc(D[o][2])}</button>`}).join('')}</div>
-      ${ans?`${e[3]?`<div class="note t"><b>${q.opts[q.pick]===w?'Chính xác!':'Chưa đúng.'}</b>${esc(e[3])}</div>`:''}
-      ${ex?`<p class="ex">${markIn(ex.t,w)}<br><button type="button" data-s="${ex.s.id}" data-top="1">Đọc bài “${esc(ex.s.t)}” →</button></p>`:''}
-      <div class="acts"><button class="btn pri" type="button" id="tnext">Từ khác →</button></div>`:''}
-    </div>
-  </section>
-  <details class="all"><summary>Xem tất cả ${TRAPS.length} từ dễ nhầm</summary><div class="scroll"><table class="stack"><thead><tr><th>Từ</th><th>Pinyin</th><th>Âm Hán Việt</th><th>Nghĩa thật</th><th>Ghi chú</th></tr></thead><tbody>
-  ${TRAPS.map(x=>`<tr><td class="zh" data-l="Từ">${esc(x)}</td><td data-l="Pinyin">${esc(D[x][0])}</td><td data-l="Hán Việt">${esc(D[x][1])}</td><td data-l="Nghĩa thật">${esc(D[x][2])}</td><td data-l="Ghi chú">${esc(D[x][3]||'')}</td></tr>`).join('')}
-  </tbody></table></div></details>`;
-}
-const norm=t=>t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d');
 
-const st={sent:false,playing:-1,sents:[],view:'read',tq:null,score:{ok:0,n:0},lv:'all',id:null,py:false,rate:.85,w:null,ans:{},q:'',fc:null,fcShow:false};
+const st={col:'novel',cat:'all',sent:false,playing:-1,sents:[],view:'read',tq:null,score:{ok:0,n:0},lv:'all',id:null,py:false,rate:.85,w:null,ans:{},q:'',fc:null,fcShow:false};
 let book=load('dd-book',['内卷','打卡']);
 let done=load('dd-done',[]);
 let srs=load('dd-srs',{});let streak=load('dd-streak',{last:-1,n:0});
@@ -951,25 +2389,54 @@ const curStreak=()=>streak.last>=today()-1?streak.n:0;
 function whenTxt(w){const k=dueOf(w)-today();return k<=0?'ôn hôm nay':k===1?'ôn ngày mai':`ôn sau ${k} ngày`}
 let reading=false;
 
+function newTrap(){const pool=TRAPS.filter(w=>!st.tq||w!==st.tq.w);const w=pool[Math.floor(Math.random()*pool.length)];
+  const others=shuf(TRAPS.filter(x=>x!==w&&D[x][2]!==D[w][2])).slice(0,2);st.tq={w,opts:shuf([w,...others]),pick:null}}
+function renderTraps(){
+  if(!st.tq)newTrap();const q=st.tq,w=q.w,e=D[w],ans=q.pick!==null,ex=sentOf(w),saved=book.includes(w);
+  $('#story').innerHTML=`<div class="meta"><span class="tag c-love">Luyện tập</span><span>${TRAPS.length} từ dễ nhầm</span><span class="score">Đúng ${st.score.ok}/${st.score.n}</span></div>
+  <h2>Bẫy Hán Việt</h2>
+  <p class="lead">Những từ này đọc theo âm Hán Việt rất quen, nhưng nghĩa trong tiếng Trung lại khác. Nhìn âm Hán Việt, đừng vội đoán theo tiếng Việt.</p>
+  <section class="tq">
+    <div><p class="big">${esc(w)}</p><p class="pin">${esc(e[0])}</p>
+      <div class="hvbox">Âm Hán Việt: <b>${esc(e[1])}</b></div>
+      <div class="acts"><button class="btn" type="button" id="tsay">${SPK}Phát âm</button><button class="btn" type="button" id="tsave" aria-pressed="${saved}">${STAR}${saved?'Đã lưu':'Lưu vào sổ'}</button></div></div>
+    <div><h3>Trong tiếng Trung, ${esc(w)} nghĩa là gì?</h3>
+      <div class="opts">${q.opts.map((o,i)=>{const c=!ans?'':(o===w?' right':(q.pick===i?' wrong':''));return `<button class="opt${c}" type="button" data-tp="${i}">${esc(D[o][2])}</button>`}).join('')}</div>
+      ${ans?`${e[3]?`<div class="note t"><b>${q.opts[q.pick]===w?'Chính xác!':'Chưa đúng.'}</b>${esc(e[3])}</div>`:''}
+      ${ex?`<p class="ex">${markIn(ex.t,w)}<br><button type="button" data-s="${ex.s.id}" data-top="1">Đọc “${esc(ex.s.t)}” →</button></p>`:''}
+      <div class="acts"><button class="btn pri" type="button" id="tnext">Từ khác →</button></div>`:''}
+    </div>
+  </section>
+  <details class="all"><summary>Xem tất cả ${TRAPS.length} từ dễ nhầm</summary><div class="scroll"><table class="stack"><thead><tr><th>Từ</th><th>Pinyin</th><th>Âm Hán Việt</th><th>Nghĩa thật</th><th>Ghi chú</th></tr></thead><tbody>
+  ${TRAPS.map(x=>`<tr><td class="zh" data-l="Từ">${esc(x)}</td><td data-l="Pinyin">${esc(D[x][0])}</td><td data-l="Hán Việt">${esc(D[x][1])}</td><td data-l="Nghĩa thật">${esc(D[x][2])}</td><td data-l="Ghi chú">${esc(D[x][3]||'')}</td></tr>`).join('')}
+  </tbody></table></div></details>`;
+}
+
+function colList(){return st.col==='short'?SHORT:NOVEL}
 function renderHead(){
-  const tabs=[['all','Tất cả',S],[3,'HSK 3'],[4,'HSK 4'],[5,'HSK 5']];
-  $('#tabs').innerHTML=tabs.map(([v,l])=>{const list=v==='all'?S:S.filter(s=>s.lv===v);const d=list.filter(s=>done.includes(s.id)).length;
-    return `<button class="tab" type="button" data-lv="${v}" aria-pressed="${st.view==='read'&&String(st.lv)===String(v)}">${l}<small>${d}/${list.length}</small></button>`}).join('')
-    +`<button class="tab trapt" type="button" id="traps" aria-pressed="${st.view==='traps'}">Bẫy Hán Việt<small>${TRAPS.length}</small></button>`;
+  const cols=[['short','短文','Bài ngắn',SHORT.length],['novel','小说','Truyện',NOVEL.length],['traps','陷阱','Bẫy Hán Việt',TRAPS.length]];
+  $('#cols').innerHTML=cols.map(([v,z,l,n])=>`<button type="button" role="tab" data-col="${v}" aria-selected="${st.view==='traps'?v==='traps':v===st.col}">${z}<span class="vi"> · ${l}</span><small>${n}</small></button>`).join('');
+  const base=colList().filter(s=>st.col!=='novel'||st.cat==='all'||s.cat===st.cat);
+  const show=st.view==='read';
+  $('#lvls').style.display=show?'':'none';
+  $('#lvls').innerHTML=[['all','Tất cả'],[3,'HSK 3'],[4,'HSK 4'],[5,'HSK 5']].map(([v,l])=>{const list=v==='all'?base:base.filter(s=>s.lv===v);const d=list.filter(s=>done.includes(s.id)).length;
+    return `<button class="pill" type="button" data-lv="${v}" aria-pressed="${String(st.lv)===String(v)}">${l}<small>${d}/${list.length}</small></button>`}).join('');
+  $('#cats').style.display=show&&st.col==='novel'?'':'none';
+  $('#cats').innerHTML=`<button class="pill" type="button" data-cat="all" aria-pressed="${st.cat==='all'}">Mọi thể loại<small>${NOVEL.length}</small></button>`+CK.map(k=>`<button class="pill c-${k}" type="button" data-cat="${k}" aria-pressed="${st.cat===k}"><span class="dot"></span>${CATS[k][0]}<small>${NOVEL.filter(s=>s.cat===k).length}</small></button>`).join('');
   const sk=curStreak(),du=dueList().length;
   $('#stat').textContent=`Đã đọc ${done.filter(id=>S.some(s=>s.id===id)).length}/${S.length} bài · Sổ từ ${book.length} từ${du?` · Cần ôn hôm nay: ${du}`:''}${sk?` · Chuỗi ${sk} ngày`:''}`;
 }
 
 function visible(){
-  const q=norm(st.q.trim());
-  return S.filter(s=>(st.lv==='all'||s.lv===st.lv)&&(!q||norm(s.t+' '+s.topic).includes(q)||wordsOf(s).some(w=>w.includes(st.q.trim())||norm(D[w]?D[w][2]:'').includes(q))||plain(s.x).includes(st.q.trim())));
+  const q=norm(st.q.trim()),raw=st.q.trim();
+  return colList().filter(s=>(st.lv==='all'||s.lv===st.lv)&&(st.col!=='novel'||st.cat==='all'||s.cat===st.cat)&&(!q||norm(s.t+' '+s.topic+' '+(s.ser||'')).includes(q)||wordsOf(s).some(w=>w.includes(raw)||norm(D[w]?D[w][2]:'').includes(q))||plain(s.x).includes(raw)));
 }
 function renderList(){
   const list=visible();
-  $('#lh').textContent=st.q.trim()?`${list.length} bài phù hợp`:'Chọn bài đọc · 选一篇';
-  $('#cards').innerHTML=list.length?list.map(s=>`<button class="sc" type="button" data-s="${s.id}" aria-current="${s.id===st.id}">
-    <span class="top"><span class="chip l${s.lv}">HSK ${s.lv}</span>${done.includes(s.id)?'<span class="done">✓ Đã đọc</span>':''}</span>
-    <b>${esc(s.t)}</b><small>${esc(s.topic)} · ${count(s.x)} 字 · ${wordsOf(s).length} từ</small></button>`).join(''):'<p class="none">Không tìm thấy bài nào. Thử từ khóa khác.</p>';
+  $('#lh').textContent=`${list.length} ${st.col==='novel'?'truyện':'bài'}${st.q.trim()?' phù hợp':''}`;
+  $('#cards').innerHTML=list.length?list.map(s=>`<button class="sc ${catCls(s)}" type="button" data-s="${s.id}" aria-current="${s.id===st.id}">
+    <span class="top"><span class="l">${tagOf(s)}<span class="chip l${s.lv}">HSK ${s.lv}</span></span>${done.includes(s.id)?'<span class="done">✓ Đã đọc</span>':''}</span>
+    <b>${esc(s.t)}</b><small>${s.ser?`Truyện dài kỳ · chương ${s.ch}/${serLen[s.ser]} · `:''}${count(s.x)} 字 · ${wordsOf(s).length} từ mới</small></button>`).join(''):'<p class="none">Không tìm thấy bài nào. Thử từ khóa hoặc bộ lọc khác.</p>';
 }
 
 function wbtn(w){
@@ -977,7 +2444,8 @@ function wbtn(w){
   const inner=st.py?`<ruby>${w}<rt>${e[0]}</rt></ruby>`:w;
   return `<button class="w${e[4]==='t'?' t':''}${book.includes(w)?' saved':''}${st.w===w?' on':''}" type="button" data-w="${esc(w)}">${inner}</button>`;
 }
-function nextOf(id){const s=S.find(x=>x.id===id);const same=S.filter(x=>x.lv===s.lv);const i=same.indexOf(s);return same[i+1]||S[S.indexOf(s)+1]||null}
+const chapter=(s,d)=>s.ser?NOVEL.find(x=>x.ser===s.ser&&x.ch===s.ch+d):null;
+function nextOf(s){const c=chapter(s,1);if(c)return c;const list=visible();let i=list.indexOf(s);if(s.ser){while(list[i+1]&&list[i+1].ser===s.ser)i++}return list[i+1]||null}
 
 function renderStory(){
   if(st.view==='traps'){renderTraps();return}
@@ -987,35 +2455,36 @@ function renderStory(){
   let k=0;st.sents=[];
   const paras=s.x.split(/\n\n/).map(p=>'<p>'+(p.match(/[^。！？]+[。！？]+[”」]?|[^。！？]+$/g)||[p]).map(sen=>{const i=k++;st.sents.push(plain(sen).trim());
     return `<span class="sn${st.playing===i?' playing':''}" data-sn="${i}">`+sen.split(/(\{[^}]+\})/).map(g=>g[0]==='{'?wbtn(g.slice(1,-1)):esc(g)).join('')+(st.sent?`<button class="sp" type="button" data-si="${i}" aria-label="Nghe câu ${i+1}">${PLAY}</button>`:'')+'</span>'}).join('')+'</p>').join('');
-  const a=st.ans[s.id]||{},fin=Object.keys(a).length===s.q.length,nx=nextOf(s.id);
-  $('#story').innerHTML=`<div class="meta"><span class="chip l${s.lv}">HSK ${s.lv}</span><span>${esc(s.topic)}</span><span>${n} 字 · khoảng ${Math.max(2,Math.round(n/110))} phút · ${ws.length} từ mới</span></div>
-  <h2 class="zh">${esc(s.t)}</h2>
+  const a=st.ans[s.id]||{},fin=Object.keys(a).length===s.q.length,nx=nextOf(s),pv=chapter(s,-1),nc=chapter(s,1);
+  $('#story').innerHTML=`<div class="meta ${catCls(s)}">${tagOf(s)}<span class="chip l${s.lv}">HSK ${s.lv}</span><span>${n} 字 · khoảng ${Math.max(2,Math.round(n/110))} phút · ${ws.length} từ mới</span></div>
+  ${s.ser?`<div class="ser ${catCls(s)}"><button class="btn" type="button" ${pv?`data-s="${pv.id}"`:'disabled'}>← 上一章</button><span>《${esc(s.ser)}》· chương ${s.ch}/${serLen[s.ser]}</span><button class="btn" type="button" ${nc?`data-s="${nc.id}"`:'disabled'}>下一章 →</button></div>`:''}
+  <h2>${esc(s.t)}</h2>
   <div class="bar">
     <button class="btn" type="button" id="py" aria-pressed="${st.py}">拼音 · Pinyin</button>
     <button class="btn" type="button" id="sent" aria-pressed="${st.sent}">逐句 · Từng câu</button>
-    <button class="btn" type="button" id="read" aria-pressed="${reading}">${SPK}${reading?'停止 · Dừng':'朗读全文 · Nghe cả bài'}</button>
+    <button class="btn" type="button" id="read" aria-pressed="${reading}">${SPK}${reading?'停止 · Dừng':'朗读 · Nghe cả bài'}</button>
     <label for="rate" class="vh">Tốc độ đọc</label>
     <select id="rate">${[[.7,'Chậm'],[.85,'Vừa'],[1,'Bình thường']].map(([v,l])=>`<option value="${v}"${v==st.rate?' selected':''}>${l}</option>`).join('')}</select>
   </div>
   <div class="legend"><span><i style="background:var(--hl)"></i>Từ mới · chạm để xem</span>${traps?`<span><i class="wv">词</i> Bẫy Hán Việt (${traps})</span>`:''}<span><i style="box-shadow:inset 0 -2px 0 var(--blue)"></i>Đã lưu vào sổ</span></div>
-  <div class="txt${st.py?' py':''}">${paras}</div>
+  <div class="txt${s.col==='novel'?' novel':''}${st.py?' py':''}">${paras}</div>
   <section class="quiz"><h3>读后小测 · Kiểm tra nhanh</h3>${s.q.map(([q,o,r],i)=>`<div class="qq"><p>${i+1}. ${esc(q)}</p><div class="opts">${o.map((t,j)=>{
     const c=a[i]===undefined?'':(j===r?' right':(a[i]===j?' wrong':''));
     return `<button class="opt${c}" type="button" data-q="${i}" data-o="${j}">${esc(t)}</button>`}).join('')}</div></div>`).join('')}
-  ${fin?`<div class="qend"><span class="done">✓ Hoàn thành: đúng ${s.q.filter((x,i)=>a[i]===x[2]).length}/${s.q.length} câu</span>${nx?`<button class="btn pri" type="button" data-s="${nx.id}" data-top="1">下一篇 · Bài tiếp: ${esc(nx.t)} →</button>`:''}</div>`:''}</section>`;
+  ${fin?`<div class="qend"><span class="done">✓ Hoàn thành: đúng ${s.q.filter((x,i)=>a[i]===x[2]).length}/${s.q.length} câu</span>${nx?`<button class="btn pri" type="button" data-s="${nx.id}" data-top="1">${nc?'下一章 · Chương tiếp':'下一篇 · Bài tiếp'}: ${esc(nx.t)} →</button>`:''}</div>`:''}</section>`;
 }
 
 function renderCard(){
   const w=st.w,e=w&&D[w];
-  if(!e){$('#wc').innerHTML=`<p class="empty">Chạm vào một từ được <mark>tô vàng</mark> trong bài để xem pinyin, âm Hán Việt và nghĩa tiếng Việt. Từ có gạch lượn sóng đỏ là “bẫy Hán Việt”.</p>`;$('#wc').classList.remove('open');return}
-  const saved=book.includes(w),others=(where[w]||[]).filter(id=>id!==st.id).map(id=>S.find(s=>s.id===id));
+  if(!e){$('#wc').innerHTML=`<p class="empty">Chạm vào một từ được <mark>tô vàng</mark> trong bài để xem pinyin, âm Hán Việt và nghĩa tiếng Việt. Từ có gạch lượn sóng là “bẫy Hán Việt”.</p>`;$('#wc').classList.remove('open');return}
+  const saved=book.includes(w),others=(where[w]||[]).filter(id=>id!==st.id).map(id=>S.find(s=>s.id===id)).slice(0,6);
   $('#wc').innerHTML=`<button class="btn x" type="button" id="close" aria-label="Đóng">✕</button>
   <p class="big">${esc(w)}</p><p class="pin">${esc(e[0])}</p>
   <div class="row"><span>Âm Hán Việt</span><span>${e[1]?esc(e[1]):'—'}</span></div>
   <div class="row"><span>Nghĩa</span><span>${esc(e[2])}</span></div>
   ${(()=>{const ex=sentOf(w,st.view==='read'?st.id:null);return ex?`<div class="row exrow"><span>Ví dụ</span><span><p>${markIn(ex.t,w)}</p><button class="btn" type="button" id="exsay">${SPK}Nghe câu</button></span></div>`:''})()}
   ${others.length?`<div class="row"><span>Cũng có trong</span><span class="also">${others.map(s=>`<button type="button" data-s="${s.id}" data-keep="1">${esc(s.t)}</button>`).join('')}</span></div>`:''}
-  ${e[3]?`<div class="note ${e[4]==='s'?'s':'t'}"><b>${e[4]==='s'?'Từ lóng giới trẻ':'Bẫy Hán Việt'}</b>${esc(e[3])}</div>`:''}
+  ${e[3]?`<div class="note ${e[4]==='s'?'s':'t'}"><b>${e[4]==='s'?'Từ lóng giới trẻ':e[4]==='t'?'Bẫy Hán Việt':'Ghi chú'}</b>${esc(e[3])}</div>`:''}
   <div class="acts"><button class="btn" type="button" id="say">${SPK}Phát âm</button>
   <button class="btn" type="button" id="save" aria-pressed="${saved}">${STAR}${saved?'Đã lưu':'Lưu vào sổ'}</button></div>`;
   $('#wc').classList.add('open');
@@ -1026,7 +2495,7 @@ function renderBook(){
     ${book.length?`<button class="btn" type="button" id="fc" aria-pressed="${!!st.fc}">${st.fc?'Danh sách':`Ôn tập${dueList().length?` (${dueList().length})`:''}`}</button><button class="btn" type="button" id="copy">Sao chép</button>`:''}</div></div>`;
   let body;
   if(st.fc==='__done'){const nx=book.map(dueOf).filter(d=>d>today()).sort((a,b)=>a-b)[0];
-    body=`<div class="fcdone"><b>Hôm nay đã ôn xong!</b><p class="empty">${nx?`Lần ôn tiếp theo: ${nx-today()===1?'ngày mai':`sau ${nx-today()} ngày`}.`:''} Đọc thêm một bài để gặp từ mới nhé.</p><div class="acts" style="justify-content:center"><button class="btn" type="button" id="fcextra">Ôn thêm ngẫu nhiên</button></div></div>`;
+    body=`<div class="fcdone"><b>Hôm nay đã ôn xong!</b><p class="empty">${nx?`Lần ôn tiếp theo: ${nx-today()===1?'ngày mai':`sau ${nx-today()} ngày`}.`:''} Đọc thêm một truyện để gặp từ mới nhé.</p><div class="acts" style="justify-content:center"><button class="btn" type="button" id="fcextra">Ôn thêm ngẫu nhiên</button></div></div>`;
   }else if(st.fc&&book.includes(st.fc)){const e=D[st.fc]||['','',''],b=boxOf(st.fc);
     body=`<div class="fc"><div class="boxes" title="Mức nhớ ${b}/4">${[1,2,3,4].map(i=>`<i class="${i<=b?'on':''}"></i>`).join('')}</div><p class="big">${esc(st.fc)}</p><div class="ans">${st.fcShow?`<p class="pin">${esc(e[0])}</p><p style="margin:0">${esc(e[2])}${e[1]?` · <span style="color:var(--mute)">${esc(e[1])}</span>`:''}</p>`:'<p class="empty">Nhớ nghĩa chưa? Thử nói to rồi lật thẻ.</p>'}</div>
     <div class="acts"><button class="btn" type="button" id="fcsay">${SPK}Nghe</button>${st.fcShow?'<button class="btn" type="button" id="fcno">Chưa nhớ</button><button class="btn ok" type="button" id="fcyes">Nhớ rồi</button>':'<button class="btn pri" type="button" id="fcflip">Xem nghĩa</button>'}</div>
@@ -1066,35 +2535,40 @@ function stopRead(){reading=false;tok++;st.playing=-1;try{window.speechSynthesis
 let mt;function msg(t){const m=$('#msg');if(!m)return;m.textContent=t;clearTimeout(mt);mt=setTimeout(()=>{const n=$('#msg');if(n)n.textContent=''},2600)}
 
 function openStory(id,push){
-  if(!S.some(s=>s.id===id))id=S[0]&&S[0].id;if(!id)return;
-  if(st.id!==id||st.view!=='read'){stopRead();st.w=null}
-  st.id=id;st.view='read';renderHead();
-  if(push&&location.hash!=='#'+id){try{history.replaceState(null,'','#'+id)}catch(e){location.hash=id}}
+  let s=S.find(x=>x.id===id);if(!s){s=colList()[0];}if(!s)return;
+  if(st.id!==s.id||st.view!=='read'){stopRead();st.w=null}
+  if(s.col!==st.col){st.col=s.col;st.cat='all';st.lv='all'}
+  st.id=s.id;st.view='read';renderHead();
+  if(push&&location.hash!=='#'+s.id){try{history.replaceState(null,'','#'+s.id)}catch(e){location.hash=s.id}}
   renderList();renderStory();renderCard();
-  const c=document.querySelector(`.sc[data-s="${id}"]`);if(c&&c.scrollIntoView)c.scrollIntoView({block:'nearest',inline:'nearest'});
+  const c=document.querySelector(`.sc[data-s="${s.id}"]`);if(c&&c.scrollIntoView)c.scrollIntoView({block:'nearest',inline:'nearest'});
 }
 function pick(w){st.w=w;renderStory();renderCard()}
 function saveBook(){book.forEach(w=>{if(!srs[w])srs[w]={b:0,due:today()}});Object.keys(srs).forEach(w=>{if(!book.includes(w))delete srs[w]});keep('dd-srs',srs);keep('dd-book',book);renderHead();renderBook();renderStory();renderCard()}
+function refilter(){renderHead();renderList();const vis=visible();if(vis.length&&!vis.some(s=>s.id===st.id))openStory(vis[0].id,true)}
+const smooth=()=>matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth';
 
 document.addEventListener('click',ev=>{
-  const t=ev.target.closest('button');if(!t)return;
+  const t=ev.target.closest('button');if(!t||t.disabled)return;
+  if(t.dataset.col){const v=t.dataset.col;if(v==='traps'){stopRead();st.view='traps';st.w=null;renderHead();renderStory();renderCard();try{history.replaceState(null,'','#traps')}catch(e){}return}
+    st.view='read';if(st.col!==v){st.col=v;st.cat='all';st.lv='all';st.q='';$('#q').value='';renderHead();renderList();openStory(colList()[0].id,true)}else{renderHead();renderList();renderStory()}return}
+  if(t.dataset.cat){st.cat=t.dataset.cat;refilter();return}
   if(t.dataset.tp!==undefined){if(st.tq.pick!==null)return;st.tq.pick=+t.dataset.tp;st.score.n++;activity();renderHead();if(st.tq.opts[st.tq.pick]===st.tq.w)st.score.ok++;renderTraps();return}
-  if(t.dataset.lv){if(st.view!=='read'){st.view='read';renderStory()}st.lv=t.dataset.lv==='all'?'all':+t.dataset.lv;renderHead();renderList();const vis=visible();if(vis.length&&!vis.some(s=>s.id===st.id))openStory(vis[0].id,true);return}
+  if(t.dataset.lv){st.lv=t.dataset.lv==='all'?'all':+t.dataset.lv;refilter();return}
   if(t.dataset.s){const keepW=t.dataset.keep?st.w:null;openStory(t.dataset.s,true);if(keepW){pick(keepW)}
-    if(t.dataset.top||window.innerWidth<=1100)$('#story').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});return}
+    if(t.dataset.top||t.closest('.ser')||window.innerWidth<=1100)$('#story').scrollIntoView({behavior:smooth(),block:'start'});return}
   if(t.dataset.si!==undefined){const i=+t.dataset.si;if(reading){reading=false;renderStory()}playFrom(i,false);return}
   if(t.dataset.w){if(reading){stopRead()}st.playing=-1;pick(t.dataset.w);speak(t.dataset.w);return}
   if(t.id==='exsay'){const ex=sentOf(st.w,st.view==='read'?st.id:null);if(ex)speak(ex.t);return}
   if(t.dataset.rm){book=book.filter(w=>w!==t.dataset.rm);saveBook();return}
   if(t.dataset.q!==undefined){const s=S.find(x=>x.id===st.id),a=st.ans[s.id]=st.ans[s.id]||{};const i=+t.dataset.q;if(a[i]!==undefined)return;a[i]=+t.dataset.o;
-    if(Object.keys(a).length===s.q.length)activity();if(Object.keys(a).length===s.q.length&&!done.includes(s.id)){done.push(s.id);keep('dd-done',done);renderHead();renderList()}renderStory();return}
+    if(Object.keys(a).length===s.q.length){activity();if(!done.includes(s.id)){done.push(s.id);keep('dd-done',done)}renderHead();renderList()}renderStory();return}
   switch(t.id){
-    case 'traps':stopRead();st.view='traps';st.w=null;renderHead();renderStory();renderCard();try{history.replaceState(null,'','#traps')}catch(e){}return;
     case 'tnext':newTrap();renderTraps();return;
     case 'tsay':speak(st.tq.w);return;
     case 'tsave':{const w=st.tq.w;book=book.includes(w)?book.filter(x=>x!==w):[w,...book];saveBook();return}
     case 'py':st.py=!st.py;renderStory();return;
-    case 'read':{const s=S.find(x=>x.id===st.id);if(reading){stopRead();renderStory();return}
+    case 'read':{if(reading){stopRead();renderStory();return}
       reading=true;renderStory();if(!playFrom(0,true)){reading=false;renderStory()}return}
     case 'sent':st.sent=!st.sent;renderStory();return;
     case 'say':speak(st.w);return;
@@ -1113,12 +2587,11 @@ document.addEventListener('click',ev=>{
 document.addEventListener('change',ev=>{if(ev.target.id==='rate')st.rate=+ev.target.value});
 $('#q').addEventListener('input',ev=>{st.q=ev.target.value;renderList()});
 document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&st.w){st.w=null;$('#wc').classList.remove('open');renderStory()}});
-function route(){const h=location.hash.slice(1);if(h==='traps'){st.view='traps';renderHead();renderList();renderStory();renderCard()}else openStory(h||(S[0]&&S[0].id),false)}
+function route(){const h=location.hash.slice(1);if(h==='traps'){st.view='traps';if(!st.id)st.id=colList()[0].id;renderHead();renderList();renderStory();renderCard()}else openStory(h||colList()[0].id,false)}
 window.addEventListener('hashchange',route);
 
-renderHead();renderBook();
-if(location.hash==='#traps'){st.id=S[0]&&S[0].id}route();
-if(matchMedia('(min-width:701px)').matches&&!location.hash&&D['外卖'])pick('外卖');
+renderBook();route();
+if(matchMedia('(min-width:701px)').matches&&!location.hash&&D['兼职'])pick('兼职');
 }
 </script>
 </body>
