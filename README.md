@@ -2,7 +2,7 @@ THIS PAGE IS DESIGNED FOR Tuyết Minh TO LEARN CHINESE
 
 # Tuyết Minh学中文 · Đọc chút tiếng Trung
 
-Minh Quý dùng AI thiết kế trang web học tiếng Trung này cho Tuyet Minh.
+Minh Quý dùng AI thiết kế trang web học tiếng Trung này cho Tuyết Minh.
 
 这是 Minh Quý 借助 AI 为 Tuyết Minh 设计的中文学习网站。
 
@@ -28,4 +28,4 @@ Minh Quý dùng AI thiết kế trang web học tiếng Trung này cho Tuyet Min
 * Phát âm dùng giọng đọc tiếng Trung có sẵn trên máy · 发音使用设备自带的中文语音
 * Tất cả bài đọc là nội dung tự viết để học tập · 所有文章均为原创学习材料
 
-Chúc Tuyet Minh học vui! · 祝学习愉快！
+Chúc Tuyết Minh học vui! · 祝学习愉快！
