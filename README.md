@@ -8,6 +8,8 @@ Minh Quý dùng AI thiết kế trang web học tiếng Trung này cho Tuyết M
 
 **Mở trang · 打开网站：** https://mingguiduan.github.io/Tuyet-Minh-Hoc-Tieng-Trung/
 
+<img width="736" height="1308" alt="download (6)" src="https://github.com/user-attachments/assets/667bd858-1b7f-43e1-b318-b7d722086193" />
+
 ## Nội dung · 内容
 
 * **Bốn cấp độ HSK 3 – HSK 6** · 分为 HSK3、HSK4、HSK5、HSK6 四个等级（HSK6 只在小说栏目中）
