@@ -216,61 +216,54 @@ article{padding:18px 16px;border-radius:16px}
 @media(max-width:600px){.stack thead{display:none}.stack tr{display:grid;padding-block:8px;border-bottom:1px solid var(--line)}.stack td{border:0;padding:2px 0;display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:8px}.stack td::before{content:attr(data-l);color:var(--mute);font-size:12px;font-weight:400}}
 @media(prefers-reduced-motion:reduce){*,*::before{transition:none!important}.sc:hover{transform:none}}
 /* ===== 少女风界面 ===== */
-:root{--bg:light-dark(#fdf0f5,#231c26);--card:light-dark(#fffafc,#2c2430);--panel:light-dark(#fdf3f7,#33293a);--ink:light-dark(#5a4658,#f3e6f0);--mute:light-dark(#7f6479,#c4adc0);--line:light-dark(#f2d3df,#4a3a4c);--pri:light-dark(#c9567f,#f4a3c0);--pri-soft:light-dark(#fde1ea,#4a2c3a);--frame:light-dark(#e8a3bc,#a8708a);--frame-soft:light-dark(#f6cddb,#5e4256);--bar:light-dark(#f9d6e2,#4b3443);--mint:light-dark(#c9f0e2,#244038);--mint-ink:light-dark(#2f6f5b,#a8e6cf);--grid:light-dark(#f8dde7,#2e2531);--sh1:3px 3px 0 var(--frame-soft);--sh2:4px 4px 0 var(--frame-soft)}
-body{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:22px 22px}
-h1,.sub,.stat,.seg button,.pill,.btn,.lh,.quiz h3,.bh h3,.opt,.legend{font-family:'Mali','Be Vietnam Pro','Noto Sans SC',sans-serif}
-.hd{background:transparent;border-bottom:2px dashed var(--frame-soft)}
-.logo{border:2px solid var(--frame);box-shadow:var(--sh1);background:var(--card)}
+:root{--bg:light-dark(#fdeef4,#231c26);--card:light-dark(#fffafc,#2c2430);--panel:light-dark(#fdf2f6,#33293a);--ink:light-dark(#5a4658,#f3e6f0);--mute:light-dark(#7f6479,#c4adc0);--line:light-dark(#f2d3df,#4a3a4c);--pri:light-dark(#c9567f,#f4a3c0);--pri-soft:light-dark(#fde1ea,#4a2c3a);--frame:light-dark(#e3a0b8,#a8708a);--frame-soft:light-dark(#f5cddb,#5e4256);--bar:light-dark(#fbd9e5,#4b3443);--mint:light-dark(#d4f3e7,#244038);--mint-ink:light-dark(#2f6f5b,#a8e6cf);--grid:light-dark(#f8dbe6,#2e2531);--sh1:3px 3px 0 var(--frame-soft);--sh2:5px 5px 0 var(--frame-soft)}
+body{background-color:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 260 260%22%3E%3Cg fill=%22none%22 stroke=%22%23efb3c6%22 stroke-width=%222%22 stroke-linecap=%22round%22 opacity=%22.55%22%3E%3Cpath d=%22M40 40c-10-8-22-4-18 4s14 4 18-4zm0 0c10-8 22-4 18 4s-14 4-18-4zm0 0-8 16m8-16 8 16%22/%3E%3Cpath d=%22M190 150c-8-6-18-3-15 3s12 3 15-3zm0 0c8-6 18-3 15 3s-12 3-15-3zm0 0-6 13m6-13 6 13%22/%3E%3C/g%3E%3Cg fill=%22%23f6c3d3%22 opacity=%22.55%22%3E%3Cpath d=%22M150 44c-2-4-8-2-6 2l6 5 6-5c2-4-4-6-6-2z%22/%3E%3Cpath d=%22M60 196c-2-4-8-2-6 2l6 5 6-5c2-4-4-6-6-2z%22/%3E%3C/g%3E%3Cg fill=%22%23f5d27a%22 opacity=%22.6%22%3E%3Cpath d=%22M215 60l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z%22/%3E%3Cpath d=%22M110 120l1.2 3.2 3.2 1.2-3.2 1.2-1.2 3.2-1.2-3.2-3.2-1.2 3.2-1.2z%22/%3E%3Cpath d=%22M28 120l1 2.6 2.6 1-2.6 1-1 2.6-1-2.6-2.6-1 2.6-1z%22/%3E%3C/g%3E%3Cg transform=%22translate%28120 205%29%22 opacity=%22.5%22%3E%3Cpath d=%22M4 9 3 2l6 4h8l6-4-1 7c2 2 2 4 2 6 0 5-5 8-11 8S2 20 2 15c0-2 0-4 2-6z%22 fill=%22none%22 stroke=%22%23e5a0b8%22 stroke-width=%221.6%22/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:260px 260px,22px 22px,22px 22px}
+h1,.sub,.stat,.seg button,.pill,.btn,.lh,.quiz h3,.bh h3,.opt,.legend,.wc .row>span:first-child{font-family:'Mali','Be Vietnam Pro','Noto Sans SC',sans-serif}
+.hd{background:transparent}
+.logo{border:2px solid var(--frame);box-shadow:var(--sh1);background:var(--card) url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 26 24%22%3E%3Cpath d=%22M4 9 3 2l6 4h8l6-4-1 7c2 2 2 4 2 6 0 5-5 8-11 8S2 20 2 15c0-2 0-4 2-6z%22 fill=%22%23fff%22 stroke=%22%23d98aa6%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%229%22 cy=%2214%22 r=%221.3%22 fill=%22%235a4658%22/%3E%3Ccircle cx=%2217%22 cy=%2214%22 r=%221.3%22 fill=%22%235a4658%22/%3E%3Cpath d=%22M11 17q1 1.3 2 0q1 1.3 2 0%22 stroke=%22%235a4658%22 stroke-width=%221.1%22 fill=%22none%22 stroke-linecap=%22round%22/%3E%3Cellipse cx=%226.5%22 cy=%2217%22 rx=%221.8%22 ry=%221%22 fill=%22%23f6a9bd%22/%3E%3Cellipse cx=%2219.5%22 cy=%2217%22 rx=%221.8%22 ry=%221%22 fill=%22%23f6a9bd%22/%3E%3C/svg%3E") no-repeat center/30px}
+.logo svg{display:none}
 .seg{background:var(--card);border:2px solid var(--frame);box-shadow:var(--sh1)}
 .seg button[aria-selected=true]{background:var(--bar);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--frame)}
 .pill{background:var(--card);border:1.5px solid var(--frame-soft)}
 .pill:hover{border-color:var(--frame);box-shadow:var(--sh1)}
 .pill[aria-pressed=true]{background:var(--bar);border-color:var(--frame);color:var(--ink);box-shadow:var(--sh1)}
+.app{position:relative;width:min(1240px,calc(100% - 24px));margin:6px auto 36px;padding-top:62px;border:2.5px solid var(--frame);border-radius:14px;background:color-mix(in srgb,var(--card) 72%,transparent);box-shadow:var(--sh2)}
+.app::before{content:"Tuyết Minh学中文 · đọc cùng nhau ♡";position:absolute;left:0;right:0;top:0;height:42px;padding:0 110px 0 48px;background:var(--bar) url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 26 24%22%3E%3Cpath d=%22M4 9 3 2l6 4h8l6-4-1 7c2 2 2 4 2 6 0 5-5 8-11 8S2 20 2 15c0-2 0-4 2-6z%22 fill=%22%23fff%22 stroke=%22%23d98aa6%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%229%22 cy=%2214%22 r=%221.3%22 fill=%22%235a4658%22/%3E%3Ccircle cx=%2217%22 cy=%2214%22 r=%221.3%22 fill=%22%235a4658%22/%3E%3Cpath d=%22M11 17q1 1.3 2 0q1 1.3 2 0%22 stroke=%22%235a4658%22 stroke-width=%221.1%22 fill=%22none%22 stroke-linecap=%22round%22/%3E%3Cellipse cx=%226.5%22 cy=%2217%22 rx=%221.8%22 ry=%221%22 fill=%22%23f6a9bd%22/%3E%3Cellipse cx=%2219.5%22 cy=%2217%22 rx=%221.8%22 ry=%221%22 fill=%22%23f6a9bd%22/%3E%3C/svg%3E") no-repeat 14px center/26px;border-bottom:2.5px solid var(--frame);border-radius:11px 11px 0 0;font:600 15px/40px 'Mali','Noto Sans SC',sans-serif;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app::after,article::after,.wc::after,.book::after{content:"";position:absolute;top:9px;right:12px;width:84px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 84 22%22%3E%3Cg fill=%22%23fde6ee%22 stroke=%22%23d98aa6%22 stroke-width=%221.6%22%3E%3Crect x=%221%22 y=%221%22 width=%2224%22 height=%2220%22 rx=%224%22/%3E%3Crect x=%2230%22 y=%221%22 width=%2224%22 height=%2220%22 rx=%224%22/%3E%3Crect x=%2259%22 y=%221%22 width=%2224%22 height=%2220%22 rx=%224%22/%3E%3C/g%3E%3Cg fill=%22%23d98aa6%22%3E%3Ccircle cx=%228%22 cy=%2215%22 r=%221.6%22/%3E%3Ccircle cx=%2213%22 cy=%2215%22 r=%221.6%22/%3E%3Ccircle cx=%2218%22 cy=%2215%22 r=%221.6%22/%3E%3C/g%3E%3Crect x=%2236%22 y=%226%22 width=%2212%22 height=%2210%22 rx=%221.5%22 fill=%22none%22 stroke=%22%23d98aa6%22 stroke-width=%221.8%22/%3E%3Cpath d=%22M65 6l12 10M77 6 65 16%22 stroke=%22%23d98aa6%22 stroke-width=%221.8%22 stroke-linecap=%22round%22/%3E%3C/svg%3E") no-repeat center/contain;pointer-events:none}
+article::after,.wc::after,.book::after{top:6px;right:8px;width:66px;height:18px}
 article,.book{position:relative}
-article,.wc,.book,.list{border:2px solid var(--frame);border-radius:12px;background:var(--card);box-shadow:var(--sh2)}
-.list{padding:44px 12px 12px}
+article,.wc,.book,.list{border:2px solid var(--frame);border-radius:12px;background:var(--card);box-shadow:var(--sh1)}
 article{padding-top:54px}
 .wc{padding-top:50px}
 .book{padding-top:48px}
-article::before,.wc::before,.book::before,.list::before{position:absolute;left:0;right:0;top:0;height:32px;line-height:30px;padding:0 92px 0 12px;background:var(--bar);border-bottom:2px solid var(--frame);border-radius:10px 10px 0 0;font:600 14px 'Mali','Be Vietnam Pro',sans-serif;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-article::before{content:"♡ reading.exe"}
-.list::before{content:"☺ Friends · bài đọc"}
-.wc::before{content:"✿ từ điển nhỏ"}
-.book::before{content:"♥ sổ từ"}
-article::after,.wc::after,.book::after,.list::after{content:"–  ▢  ×";position:absolute;top:5px;right:8px;height:20px;padding:0 7px;border:1.5px solid var(--frame);border-radius:6px;background:var(--card);font:700 12px/17px 'Mali',sans-serif;color:var(--pri);letter-spacing:2px;pointer-events:none}
-.sc{border:1.5px solid var(--frame-soft);border-radius:14px;box-shadow:none;background:var(--card)}
+article::before,.wc::before,.book::before{position:absolute;left:0;right:0;top:0;height:32px;padding:0 84px 0 12px;background:var(--bar);border-bottom:2px solid var(--frame);border-radius:10px 10px 0 0;font:600 14px/30px 'Mali','Be Vietnam Pro',sans-serif;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article::before{content:"♡ đang đọc · reading"}
+.wc::before{content:"✿ từ điển · chat"}
+.book::before{content:"♥ sổ từ · 生词本"}
+.list{padding:92px 12px 12px}
+.list::before{content:"Tuyết Minh";position:absolute;left:0;right:0;top:0;height:46px;padding-left:46px;background:var(--card) url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%23e9f8f1%22 stroke=%22%237cc8ad%22 stroke-width=%222%22/%3E%3Cpath d=%22M7 12.5l3.2 3.2L17 9%22 stroke=%22%234fa585%22 stroke-width=%222.2%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E") no-repeat 14px center/22px;border-bottom:2px solid var(--frame);border-radius:10px 10px 0 0;font:600 17px/44px 'Mali',sans-serif;color:var(--ink)}
+.list::after{content:"";position:absolute;left:0;right:0;top:46px;height:38px;background:var(--panel) url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 28%22%3E%3Cpath d=%22M6 14 18 4l12 10M10 12v12h16V12%22 fill=%22%23fde6ee%22 stroke=%22%23e48aaa%22 stroke-width=%222%22 stroke-linejoin=%22round%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M50 6c2-1 4 0 5 3l1 3c0 1-1 2-2 3 1 3 3 5 6 6 1-1 2-2 3-2l3 1c3 1 4 3 3 5-2 2-5 3-8 2-7-2-12-7-14-14-1-3 0-6 3-7z%22 fill=%22%23fff4cf%22 stroke=%22%23e8b84a%22 stroke-width=%221.8%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M88 11 87 4l5 3h8l5-3-1 7c2 2 2 4 2 6 0 5-5 7-10 7s-10-2-10-7c0-2 0-4 2-6z%22 fill=%22%23e3f3fa%22 stroke=%22%2379bcd6%22 stroke-width=%221.8%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%2292%22 cy=%2215%22 r=%221.2%22 fill=%22%233a5f70%22/%3E%3Ccircle cx=%22100%22 cy=%2215%22 r=%221.2%22 fill=%22%233a5f70%22/%3E%3Cpath d=%22M110 5v8M106 9h8%22 stroke=%22%2379bcd6%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3C/svg%3E") no-repeat center/120px 28px;border-bottom:2px solid var(--frame);pointer-events:none}
+.lh::before{content:"☺ Friends · ";font-weight:700;color:var(--ink)}
+.sc{padding-left:58px;border:1.5px solid var(--frame-soft);border-radius:14px;box-shadow:none;background:var(--card)}
+.sc::before{content:"";position:absolute;left:12px;top:12px;bottom:auto;width:34px;height:34px;border-radius:50%;opacity:1;background:var(--cb) url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 26 24%22%3E%3Cpath d=%22M4 10 3 3l6 4h8l6-4-1 7c2 2 2 4 2 6 0 4-5 7-11 7S2 20 2 16c0-2 0-4 2-6z%22 fill=%22%23fff%22 stroke=%22%236b5468%22 stroke-width=%221.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M7.5 14.5q1.5-1.6 3 0M15.5 14.5q1.5-1.6 3 0%22 stroke=%22%236b5468%22 stroke-width=%221.3%22 fill=%22none%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M11.5 17.5q.75 1 1.5 0q.75 1 1.5 0%22 stroke=%22%236b5468%22 stroke-width=%221%22 fill=%22none%22 stroke-linecap=%22round%22/%3E%3Cellipse cx=%226.5%22 cy=%2218%22 rx=%221.7%22 ry=%221%22 fill=%22%23f6a9bd%22/%3E%3Cellipse cx=%2219.5%22 cy=%2218%22 rx=%221.7%22 ry=%221%22 fill=%22%23f6a9bd%22/%3E%3C/svg%3E") no-repeat center/24px;border:1.5px solid var(--frame-soft)}
 .sc:hover{border-color:var(--frame);box-shadow:var(--sh1);transform:none}
+.sc[aria-current=true]{border-color:var(--frame);background:var(--panel);box-shadow:var(--sh1)}
 .search,select{border:2px solid var(--frame-soft);border-radius:12px;background:var(--card)}
 .btn{border:1.5px solid var(--frame-soft);border-radius:10px;background:var(--card)}
 .btn:hover{border-color:var(--frame);box-shadow:var(--sh1)}
 .btn[aria-pressed=true]{background:var(--bar);color:var(--ink);border-color:var(--frame)}
-.btn.pri{background:var(--mint);color:var(--mint-ink);border-color:color-mix(in srgb,var(--mint-ink) 45%,transparent)}
-.btn.pri:hover{background:var(--mint)}
+.btn.pri,#save{background:var(--mint);color:var(--mint-ink);border-color:color-mix(in srgb,var(--mint-ink) 45%,transparent)}
 .ser{border:1.5px dashed var(--frame)}
 .quiz{border:2px dashed var(--frame-soft);background:var(--panel)}
-.opt{border:1.5px solid var(--frame-soft);border-radius:16px 16px 16px 4px;background:var(--card)}
+.qq p{display:inline-block;padding:6px 12px;border:1.5px solid var(--frame-soft);border-radius:14px 14px 14px 4px;background:var(--card)}
+.opt{border:1.5px solid var(--frame-soft);border-radius:16px 16px 4px 16px;background:var(--card)}
+.wc .row{grid-template-columns:minmax(0,1fr);gap:4px;border-top:0;padding:5px 0}
+.wc .row>span:first-child{font-size:12px;padding:0 4px}
+.wc .row>span:last-child{justify-self:start;max-width:100%;padding:7px 12px;border:1.5px solid var(--frame-soft);border-radius:14px 14px 14px 4px;background:var(--panel)}
 .tq,.hvbox,.ex{border:1.5px solid var(--frame-soft)}
 *{scrollbar-color:var(--frame) transparent}
 @media(max-width:1100px){.list{position:relative}}
-@media(max-width:700px){.wc .x{top:40px}article{padding-top:50px}}
-/* ===== 可移动人物 ===== */
-.buddy{position:fixed;left:16px;bottom:16px;z-index:25;width:150px;border:2px solid var(--frame);border-radius:12px;background:var(--card);box-shadow:var(--sh2);touch-action:none;user-select:none;-webkit-user-select:none}
-.buddy-bar{display:flex;align-items:center;justify-content:space-between;gap:6px;height:28px;padding:0 4px 0 10px;background:var(--bar);border-bottom:2px solid var(--frame);border-radius:10px 10px 0 0;cursor:grab;font:600 12px 'Mali',sans-serif;color:var(--ink);white-space:nowrap}
-.buddy.dragging,.buddy.dragging *{cursor:grabbing}
-.buddy-bar button{width:28px;height:22px;border:1.5px solid var(--frame);border-radius:6px;background:var(--card);color:var(--pri);font:700 12px 'Mali',sans-serif;padding:0;cursor:pointer}
-.buddy-body{padding:6px 8px 8px;text-align:center;cursor:grab;outline-offset:-4px}
-.buddy-body svg{width:100%;height:auto;display:block;animation:bBob 3s ease-in-out infinite}
-.buddy .ey{transform-origin:60px 62px;animation:bBlink 5s infinite}
-.buddy .sp{transform-box:fill-box;transform-origin:center;animation:bTw 1.8s ease-in-out infinite}
-.buddy.hop .buddy-body svg{animation:bHop .45s ease}
-.buddy-say{margin:4px 0 0;padding:6px 8px;border:1.5px solid var(--frame-soft);border-radius:12px 12px 12px 4px;background:var(--panel);font:500 13px/1.4 'Mali','Noto Sans SC',sans-serif;color:var(--ink);text-align:left}
-.buddy.min{width:auto}.buddy.min .buddy-body{display:none}.buddy.min .buddy-bar{border-bottom:0;border-radius:10px}
-@keyframes bBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-@keyframes bBlink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
-@keyframes bTw{0%,100%{transform:scale(.6);opacity:.5}50%{transform:scale(1.1);opacity:1}}
-@keyframes bHop{0%,100%{transform:translateY(0)}40%{transform:translateY(-10px)}}
-@media(max-width:700px){.buddy{width:118px}.buddy-say{font-size:12px}}
-@media(prefers-reduced-motion:reduce){.buddy-body svg,.buddy .ey,.buddy .sp{animation:none}}
+@media(max-width:700px){.app{width:calc(100% - 16px);padding:56px 10px 16px}.app::before{font-size:13px;padding-right:96px}.app::after{width:72px;height:19px;top:10px}.wc .x{top:40px}article{padding-top:50px}}
 /* ===== 桌宠 ===== */
 .pet{position:fixed;right:16px;bottom:8px;z-index:25;width:120px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
 .pet img{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 10px rgba(201,86,127,.25));transform-origin:50% 100%;animation:petBreath 3.2s ease-in-out infinite;-webkit-user-drag:none;pointer-events:none}
